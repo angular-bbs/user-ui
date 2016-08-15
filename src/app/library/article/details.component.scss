@@ -1,0 +1,9 @@
+@import "../../_shared/styles/common";
+
+:host {
+  display: block;
+}
+
+blockquote {
+  color: $gray-light;
+}

@@ -1,0 +1,20 @@
+<div class="list-group">
+  <a *ngFor="let item of items" [routerLink]="item.url" class="list-group-item list-group-item-action">
+    <div class="media">
+      <div class="media-left">
+        <img [src]="item.icon|trustAsImgUrl" [alt]="item.title" class="media-object">
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading">
+          {{item.title}}
+        </h3>
+        <p>
+          {{item.description}}
+        </p>
+      </div>
+      <div class="media-right">
+        <img src="../../_images/icons/chevron-right.svg" alt="右箭头" class="icon">
+      </div>
+    </div>
+  </a>
+</div>

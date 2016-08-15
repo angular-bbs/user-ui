@@ -1,0 +1,8 @@
+<div class="list-group padding-h-neg">
+  <div class="alert alert-info" *ngIf="!items?.length">
+    没有找到符合条件的文章
+  </div>
+  <a [routerLink]="['./', item.id]" class="list-group-item" *ngFor="let item of items">
+    {{item.title}}
+  </a>
+</div>

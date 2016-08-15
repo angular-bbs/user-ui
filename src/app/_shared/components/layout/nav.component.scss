@@ -1,0 +1,11 @@
+@import '../../styles/common';
+
+:host {
+  display: block;
+}
+
+.nav {
+  .nav-item {
+    width: 33.3333%;
+  }
+}

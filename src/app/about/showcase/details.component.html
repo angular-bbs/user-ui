@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="img-circle">
+    <img [src]="item.picture|trustAsImgUrl">
+  </div>
+  <div class="card-block">
+    <h2 class="card-title">
+      {{item.title}}
+    </h2>
+    <p *ngIf="item.customer">
+      客户：{{item.customer}}
+    </p>
+    <p *ngIf="item.author">
+      开发：{{item.author}}
+    </p>
+    <p *ngIf="item.url">
+      发布：<a [href]="item.url" target="_blank">{{item.url}}</a>
+    </p>
+    <html-viewer class="card-text" [content]="item.description"></html-viewer>
+  </div>
+</div>

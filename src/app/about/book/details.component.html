@@ -1,0 +1,18 @@
+<div class="card">
+  <img class="img-circle" [src]="item.picture|trustAsImgUrl" alt="书籍封面">
+  <div class="card-block">
+    <h2 class="card-title">
+      {{item.title}}
+    </h2>
+    <html-viewer class="card-text" [content]="item.description"></html-viewer>
+    <hr/>
+    <div>
+      作者：
+      <a *ngFor="let author of item.authors" class="card-link" [routerLink]="['/library/author', {id: author}]">{{author}}</a>
+    </div>
+    <div>
+      购买：
+      <a *ngFor="let store of item.storeUrls" class="card-link" [href]="store.url" target="_blank">{{store.title}}</a>
+    </div>
+  </div>
+</div>

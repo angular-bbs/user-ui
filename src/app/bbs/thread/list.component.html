@@ -1,0 +1,8 @@
+<div class="alert alert-danger" *ngIf="!items.length">
+  没有相关主题
+</div>
+<div class="list-group padding-h-neg" *ngIf="items.length">
+  <a class="list-group-item" *ngFor="let item of items" [routerLink]="['../', item.id]">
+    {{item.title}}
+  </a>
+</div>

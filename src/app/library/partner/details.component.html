@@ -1,0 +1,17 @@
+<div class="card">
+  <img class="card-img-top" [src]="item.avatar|trustAsImgUrl">
+  <div class="card-block">
+    <h2 class="card-title">
+      {{item.name}}
+    </h2>
+    <html-viewer class="card-text" [content]="item.description"></html-viewer>
+    <hr/>
+    <div class="card-text">
+      首页：
+      <a [href]="item.homepage" target="_blank">
+        {{item.homepage}}
+        <img src="../../_shared/_images/icons/external.svg" class="icon"/>
+      </a>
+    </div>
+  </div>
+</div>

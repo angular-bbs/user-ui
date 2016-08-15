@@ -1,0 +1,45 @@
+@import "../../styles/common";
+
+:host {
+  display: block;
+  /deep/ {
+    blockquote {
+      padding-left: 1rem;
+      border-left: 2px solid $brand-primary;
+    }
+    svg {
+      max-width: 100%;
+    }
+    img {
+      max-width: 100%;
+    }
+    ul {
+      padding-left: 1rem;
+      > li {
+        list-style-type: square;
+        > p {
+          margin-bottom: 0.3rem;
+        }
+      }
+    }
+    ol {
+      padding-left: 1rem;
+    }
+    h1 {
+      // 不要显示内部的title
+      display: none;
+    }
+    h2, h3, h4, h5, h6 {
+      padding-bottom: 4px;
+    }
+    h2 {
+      font-size: 16px;
+      color: $brand-secondary;
+      border-bottom: 1px solid $brand-primary;
+    }
+    h3, h4, h5, h6 {
+      font-size: 16px;
+      border-bottom: 1px solid $brand-primary;
+    }
+  }
+}

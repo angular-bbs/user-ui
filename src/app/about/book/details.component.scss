@@ -1,0 +1,38 @@
+@import "../../_shared/styles/common";
+
+:host {
+  display: block;
+}
+
+.card {
+  border: none;
+  .img-circle {
+    display: block;
+    margin: 10px auto;
+    width: 50%;
+    border-radius: 50%;
+    border: 1px solid $gray-lighter;
+  }
+}
+
+h2.card-title {
+  text-align: center;
+  color: $brand-inverse;
+}
+
+h3.card-title {
+  text-align: center;
+  color: $brand-primary;
+}
+
+.card-block {
+  padding: 0;
+}
+
+.card-link {
+  display: inline-block;
+  padding: 0.5rem 0.5rem;
+  & + .card-link {
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,9 @@
+<h2 class="title">
+  {{item.title}}
+  <small class="pull-xs-right">
+    <a class="tag tag-info" *ngFor="let author of item.authors" [routerLink]="['/library/author', author]">{{author}}</a>
+  </small>
+</h2>
+
+<img class="major-picture" *ngIf="item.picture" [src]="item.picture|trustAsImgUrl" alt="题图"/>
+<html-viewer [content]="item.content"></html-viewer>

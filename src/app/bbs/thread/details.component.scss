@@ -1,0 +1,20 @@
+@import "../../_shared/styles/common";
+
+:host {
+  display: block;
+}
+
+.major-picture {
+  width: 50vw;
+  display: block;
+  margin: auto;
+}
+
+small {
+  line-height: 1.5rem;
+  vertical-align: bottom;
+}
+
+.tag {
+  margin-right: 0.5rem;
+}

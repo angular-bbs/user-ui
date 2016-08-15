@@ -1,0 +1,50 @@
+@import "../../_shared/styles/common";
+
+:host {
+  display: block;
+}
+
+.card {
+  border: none;
+  .img-circle {
+    display: block;
+    margin: 10px auto;
+    width: 50vw;
+    height: 50vw;
+    border-radius: 50%;
+    border: 1px solid $gray-lighter;
+    position: relative;
+    padding: 40px;
+    > img {
+      position: absolute;
+      display: block;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+  }
+}
+
+h2.card-title {
+  text-align: center;
+  color: $brand-inverse;
+}
+
+h3.card-title {
+  text-align: center;
+  color: $brand-primary;
+}
+
+.card-block {
+  padding: 0;
+}
+
+.card-link {
+  display: inline-block;
+  padding: 0.5rem 0.5rem;
+  & + .card-link {
+    margin-left: 0;
+  }
+}

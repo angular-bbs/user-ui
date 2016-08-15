@@ -1,0 +1,28 @@
+@import "../_shared/styles/common";
+
+:host {
+  display: block;
+  padding-top: 1rem;
+}
+
+.collection {
+  position: relative;
+  .more-arrow {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    height: 100%;
+    width: 50px;
+    path {
+      fill: lighten($brand-primary, 10%);
+    }
+  }
+}
+
+h3 {
+  margin-top: 1rem;
+}
+
+p {
+  color: lighten($brand-primary, 5%);
+}

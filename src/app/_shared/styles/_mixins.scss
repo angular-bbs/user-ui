@@ -1,0 +1,37 @@
+@import "variables";
+@import "~bootstrap/scss/mixins";
+
+@mixin raised() {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+@mixin z-depth-0() {
+  box-shadow: none;
+}
+
+@mixin z-depth-1() {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+@mixin z-depth-2() {
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@mixin z-depth-3() {
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+@mixin z-depth-4() {
+  box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21);
+}
+
+@mixin z-depth-5() {
+  box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
+}
+
+@mixin block-quote() {
+  border-left: 2px solid $brand-primary;
+  color: $gray-light;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}

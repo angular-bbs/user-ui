@@ -1,0 +1,16 @@
+@import "../_shared/styles/common";
+
+:host {
+  display: block;
+}
+
+a {
+  color: $brand-inverse;
+}
+
+.image {
+  width: 50vw;
+  height: 50vw;
+  display: block;
+  margin: 20px auto;
+}

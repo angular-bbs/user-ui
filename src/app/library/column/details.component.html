@@ -1,0 +1,21 @@
+<div class="card">
+  <img class="img-circle" [src]="item.avatar|trustAsImgUrl">
+  <div class="card-block">
+    <h2 class="card-title">
+      {{item.name}}
+      <small>
+        [
+        <a class="author" *ngFor="let author of item.authors"
+           [routerLink]="['/library/author', author]">{{author}}</a>
+        ]
+      </small>
+    </h2>
+    <h3 class="text-primary">{{item.bio}}</h3>
+    <html-viewer class="card-text" [content]="item.description"></html-viewer>
+    <hr/>
+    <p>
+      <a class="card-link" *ngFor="let tag of item.tags"
+         [routerLink]="['/library/article', {tag: tag, column: item.id}]">{{tag}}</a>
+    </p>
+  </div>
+</div>

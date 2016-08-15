@@ -1,0 +1,30 @@
+@import "../../styles/common";
+
+:host {
+  display: block;
+  margin: 0 -1rem;
+}
+
+.list-group-item {
+  padding: 0.5rem 0.75rem;
+  border-left: none;
+  border-right: none;
+}
+
+.media-right {
+  vertical-align: middle;
+  color: $text-muted;
+}
+
+.media-heading {
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 0.9rem;
+  color: $text-muted;
+}
+
+.icon {
+  font-size: 1.5rem;
+}

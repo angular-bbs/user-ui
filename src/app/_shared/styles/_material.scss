@@ -1,0 +1,44 @@
+@import './common';
+
+.btn {
+  @include raised();
+  &.btn-fab {
+    border-radius: 50%;
+    font-size: 24px;
+    width: 2em;
+    height: 2em;
+    padding: 0;
+    line-height: 2em;
+    vertical-align: middle;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, .12), 0 1px 1px 0 rgba(0, 0, 0, .24);
+    position: relative;
+  }
+}
+
+.nav {
+  &.nav-tabs {
+    border-bottom: none;
+    background: $brand-primary;
+    > .nav-item {
+      margin-bottom: 0;
+      + .nav-item {
+        margin-left: 0;
+      }
+      .nav-link {
+        text-align: center;
+        border: none;
+        background: $brand-primary;
+        color: $gray-lightest;
+        border-radius: 0;
+        border-bottom: 2px solid transparent;
+        &.active {
+          color: $gray-lightest;
+          border: none;
+          border-bottom: 2px solid $brand-secondary;
+        }
+      }
+    }
+  }
+}

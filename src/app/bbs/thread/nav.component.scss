@@ -1,0 +1,26 @@
+@import "../../_shared/styles/common";
+
+:host {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.nav.nav-simple {
+  .nav-link {
+    padding: 0.5em 0.25em 0.1em;
+  }
+  .nav-item {
+    width: 25%;
+    .nav-link {
+      color: $gray-light;
+      &.active {
+        border-bottom: 1px solid $brand-primary;
+        color: $brand-primary;
+      }
+    }
+  }
+}
+
+.btn.btn-secondary {
+  color: $gray-lightest;
+}

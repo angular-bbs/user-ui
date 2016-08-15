@@ -1,0 +1,20 @@
+import {ThreadApi} from './threads/index';
+import {ArticleApi} from './articles/index';
+import {AuthorApi} from './authors/index';
+import {BookApi} from './books/index';
+import {ColumnApi} from './columns/index';
+import {NewsApi} from './news/index';
+import {PartnerApi} from './partners/index';
+import {ResourceApi} from './resources/index';
+import {ShowcaseApi} from './showcases/index';
+export * from './articles';
+export * from './authors';
+export * from './books';
+export * from './columns';
+export * from './news';
+export * from './partners';
+export * from './resources';
+export * from './showcases';
+export * from './threads';
+
+export const SHARED_APIS = [ArticleApi, AuthorApi, BookApi, ColumnApi, NewsApi, PartnerApi, ResourceApi, ShowcaseApi, ThreadApi];

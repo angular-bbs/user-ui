@@ -1,0 +1,22 @@
+<h2>{{item.title}}</h2>
+
+<p>
+  <a *ngFor="let author of item.authors" [routerLink]="['/library/author', author]">{{author}}</a>
+  <a *ngFor="let translator of item.translators"
+     [routerLink]="['/library/author', translator]">[译]{{translator}}</a>
+  <label *ngIf="item.translation">译作</label>
+  <label *ngIf="item.exclusive">独家</label>
+  <label *ngIf="item.first">首发</label>
+  <label *ngIf="!item.forward">原创</label>
+  <label *ngIf="item.forward">转载</label>
+</p>
+
+<p *ngIf="item.originalUrl">
+  <a [href]="item.originalUrl">点此查看原文</a>
+</p>
+
+<blockquote>
+  <html-viewer *ngIf="item.summary" [content]="item.summary"></html-viewer>
+</blockquote>
+
+<html-viewer [content]="item.content"></html-viewer>
