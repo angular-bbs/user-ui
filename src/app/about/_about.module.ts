@@ -4,6 +4,8 @@ import {ABOUT_COMPONENTS} from './index';
 import SharedModule from '../_shared/_shared.module';
 import {routing} from './_about.routing';
 import {RouterModule} from '@angular/router';
+import {BOOK_COMPONENTS} from './book/index';
+import {SHOWCASE_COMPONENTS} from './showcase/index';
 
 @NgModule({
   imports: [
@@ -12,7 +14,7 @@ import {RouterModule} from '@angular/router';
     SharedModule,
     routing,
   ],
-  declarations: [...ABOUT_COMPONENTS],
+  declarations: [...ABOUT_COMPONENTS, ...BOOK_COMPONENTS, ...SHOWCASE_COMPONENTS],
 })
 export default class AboutModule {
 }
