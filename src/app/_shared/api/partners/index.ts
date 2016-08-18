@@ -9,6 +9,13 @@ const items: Partner[] = [
     name: 'Angular官网（英文）',
     description: 'Angular 2官方网站，最新、最权威的技术资料',
     homepage: 'https://angular.io'
+  },
+  {
+    id: 'insignts',
+    avatar: require('./_images/tw-insights.jpg'),
+    name: 'ThoughtWorks洞见',
+    description: 'ThoughtWorks中国区的精品文章汇总',
+    homepage: 'http://insights.thoughtworkers.org/'
   }
 ];
 

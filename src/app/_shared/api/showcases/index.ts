@@ -4,7 +4,8 @@ import {Observable} from 'rxjs/Observable';
 const items: Showcase[] = [
   {
     id: 'iFish',
-    title: 'iFish',
+    title: 'iFISH',
+    url: 'http://www.ifishonline.org/',
     author: 'ThoughtWorks',
     customer: '智渔科技',
     description: require('./10.ifish.md'),

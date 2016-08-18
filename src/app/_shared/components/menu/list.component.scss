@@ -20,9 +20,14 @@
   margin-bottom: 1rem;
 }
 
-p {
-  font-size: 0.9rem;
-  color: $text-muted;
+.media-body {
+  p {
+    font-size: 0.9rem;
+    color: $text-muted;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .icon {

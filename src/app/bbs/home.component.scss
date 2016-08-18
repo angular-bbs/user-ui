@@ -1,0 +1,28 @@
+@import "../_shared/styles/common";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  height: calc(100vh - 48px);
+}
+
+.flex-v {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-auto {
+  flex: auto;
+}
+
+.avatar {
+  display: block;
+  height: 150px;
+  margin: 0 auto 10px;
+}
+
+.text-primary {
+  font-size: large;
+  color: $brand-primary;
+}
