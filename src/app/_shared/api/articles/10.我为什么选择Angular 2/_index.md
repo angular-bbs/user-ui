@@ -10,7 +10,7 @@
 
 ## ALL-IN-ONE
 
-![IKEA](./_images/ikea.jpg)
+![IKEA](./ikea.jpg)
 
 (图片来自宜家官网)
 
@@ -28,7 +28,7 @@ Angular 2就是前端开发领域的“宜家套装”，它经过精心的前�
 
 ## 模块化的技术
 
-![Architecture](./_images/architecture.png)
+![Architecture](./architecture.png)
 
 虽然Angular是一个ALL-IN-ONE的框架，但这并不妨碍它同时是一个灵活的框架。还记得OCP(开闭原则)吗？一个好的设计，对扩展应该是开放的，对修改应该是关闭的。
 
@@ -46,7 +46,7 @@ Angular 2很好的践行了OCP原则以及SoC(关注点分离)原则。
 
 ## 全生命周期支持
 
-![Life Cycle](./_images/life-cycle.gif)
+![Life Cycle](./life-cycle.gif)
 
 除非你打算写一个一次性应用，否则软件的生命周期会很长。宏观来看，真正的挑战来自多个方面，而且在不断变化。
 
@@ -64,7 +64,7 @@ Angular 2很好的践行了OCP原则以及SoC(关注点分离)原则。
 
 ## 逃离“版本地狱”
 
-![版本地狱](./_images/dependency-hell.png)
+![版本地狱](./dependency-hell.png)
 
 如果是一两个人开发一个预期寿命不到一年的系统，那么任何框架都可以胜任。但，现实中我们都把这种系统称之为“坑”。作为一个高度专业、高度工程化的开发组，我们不能把“坑”留给友军。这些坑中，最明显的就是“版本地狱”。
 
@@ -80,7 +80,7 @@ Angular就是这样一个框架，其开发组曾作出的努力是有目共睹�
 
 ## 遇见未来的标准
 
-![W3C](./_images/w3c.png)
+![W3C](./w3c.png)
 
 编程领域，创新无处不在。但对一个工程团队来说，最难得的是标准。标准意味着：
 
@@ -98,7 +98,7 @@ Angular 2采用的就是这种策略。它所参照的标准草案比较多，�
 
 ## 速度与激情
 
-![Speed](./_images/high-speed.png)
+![Speed](./high-speed.png)
 
 Angular 2终于摆脱了旧的技术框架束缚，开始了对速度的极致追求。在Angular 1中，虽然绝大多数场景下性能都不是问题，不过还是因为其代码中存在的一个用来实现脏检查的三重循环而饱受抨击 —— 似乎真有人能感受到30毫秒和100毫秒的差异似的。
 
@@ -119,7 +119,7 @@ Angular 2终于摆脱了旧的技术框架束缚，开始了对速度的极致�
 
 ## 让你无缝升级
 
-![Upgrade](./_images/upgrade.jpg)
+![Upgrade](./upgrade.jpg)
 
 Angular 2开发组在早期阶段曾犯下一个严重的公关错误：过早宣布不兼容Angular 1，也不提供从Angular 1到2的升级方案。
 
@@ -134,7 +134,7 @@ Angular 2开发组在早期阶段曾犯下一个严重的公关错误：过早�
 
 ## 幕后 —— 当Google牵手微软
 
-![Background](./_images/background.jpg)
+![Background](./background.jpg)
 
 当年的浏览器大战，让人记忆犹新，Chrome的出品商Google和IE的出品商微软正是浏览器大战的两大主角。
 
@@ -156,7 +156,7 @@ Angular开发组就这样孤独的走过了一小段儿时间，后来也不知�
 
 ## 后端程序员的终南捷径
 
-![捷径](./_images/shortcut.jpg)
+![捷径](./shortcut.jpg)
 
 前端程序员自不必说，因为有很多人就是靠Angular进入专业前端领域的。下面这段话主要写给后端程序员。
 
