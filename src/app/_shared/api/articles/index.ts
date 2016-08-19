@@ -47,7 +47,7 @@ const items: Article[] = [
     id: '弯道超车！后端程序员的Angular快速指南',
     title: '弯道超车！后端程序员的Angular快速指南',
     summary: '与其临渊羡鱼，不如退而结网。看到前端如火如荼的发展，作为后端程序员的你，是否在跃跃欲试的同时又觉得无从下手？本文将给你信心！',
-    content: require('./50.弯道超车！后端程序员的Angular快速指南.md'),
+    content: require('./50.弯道超车！后端程序员的Angular快速指南/50.弯道超车！后端程序员的Angular快速指南.md'),
     first: true,
     column: '雪狼湖',
     tags: ['现在', '烧脑'],
