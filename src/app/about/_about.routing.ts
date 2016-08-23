@@ -8,12 +8,13 @@ import {BookHomeComponent} from './book/home.component';
 import {ShowcaseShowComponent} from './showcase/show.component';
 import {ShowcaseHomeComponent} from './showcase/home.component';
 const routes: Routes = [
-  {path: '', pathMatch: 'full', component: AboutHomeComponent},
-  {path: 'join', component: AboutJoinComponent},
-  {path: 'site', component: AboutSiteComponent},
-  {path: 'us', component: AboutUsComponent},
+  {path: '', pathMatch: 'full', data: {title: '首页'}, component: AboutHomeComponent},
+  {path: 'join', data: {title: '合作共赢'}, component: AboutJoinComponent},
+  {path: 'site', data: {title: '中文官网'}, component: AboutSiteComponent},
+  {path: 'us', data: {title: '中文社区'}, component: AboutUsComponent},
   {
     path: 'book',
+    data: {title: '图书推荐'},
     children: [
       {path: '', pathMatch: 'full', component: BookHomeComponent},
       {path: ':id', component: BookShowComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'showcase',
+    data: {title: '成功案例'},
     children: [
       {path: '', pathMatch: 'full', component: ShowcaseHomeComponent},
       {path: ':id', component: ShowcaseShowComponent},

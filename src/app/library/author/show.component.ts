@@ -20,6 +20,9 @@ export class AuthorShowComponent extends BasePageComponent {
 
   reload(params: {id: string}) {
     this.item = this.api.query()
-      .find(matchById(params.id));
+      .find(matchById(params.id))
+      .do((item: Author)=> {
+        document.title = `${item.name} - 作者 - Angular中文社区`;
+      });
   }
 }

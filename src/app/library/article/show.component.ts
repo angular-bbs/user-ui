@@ -19,6 +19,10 @@ export class ArticleShowComponent extends BasePageComponent {
   item: Observable<Article>;
 
   reload(params: {id: string}) {
-    this.item = this.api.query().find(matchById(params.id));
+    this.item = this.api.query()
+      .find(matchById(params.id))
+      .do((item: Article)=> {
+        document.title = `${item.title} - Angular中文社区`;
+      });
   }
 }

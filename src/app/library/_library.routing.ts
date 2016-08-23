@@ -17,13 +17,15 @@ const routes: Routes = [
   {path: '', pathMatch: 'full', component: LibraryHomeComponent},
   {
     path: 'article',
+    data: {title: '精品文章'},
     children: [
       {path: '', pathMatch: 'full', component: ArticleHomeComponent},
-      {path: ':id', pathMatch: 'full', component: ArticleShowComponent},
+      {path: ':id', data: {title: '文章详情'}, pathMatch: 'full', component: ArticleShowComponent},
     ],
   },
   {
     path: 'author',
+    data: {title: '作者详情'},
     children: [
       {path: '', pathMatch: 'full', component: AuthorHomeComponent},
       {path: ':id', pathMatch: 'full', component: AuthorShowComponent},
@@ -31,6 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'column',
+    data: {title: '技术专栏'},
     children: [
       {path: '', pathMatch: 'full', component: ColumnHomeComponent},
       {path: ':id', pathMatch: 'full', component: ColumnShowComponent},
@@ -38,6 +41,7 @@ const routes: Routes = [
   },
   {
     path: 'news',
+    data: {title: '前沿观察'},
     children: [
       {path: '', pathMatch: 'full', component: NewsHomeComponent},
       {path: ':id', pathMatch: 'full', component: NewsShowComponent},
@@ -45,6 +49,7 @@ const routes: Routes = [
   },
   {
     path: 'partner',
+    data: {title: '友情链接'},
     children: [
       {path: '', pathMatch: 'full', component: PartnerHomeComponent},
       {path: ':id', pathMatch: 'full', component: PartnerShowComponent},
@@ -52,6 +57,7 @@ const routes: Routes = [
   },
   {
     path: 'resource',
+    data: {title: '资源雷达'},
     children: [
       {path: '', pathMatch: 'full', component: ResourceHomeComponent},
       {path: ':id', pathMatch: 'full', component: ResourceShowComponent},

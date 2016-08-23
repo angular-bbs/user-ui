@@ -20,6 +20,9 @@ export class ColumnShowComponent extends BasePageComponent {
 
   reload(params: {id: string}): void {
     this.item = this.api.query()
-      .find(matchById(params.id));
+      .find(matchById(params.id))
+      .do((item: Column)=> {
+        document.title = `${item.name} - Angular中文社区`;
+      });
   }
 }

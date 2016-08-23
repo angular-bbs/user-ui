@@ -20,6 +20,9 @@ export class ThreadShowComponent extends BasePageComponent {
 
   reload(params: {id: string}) {
     this.item = this.api.query()
-      .find(matchById(params.id));
+      .find(matchById(params.id))
+      .do((item: Thread)=> {
+        document.title = `${item.title} - Angular中文社区`;
+      });
   }
 }

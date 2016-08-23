@@ -20,6 +20,9 @@ export class ResourceShowComponent extends BasePageComponent {
 
   reload(params: {id: string}): void {
     this.item = this.api.query()
-      .find(matchById(params.id));
+      .find(matchById(params.id))
+      .do((item: Article)=> {
+        document.title = `${item.title} - Angular中文社区`;
+      });
   }
 }

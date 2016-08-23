@@ -20,6 +20,9 @@ export class BookShowComponent extends BasePageComponent {
 
   reload(params: {id: string}): void {
     this.item = this.api.query()
-      .find(matchById(params.id));
+      .find(matchById(params.id))
+      .do((item: Book)=> {
+        document.title = `${item.title} - Angular中文社区`;
+      });
   }
 }
