@@ -9,6 +9,7 @@ const items: Article[] = [
     summary: 'Angular 2即将正式发布，昔日王者强势归来！',
     content: require('./00.开篇寄语：Angular —— 王者归来/_index.md'),
     first: true,
+    hidden: true,
     tags: ['现在'],
     authors: ['雪狼']
   },

@@ -8,6 +8,7 @@
     "g": "ng2 g",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng2 test",
+    "build": "ng2 build -prod",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor"
   },
