@@ -1,6 +1,6 @@
 {
   "project": {
-    "version": "1.0.0-beta.11-webpack.2",
+    "version": "0.0.8",
     "name": "user-ui"
   },
   "apps": [

@@ -1,31 +1,19 @@
-# UserUi
+# Angular BBS开发指南
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.11-webpack.2.
+## 技术栈
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Angular 2
 
-## Code scaffolding
+## 环境准备
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
+请先安装NodeJS 5+。
 
-## Build
+## 启动
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+进入本目录，运行`npm install`命令。
 
-## Running unit tests
+运行`npm start`命令，启动完成后会在<http://localhost:4200>启动一个开发服务器。
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 工具
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). 
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Deploying to Github Pages
-
-Run `ng github-pages:deploy` to deploy to Github Pages.
-
-## Further help
-
-To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+运行`npm run g c name-action`可以创建`src/app/name/action.*`文件，内含`NameActionComponent`组件，并自动加入NgModule中。

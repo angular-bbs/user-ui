@@ -4,6 +4,15 @@ import {Observable} from 'rxjs/Observable';
 
 const items: Article[] = [
   {
+    id: '开篇寄语：Angular —— 王者归来',
+    title: '开篇寄语：Angular —— 王者归来',
+    summary: 'Angular 2即将正式发布，昔日王者强势归来！',
+    content: require('./00.开篇寄语：Angular —— 王者归来/_index.md'),
+    first: true,
+    tags: ['现在'],
+    authors: ['雪狼']
+  },
+  {
     id: '我为什么选择Angular 2',
     title: '我为什么选择Angular 2？',
     summary: '晚期选择恐惧症患者可怎么活啊……本文告诉你答案！',

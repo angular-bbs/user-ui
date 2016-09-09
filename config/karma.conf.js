@@ -4,12 +4,12 @@
 module.exports = function (config) {
   config.set({
     basePath: '..',
-    frameworks: ['jasmine', 'angular-cli'],
+    frameworks: ['jasmine', 'ng-cli-2'],
     plugins: [
       require('karma-jasmine'),
       require('karma-phantomjs-launcher'),
       require('karma-remap-istanbul'),
-      require('angular-cli/plugins/karma')
+      require('ng-cli-2/plugins/karma')
     ],
     customLaunchers: {
       // chrome setup for travis CI using chromium
@@ -22,7 +22,7 @@ module.exports = function (config) {
       { pattern: './src/test.ts', watched: false }
     ],
     preprocessors: {
-      './src/test.ts': ['angular-cli']
+      './src/test.ts': ['ng-cli-2']
     },
     remapIstanbulReporter: {
       reports: {
@@ -30,7 +30,7 @@ module.exports = function (config) {
         lcovonly: './coverage/coverage.lcov'
       }
     },
-    angularCliConfig: './angular-cli.json',
+    angularCliConfig: './ng-cli-2.json',
     reporters: ['progress', 'karma-remap-istanbul'],
     port: 9876,
     colors: true,
