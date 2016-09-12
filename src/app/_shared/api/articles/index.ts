@@ -73,6 +73,16 @@ const items: Article[] = [
     tags: ['现在', '烧脑'],
     authors: ['雪狼']
   },
+  {
+    id: 'Angular 2技术选型指南',
+    title: 'Angular 2技术选型指南',
+    summary: '如果你正在为技术选型而烦恼，特别是在纠结是否要开始使用Angular 2，本文将为你提供一些信息来辅助决策',
+    content: require('./70.Angular 2技术选型指南/_index.md'),
+    first: true,
+    column: '雪狼湖',
+    tags: ['现在', '未来'],
+    authors: ['雪狼']
+  },
 ];
 
 @Injectable()
