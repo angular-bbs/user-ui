@@ -2,7 +2,7 @@
 
 ## 简介
 
-[PrimeNg](http://www.primefaces.org/primeng/)是一套基于Angular 2的企业级应用组件库。它目前包括70个组件，特别是19种输入组件和12种数据展示组件和7种常用图表。在做企业应用开发时，它可以给你很大帮助。
+PrimeNg <http://www.primefaces.org/primeng/>是一套基于Angular 2的企业级应用组件库。它目前包括70个组件，特别是19种输入组件和12种数据展示组件和7种常用图表。在做企业应用开发时，它可以给你很大帮助。
 
 PrimeNg是一个基于Apache 2.0的开源项目，可以自由使用在开源或商业项目中。当然，对不差钱儿的开发组来说，可能会更喜欢花钱买平安，所以PrimeNg也同时提供了收费的高级支持服务（代码都一样，只有服务单独收钱）。
 
@@ -13,7 +13,9 @@ PrimeNg是一个基于Apache 2.0的开源项目，可以自由使用在开源或
 
 ## 缺点
 
-PrimeNg的样式不太理想，它使用的是jQuery UI的Theme，没有拥抱扁平风格，更不用说Material Design了。不过如果你已经有比较漂亮的jQuery UI theme，那就不用花费额外的工作量去定制了。
+1. 部分组件依赖jQuery UI库：目前Calendar、Slider和InputMask组件依赖着jQuery UI。虽然它也有改写成Angular 2原生代码的计划，不过在它完成之前，你要使用这些控件还是得先引入jQuery UI库。
+
+2. 样式不理想：它使用的是jQuery UI的Theme，没有拥抱扁平风格，更不用说Material Design了。不过如果你已经有比较漂亮的jQuery UI theme，那就不用花费额外的工作量去定制了。
 
 ## 组件列表
 
