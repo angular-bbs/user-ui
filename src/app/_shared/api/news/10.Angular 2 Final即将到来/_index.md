@@ -6,7 +6,7 @@
 
 Angular官方库的Milestone中已经没有了新的RC计划，目前剩下的三个是Angular 2 Final、2.0.1、2.1.0这几个。截止今日，Angular 2 Final里程碑中的问题已经解决了62%。以近期的速度估算，Angular 2应该有机会在九月底发布正式版。
 
-在这两年半的历史中，Angular 2经历了56个alpha、18个beta和7个rc，共有324位来自Google和开源社区的贡献者提交了5500多个commit（笔者提交过两个PR）。
+在这两年半的历史中，Angular 2经历了56个alpha、18个beta和8个rc，共有324位来自Google和开源社区的贡献者提交了5500多个commit（笔者提交过两个PR）。
 
 ## 我们能做什么？
 
