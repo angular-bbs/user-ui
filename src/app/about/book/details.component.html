@@ -1,5 +1,5 @@
 <div class="card">
-  <img class="img-circle" [src]="item.picture|trustAsImgUrl" alt="书籍封面">
+  <img class="card-img-top" [src]="item.picture|trustAsImgUrl" alt="书籍封面">
   <div class="card-block">
     <h2 class="card-title">
       {{item.title}}
@@ -9,6 +9,10 @@
     <div>
       作者：
       <a *ngFor="let author of item.authors" class="card-link" [routerLink]="['/library/author', {id: author}]">{{author}}</a>
+    </div>
+    <div>
+      译者：
+      <a *ngFor="let translator of item.translators" class="card-link" [routerLink]="['/library/author', {id: translator}]">{{translator}}</a>
     </div>
     <div>
       购买：

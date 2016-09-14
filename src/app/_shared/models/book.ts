@@ -6,5 +6,6 @@ export interface Book {
   description: string;
   storeUrls: Link[];
   authors: string[];
+  translators?: string[];
   isbn?: string;
 }

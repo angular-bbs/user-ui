@@ -30,6 +30,12 @@
   }
 }
 
+.media-left {
+  min-width: 80px;
+  .media-object {
+    margin: auto;
+  }
+}
 .icon {
   font-size: 1.5rem;
 }

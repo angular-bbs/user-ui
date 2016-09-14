@@ -6,13 +6,6 @@
 
 .card {
   border: none;
-  .img-circle {
-    display: block;
-    margin: 10px auto;
-    width: 50%;
-    border-radius: 50%;
-    border: 1px solid $gray-lighter;
-  }
 }
 
 h2.card-title {
@@ -35,4 +28,10 @@ h3.card-title {
   & + .card-link {
     margin-left: 0;
   }
+}
+
+.card-img-top {
+  display: block;
+  width: 50%;
+  margin: 0 auto 32px;
 }

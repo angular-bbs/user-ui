@@ -6,13 +6,24 @@ const items: Book[] = [
   {
     id: 'AngularJS深度剖析与最佳实践',
     title: 'AngularJS深度剖析与最佳实践',
-    picture: require('./_images/angularjs-deep-dive.jpg'),
-    description: 'Angular 1的高级读本，雪狼与破狼的联袂之作。本书是两位一线技术专家的实战经验总结，如果你仍然不得不留在Angular 1，那么本书会帮助你用Angular 2的思想来写Angular 1。',
+    picture: require('./AngularJS深度剖析与最佳实践/cover.jpg'),
+    description: require('./AngularJS深度剖析与最佳实践/_index.md'),
     authors: ['雪狼', '破狼', '彭洪伟'],
     storeUrls: [
       new Link('http://item.jd.com/11845736.html', '京东商城')
     ]
-  }
+  },
+  {
+    id: 'ng-book2',
+    title: 'Angular 2权威教程',
+    picture: require('./ng-book2/cover.jpg'),
+    description: require('./ng-book2/_index.md'),
+    authors: ['Ari Lerner', 'Felipe Coury', 'Nate Murray', 'Carlos Taborda'],
+    translators: ['Angular中文社区'],
+    storeUrls: [
+      new Link('http://www.ituring.com.cn/book/1874', '图灵社区')
+    ]
+  },
 ];
 @Injectable()
 export class BookApi {
