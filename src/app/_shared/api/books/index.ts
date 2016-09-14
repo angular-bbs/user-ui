@@ -16,7 +16,7 @@ const items: Book[] = [
   {
     id: 'ng-book2',
     title: 'Angular 2权威教程',
-    picture: require('./ng-book2/cover.jpg'),
+    picture: require('./ng-book2/cover.png'),
     description: require('./ng-book2/_index.md'),
     authors: ['Ari Lerner', 'Felipe Coury', 'Nate Murray', 'Carlos Taborda'],
     translators: ['Angular中文社区'],
