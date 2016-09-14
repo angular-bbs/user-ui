@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Http} from '@angular/http';
+import {DomSanitizationService} from "@angular/platform-browser";
 
 @Component({
   selector: 'thread-create',
@@ -9,10 +10,13 @@ import {Http} from '@angular/http';
   ]
 })
 export class ThreadCreateComponent implements OnInit {
-  constructor(private http: Http) {
+  html;
+  constructor(private http: Http, private sanitizer: DomSanitizationService) {
   }
 
   ngOnInit() {
   }
-
+  update(text) {
+    this.html = text;//this.sanitizer.bypassSecurityTrustHtml(text);
+  }
 }

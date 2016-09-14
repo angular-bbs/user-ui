@@ -6,7 +6,7 @@
 
 Angular开发组提供了这条升级路径。
 
-根据git记录，Angular开发组从2015年10月就已经提供了`UpgradeAdapter`类，而[相关文档](https://www.angular.io/docs/ts/latest/guide/upgrade.html)也早在2015年11月就写完了第一版。
+根据git记录，Angular开发组从2015年10月就已经提供了`UpgradeAdapter`类，而[相关文档](https://angular.io/docs/ts/latest/guide/upgrade.html)也早在2015年11月就写完了第一版。
 
 当然，官方开发组的重点还是在研发上，没有对这些进行宣传，一些人不了解它也在情理之中。不过，随着Angular开发工作的逐步收尾，宣传工作重新回到前台，相信我们会不断看到关于它的消息。
 

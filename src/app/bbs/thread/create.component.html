@@ -1,14 +1,6 @@
-<p>
-  <img src="_images/ask.svg" class="avatar"/>
-</p>
-<h2>
-  抱歉，本功能仍在开发中，请先访问其它版块。
-</h2>
-<p class="text-primary">
-  如咨询技术问题，请到
-  <a href="https://github.com/angular-bbs/q-and-a/issues">github</a>
-  提问！
-</p>
-<p>
-  我们将尽快上线正式版本，感谢您的关注！
-</p>
+<div class="editor" contenteditable #editor (change)="update(editor.innerHTML)">
+
+</div>
+<button type="button" class="btn btn-primary" (click)="update(editor.innerHTML)">测试</button>
+<div [innerText]="html">
+</div>
