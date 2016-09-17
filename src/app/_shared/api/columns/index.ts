@@ -11,6 +11,15 @@ const items: Column[] = [
     authors: ['雪狼'],
     tags: ['从前', '现在', '将来', '奇闻', '轶事', '放松', '烧脑'],
     avatar: require('./_images/snowwolf.jpg')
+  },
+  {
+    id: 'trotyl',
+    name: `Trotyl's Workspace`,
+    bio: '',
+    description: '',
+    authors: ['trotyl'],
+    tags: [''],
+    avatar: require('./_images/trotyl.jpg')
   }
 ];
 
