@@ -20,7 +20,7 @@ export class ColumnHomeComponent extends BasePageComponent {
 
   reload(params: {id: string}) {
     this.items = this.api.query()
-      .find(matchById(params.id))
+      .filter(matchById(params.id))
       .map(columnToMenu)
       .toArray();
   }
