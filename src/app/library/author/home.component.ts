@@ -20,7 +20,7 @@ export class AuthorHomeComponent extends BasePageComponent {
 
   reload(params: {id: string}): void {
     this.items = this.api.query()
-      .find(matchById(params.id))
+      .filter(matchById(params.id))
       .map(authorToMenuItem)
       .toArray();
   }
