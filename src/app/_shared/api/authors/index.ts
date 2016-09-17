@@ -10,6 +10,15 @@ const items: Author[] = [
     avatar: require('./_images/雪狼.jpg'),
     columnist: true,
     homepage: 'https://github.com/asnowwolf/'
+  },
+  {
+    id: 'Trotyl',
+    name: '余泽江',
+    bio: `You're not as good as you think you are`,
+    description: require('./20.余泽江.md'),
+    avatar: require('./_images/余泽江.jpg'),
+    columnist: false,
+    homepage: 'https://github.com/trotyl/'
   }
 ];
 @Injectable()
