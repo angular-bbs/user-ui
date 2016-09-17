@@ -12,7 +12,7 @@ const items: Author[] = [
     homepage: 'https://github.com/asnowwolf/'
   },
   {
-    id: 'Trotyl',
+    id: 'trotyl',
     name: '余泽江',
     bio: `You're not as good as you think you are`,
     description: require('./20.余泽江.md'),
