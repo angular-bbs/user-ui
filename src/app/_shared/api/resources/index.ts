@@ -4,6 +4,16 @@ import {Article} from '../../models/article';
 
 const items: Article[] = [
   {
+    id: 'Angular资源大全',
+    image: require('../../_images/angular.svg'),
+    title: 'Angular资源大全',
+    summary: 'AngularClass收集的精品资源大全',
+    content: require('./30.awesome/_index.md'),
+    authors: ['AngularClass'],
+    translators: ['雪狼'],
+    originalUrl: 'https://github.com/AngularClass/awesome-angular2',
+  },
+  {
     id: 'PrimeNg',
     image: require('./10.prime-ng/logo.svg'),
     title: 'PrimeNg简介',
