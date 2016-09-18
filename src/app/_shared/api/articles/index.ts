@@ -83,6 +83,16 @@ const items: Article[] = [
     tags: ['现在', '未来'],
     authors: ['雪狼']
   },
+  {
+    id: 'Angular 和 TypeScript 是否为最佳实践？',
+    title: 'Angular 和 TypeScript 是否为最佳实践？',
+    summary: '对于一些新接触 TypeScript 的童鞋们来说，往往会觉得 TypeScript 非常复杂难以理解。',
+    content: require('./80.Angular 和 TypeScript 是否为最佳实践？/_index.md'),
+    first: true,
+    column: 'trotyl',
+    tags: [],
+    authors: ['trotyl']
+  },
 ];
 
 @Injectable()
