@@ -35,10 +35,11 @@
     h2 {
       font-size: 16px;
       color: $brand-secondary;
-      border-bottom: 1px solid $brand-primary;
+      border-bottom: 1px solid $brand-secondary;
     }
     h3, h4, h5, h6 {
       font-size: 16px;
+      color: $brand-primary;
       border-bottom: 1px solid $brand-primary;
     }
   }
