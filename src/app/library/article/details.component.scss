@@ -7,3 +7,50 @@
 blockquote {
   color: $gray-light;
 }
+
+.media {
+  text-align: center;
+  .media-object {
+    height: 128px;
+    max-width: 128px;
+    margin: -8px;
+  }
+  .media-heading {
+    position: relative;
+    padding: 1rem 0;
+    &::before, &::after {
+      position: absolute;
+      content: ' ';
+      display: inline-block;
+      width: 2em;
+      height: 2em;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      color: $gray;
+    }
+    &::before {
+      left: 0;
+      background: url(./_images/chevron-left.svg) no-repeat left center;
+    }
+    &::after {
+      right: 0;
+      background: url(./_images/chevron-right.svg) no-repeat right center;
+    }
+  }
+  p {
+    font-size: 14px;
+    color: $gray;
+  }
+}
+
+footer {
+  border: 2px solid $brand-warning;
+  border-radius: 2px;
+  padding: 1rem;
+  margin: 2rem 0;
+  > img {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
