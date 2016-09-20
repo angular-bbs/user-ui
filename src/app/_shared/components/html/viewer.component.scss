@@ -44,6 +44,9 @@
     }
     h2 {
       font-size: 18px;
+      white-space: nowrap;
+      max-width: calc(100% - 15px);
+      text-overflow: ellipsis;
       padding: 3px 1em 3px 1.3em;
       border-radius: 0 15px 15px 0;
       margin: 10px 0 10px 15px;
