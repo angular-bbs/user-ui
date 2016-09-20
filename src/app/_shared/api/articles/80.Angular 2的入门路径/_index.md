@@ -28,7 +28,7 @@ Angular 2使用模板来编程，这和后端的传统开发方式非常像，�
 
 不要自己从头写构建环境，不要自己写，不要自己写。重要的事情说三遍。
 
-如果你以前习惯于自己写构建脚本，来到前端世界之后还是放弃这种想法吧。即使我这样的熟练工也基本不会再从头去写构建脚本了 —— 复杂、易错、无益。请先找一个starter或seed工程作为入手点，如果将来Angular CLI发布了第一个Release，它也会是很好的选择。目前我认为最好的Starter是AngularClass上的[angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter)。
+如果你以前习惯于自己写构建脚本，来到前端世界之后还是放弃这种想法吧。即使我这样的熟练工也基本不会再从头去写构建脚本了 —— 复杂、易错、无益。请先找一个starter或seed工程作为入手点，如果将来Angular CLI发布了第一个Release，它也会是很好的选择。目前我认为最好的Starter是Github上AngularClass组的[angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter)。
 
 拿到Starter之后，请先抑制住研究它构建脚本的冲动吧，它的复杂度较高，坑也不少，可能会让你搭好几周进去，最好把这些留给专人去研究。除非你很闲，否则请先把精力投入在实现业务功能上。
 
