@@ -87,7 +87,7 @@ const items: Article[] = [
     id: 'Angular 2的入门路径',
     title: 'Angular 2的入门路径',
     summary: '想学Angular 2却无从下手？这里是一个简明的指南，为各种不同背景的程序员建议了一些学习路径',
-    content: require('./80.Angular 2的入门路径/_index.md'),
+    content: require('./path/_index.md'),
     first: true,
     column: '雪狼湖',
     tags: ['现在', '未来'],
