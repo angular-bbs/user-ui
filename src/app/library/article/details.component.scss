@@ -4,6 +4,11 @@
   display: block;
 }
 
+h2 {
+  padding-bottom: 6px;
+  border-bottom: 1px solid $brand-secondary;
+}
+
 blockquote {
   color: $gray-light;
 }

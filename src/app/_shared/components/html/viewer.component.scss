@@ -52,29 +52,45 @@
       display: inline-block;
       position: relative;
     }
-    h2:before {
-      position: absolute;
-      display: inline-block;
-      vertical-align: bottom;
-      bottom: 0;
-      left: -15px;
-      padding-top: 5px;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
+    h2::before {
       counter-increment: h2;
       content: counter(h2);
-      font-size: 13px;
+    }
+    h2::before {
+      position: absolute;
+      display: inline-block;
+      bottom: 0;
+      left: -15px;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      border-radius: 50%;
       background: white;
       border: 2px solid $brand-secondary;
       color: $brand-secondary;
       text-align: center;
     }
     h3, h4, h5, h6 {
+      color: $brand-primary;
       font-size: 15px;
     }
+    h2 {
+      counter-reset: h3;
+    }
     h3 {
-      color: $brand-primary;
+      &::before {
+        counter-increment: h3;
+        content: counter(h3) '. ';
+      }
+    }
+    h3 {
+      counter-reset: h4;
+    }
+    h4 {
+      &::before {
+        counter-increment: h4;
+        content: counter(h3) '.' counter(h4) '. ';
+      }
     }
   }
 }
