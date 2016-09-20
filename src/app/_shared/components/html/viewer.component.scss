@@ -74,8 +74,15 @@
       text-align: center;
     }
     h3, h4, h5, h6 {
-      color: $brand-primary;
       font-size: 15px;
+    }
+    h3 {
+      color: $brand-primary;
+    }
+    h4, h5, h6 {
+      font-weight: lighter;
+      color: $google-green;
+      margin: 0.5rem 0 0;
     }
     h2 {
       counter-reset: h3;

@@ -7,12 +7,17 @@ $font-size-h4: 1rem;
 $font-size-h5: 1rem;
 $font-size-h6: 1rem;
 
-$brand-primary: #4885ed;
-$link-color: $brand-primary;
-$brand-secondary: #DD0031;
+$google-blue: #4885ed;
+$google-red: #DD0031;
+$google-yellow: #f4c20d;
+$google-green: #3cba54;
 
-$brand-warning: #f4c20d;
-$brand-success: #3cba54;
+$brand-primary: $google-blue;
+$link-color: $google-blue;
+$brand-secondary: $google-red;
+
+$brand-warning: $google-yellow;
+$brand-success: $google-green;
 
 $breadcrumb-bg: none;
 
