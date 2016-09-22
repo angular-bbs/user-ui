@@ -93,6 +93,16 @@ const items: Article[] = [
     tags: ['现在', '未来'],
     authors: ['雪狼']
   },
+  {
+    id: '浅谈微信小程序与PWA',
+    title: '浅谈微信小程序与PWA',
+    summary: '被微信小程序刷屏了？来看看PWA吧，这是它的思想源头',
+    content: require('./90.浅谈微信小程序与PWA/_index.md'),
+    first: true,
+    column: '雪狼湖',
+    tags: ['现在', '未来'],
+    authors: ['雪狼']
+  },
 ];
 
 @Injectable()
