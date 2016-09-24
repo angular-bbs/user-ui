@@ -113,6 +113,16 @@ const items: Article[] = [
     tags: [],
     authors: ['trotyl']
   },
+  {
+    id: 'Angular 2的大小与性能',
+    title: 'Angular 2的大小与性能',
+    summary: '这些天听到一些关于Angular 2的大小与性能的疑问，比如：它的大小已经到60k了，能不能进一步缩小到20k啊？本文将给你答案',
+    content: require('./100.Angular 2的大小与性能/_index.md'),
+    first: true,
+    column: '雪狼湖',
+    tags: ['现在', '未来'],
+    authors: ['雪狼']
+  },
 ];
 
 @Injectable()
