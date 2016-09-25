@@ -123,6 +123,16 @@ const items: Article[] = [
     tags: ['现在', '未来'],
     authors: ['雪狼']
   },
+  {
+    id: 'Angular 2 中的 Free Style Selector',
+    title: 'Angular 2 中的 Free Style Selector',
+    summary: '几乎所有 Component 中我们都会用到 selector 这个属性，但是这个 selector 真的有那么简单吗？',
+    content: require('./120.Angular 2 中的 Free Style Selector/_index.md'),
+    first: true,
+    column: 'trotyl',
+    tags: [],
+    authors: ['trotyl']
+  },
 ];
 
 @Injectable()
