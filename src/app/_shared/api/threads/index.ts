@@ -27,7 +27,7 @@ const items: Thread[] = [
 ];
 @Injectable()
 export class ThreadApi {
-  query(filter: string): Observable<Thread> {
+  query(filter: string = 'all'): Observable<Thread> {
     return Observable.from(items)
       .filter((item: Thread)=> {
         switch (filter) {
