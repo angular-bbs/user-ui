@@ -1,6 +1,5 @@
-import {Component, Input, OnChanges, SimpleChange} from '@angular/core';
-import {SafeHtml, DomSanitizationService} from '@angular/platform-browser';
-import {SimpleChanges} from '@angular/core/esm';
+import {Component, Input, OnChanges, SimpleChange, SimpleChanges} from '@angular/core';
+import {SafeHtml, DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'html-viewer',
@@ -13,7 +12,7 @@ export class HtmlViewerComponent implements OnChanges {
   @Input() content: string;
   private html: SafeHtml;
 
-  constructor(private sanitizer: DomSanitizationService) {
+  constructor(private sanitizer: DomSanitizer) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
