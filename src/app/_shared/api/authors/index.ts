@@ -20,6 +20,15 @@ const items: Author[] = [
     columnist: false,
     homepage: 'https://github.com/trotyl/'
   }
+  {
+    id: 'wike',
+    name: '袁志',
+    bio: `在前端领域探索，永不止步`,
+    description: require('./20.袁志.md'),
+    avatar: require('./_images/袁志.jpg'),
+    columnist: false,
+    homepage: 'https://github.com/wike933'
+  }
 ];
 @Injectable()
 export class AuthorApi {
