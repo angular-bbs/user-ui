@@ -153,6 +153,16 @@ const items: Article[] = [
     tags: [],
     authors: ['雪狼'],
   },
+  {
+    id: '流言终结者！Angular的版本与发布',
+    title: '流言终结者！Angular的版本与发布',
+    summary: '前些天，网上有传言说Angular将在半年后推出3.0版，弄得人心惶惶。其实大可不必！今天就让我来终结这些流言，还大家一个真相！',
+    content: require('./160.流言终结者！Angular的版本与发布/_index.md'),
+    first: true,
+    column: '雪狼湖',
+    tags: [],
+    authors: ['雪狼'],
+  },
 ];
 
 @Injectable()
