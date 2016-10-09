@@ -153,16 +153,6 @@ const items: Article[] = [
     tags: [],
     authors: ['雪狼'],
   },
-  {
-    id: '辟谣：Angular 3还早着呢！',
-    title: '辟谣：Angular 3还早着呢！',
-    summary: '最近几天不知道从哪里传来一股谣言，说是Angular将在半年后推出3.0版，并且会按照每半年发布一个主版本的频率迭代。为了防止读者被误导，特此辟谣！',
-    content: require('./150.辟谣：Angular 3还早着呢！/_index.md'),
-    first: true,
-    column: '雪狼湖',
-    tags: [],
-    authors: ['雪狼'],
-  },
 ];
 
 @Injectable()
