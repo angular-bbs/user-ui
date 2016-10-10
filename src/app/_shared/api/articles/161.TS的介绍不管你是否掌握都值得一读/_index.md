@@ -267,60 +267,71 @@
 ### 关于this
 
 尽量用箭头函数，这个是ES6的语法，因为他修复了this的问题。
-则个应该算是JS的设计缺陷，因为每次新声明一个函数大部分的`this`指向的是`window`(浏览器端)不管你这个函数是否是子函数，有一个例子除外那就是`new` 调用,这时创建一个自己的对象并返回。最典型的问题就是`settimeout`和`dom事件`。当然用`call`,`apply`可以改变this，不过箭头函数正确的绑定了this。给个例子：
-	class Person {
-	name : string;
-	  constructor(name : string) {
-	    this.name = name;
-	  }
-	  greet() {
-	    alert(`Hi! My name is ${this.name}`);
-	  }
-	  greetDelay(time : number) {
-	    setTimeout(function() {
-	      alert(`Hi! My name is ${this.name}`);
-	    }, time);
-	  }
-	}
-	var remo = new Person("remo");
-	remo.greet(); // "Hi! My name is remo"
-	remo.greetDelay(1000); // "Hi! My name is "//这里就出现BUG了
+
+则个应该算是JS的设计缺陷，因为每次新声明一个函数大部分的`this`指向的是`window`(浏览器端)不管你这个函数是否是子函数，有一个例子除
+
+外那就是`new` 调用,这时创建一个自己的对象并返回。最典型的问题就是`settimeout`和`dom事件`。当然用`call`,`apply`可以改变this，
+
+不过箭头函数正确的绑定了this。给个例子：
+    
+    	class Person {
+    	name : string;
+    	  constructor(name : string) {
+    	this.name = name;
+    	  }
+    	  greet() {
+    	alert(`Hi! My name is ${this.name}`);
+    	  }
+    	  greetDelay(time : number) {
+    	setTimeout(function() {
+    	  alert(`Hi! My name is ${this.name}`);
+    	}, time);
+    	  }
+    	}
+    	var remo = new Person("remo");
+    	remo.greet(); // "Hi! My name is remo"
+    	remo.greetDelay(1000); // "Hi! My name is "//这里就出现BUG了
 
 我的做法：
-	class Person {
-	    name : string;
-	  constructor(name : string) {
-	    this.name = name;
-	  }
-	  greet() {
-	   alert(`Hi! My name is ${this.name}`);
-	  }
-	  greetDelay(time : number) {
-	   setTimeout(() => {
-	     alert(`Hi! My name is ${this.name}`);
-	   }, time);
-	  }
-	}
-	
-	var remo = new Person("remo");
-	remo.greet(); // "Hi! My name is remo"
-	remo.greetDelay(1000); // "Hi! My name is remo"
+    
+    	class Person {
+    	name : string;
+    	  constructor(name : string) {
+    	this.name = name;
+    	  }
+    	  greet() {
+    	   alert(`Hi! My name is ${this.name}`);
+    	  }
+    	  greetDelay(time : number) {
+    	   setTimeout(() => {
+    	 alert(`Hi! My name is ${this.name}`);
+    	   }, time);
+    	  }
+    	}
+    	
+    	var remo = new Person("remo");
+    
+    	remo.greet(); // "Hi! My name is remo"
+    
+    	remo.greetDelay(1000); // "Hi! My name is remo"
 
 编译后的JS代码：
-	Person.prototype.greetDelay = function (time) {
-	  var _this = this; //这里其实就是一个缓存
-	  setTimeout(function () {、
-		//这里的this是window 
-	    alert("Hi! My name is " + _this.name);
-	  }, time);
-	};
 
+	    Person.prototype.greetDelay = function (time) {
+    	  var _this = this; //这里其实就是一个缓存
+    	  setTimeout(function () {、
+    		//这里的this是window 
+    	alert("Hi! My name is " + _this.name);
+    	  }, time);
+    	};
+    
 
 ##函数的顺序控制
 
 早期通过面条时的回调函数来控制函数的嵌套执行顺序，但是可维护下非常差。为了解决这个问题出现了例如：q.js还有async.js等流程控制库
 
 ### 但ES6给了我们新的视野 Promises 其实Promises早就存在只是ES6把他拿过来用。
+
     function foo() {
       return new Promise((fulfill, reject) => {
     try
