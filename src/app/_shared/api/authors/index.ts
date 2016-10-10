@@ -19,7 +19,7 @@ const items: Author[] = [
     avatar: require('./_images/余泽江.jpg'),
     columnist: false,
     homepage: 'https://github.com/trotyl/'
-  }
+  },
   {
     id: 'wike',
     name: '袁志',
