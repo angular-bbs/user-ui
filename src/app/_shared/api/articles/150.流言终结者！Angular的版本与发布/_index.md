@@ -12,7 +12,7 @@ In order for the ecosystem around Angular to thrive, developers need stability f
 
 However, we also all want Angular to keep evolving. To achieve both goals, we’re implementing semantic versioning and new development processes to help ensure that future changes are always introduced in a predictable way. We want everyone who depends on Angular to know when and how new features are added, and to be well-prepared when obsolete ones removed.
 
-然而，同时我们也都希望Angular能继续演化。要同时达成这两个目标，我们就得引入语义化版本规范以及新的开发流程，以确保将来总能以可预见的方式引入变更。我们希望依赖于Angular的每个人都知道：我们将在何时新特性以及如何添加，而当某个废弃的特性将被移除时，你们也能有足够的时间提前做好准备。
+然而，同时我们也都希望Angular能继续演化。要同时达成这两个目标，我们就得引入语义化版本规范以及新的开发流程，以确保将来总能以可预见的方式引入变更。我们希望依赖于Angular的每个人都知道：我们将在何时添加新特性以及如何添加，而当某个废弃的特性将被移除时，你们也能有足够的时间提前做好准备。
 
 Starting with the 2.0.0 release of Angular, we’ve adopted the following development processes:
 
@@ -75,7 +75,7 @@ We’re taking the following steps to ensure that developers have plenty of time
 - When we announce a deprecation via our release notes, we’ll also announce the recommended update path.
 - 当我们通过“发布说明”宣布一项废弃特性时，也会同时宣布建议的修改路径。
 - We’ll continue to support existing usage of a stable API (i.e. your code will keep working) during the deprecation period, and you’ll always have more than 6 months (two major releases) to update.
-- 在废弃阶段，我们会继续支持对现有的稳定API的使用（也就是说你的现有代码仍然可以工作），因此你至少有六个月的时间（两个主版本）进行这些修改。
+- 在废弃阶段，我们会继续支持对现有的稳定API的使用（也就是说你的现有代码仍然可以工作），因此你至少有六个月的缓冲期（跨两个主版本）进行这些修改。
 - We’ll reserve any peer dependency updates with breaking changes for a major release. An example of this is that in our next major release, we’ll be updating our Typescript dependency to version 2.
 - 我们将在主版本中坚持不改变任何平级（peer）依赖。比如在我们的下一个主版本中，才会把对TypeScript的依赖升级到它的第2版。
 
@@ -113,11 +113,11 @@ Angular开发组的版本发布策略并非如传言所暗示的那样会让你�
 
 事实上，这种版本发布策略并非Angular开发组的首创。无论是Java世界、.net世界还是NodeJS世界，这都已经几乎是高品质框架/库的标准实践。
 
-这种明确的版本发布策略，带给我们的应该是信心而非恐慌。今后若有任何问题，请向我们留言求证，我们会直接向Angular开发组索取第一手的权威资料并转达给各位。我希望对此类重大问题的任何一次传播，都应该是完整、全面的，不要断章取义，误导读者，也希望大家都能作理性、睿智的开发者。
+这种明确的版本发布策略，带给我们的应该是信心而非恐慌。今后若有任何问题，请向我们留言求证，我们会直接向Angular开发组索取第一手的权威资料并转达给各位。我倡议对此类重大问题的任何一次传播，都应该是完整、全面的，不要断章取义，误导读者，也希望大家都能作理性、睿智的开发者。
 
 ## 工作预告
 
-这应该是我最后一次就这个问题做出澄清了，也请大家帮忙转发，不要再让其他人受传言的蒙蔽。
+这应该是我最后一次就这个问题做出澄清了，也请大家帮忙转发，不要再让其他人受传言的困扰。
 
 现在，我们已经组建了一支背景迥异的驻站作者团队，会继续为大家创作更多关于Angular 2的原创内容，预计本周内就会有来自小鲜肉的处女作登场。
 
