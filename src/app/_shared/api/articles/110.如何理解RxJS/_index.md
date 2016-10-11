@@ -40,14 +40,14 @@ lis.forEach(li => ul.appendChild(li))
 
 通过比较，我们可以很直观的发现在一些特定场景中声明式编程会比命令式编程要简洁很多。
 
-除了 HTML 之外，XML、CSS、SQL 和 Prolog 等也都是声明式编程语言。而对于其他的通用编程语言而言，虽然语言本身大多属于命令式语言，但在特定场景下依然可以使用声明式编程的实践。
+除了 HTML 之外，XML、CSS、SQL 和 Prolog 等也都是声明式编程语言。而对于其它的通用编程语言而言，虽然语言本身大多属于命令式语言，但在特定场景下依然可以使用声明式编程的实践。
 
 
 ## Reactive Extensions
 
 > 巨硬大法好！
 
-Reactive Extensions 是微软（研究院）提出的一个函数响应式编程抽象，最早用于 .Net 中（位于 System.Reactive 命名空间下但不在标准库中），之后也被大量移植到其他语言，比如我们这里到 RxJS 就是 Rx 的 JavaScript 移植版本。
+Reactive Extensions 是微软（研究院）提出的一个函数响应式编程抽象，最早用于 .Net 中（位于 System.Reactive 命名空间下但不在标准库中），之后也被大量移植到其它语言，比如我们这里到 RxJS 就是 Rx 的 JavaScript 移植版本。
 
 虽然语言不同，但 Rx 的核心思想以及主要 API 仍然是通用的，所以我们这里的内容同样适用于 RxWhatever。
 
@@ -89,7 +89,7 @@ people$.filter(person => person.age >= 18)
   .subscribe(person => console.log(`${person.name} is an adult.`))
 ```
 
-如果我们还有其他的数据源，比如初始数据从服务端获取，之后的数据才通过交互产生，我们可以进行一次组合：
+如果我们还有其它的数据源，比如初始数据从服务端获取，之后的数据才通过交互产生，我们可以进行一次组合：
 
 ```typescript
 const initialPeople = getPeopleSomehow()
@@ -117,7 +117,7 @@ allPeople$.filter(person => person.age >= 18)
 
 因此，相比于 Promise 这个有限状态机而言，Observable 既可能是有限状态机，也可能是无限状态机（N 为无穷）。并且 Observable 还具有可订阅性，对于 Cold Observable[^3] 而言，只有订阅后才开始起作用，而 Promise 一经产生便开始起作用。
 
-此外，由于 Promise 仅有一个数据，故数据被获取即为 Promise 完成，仅需要一个状态。而对于 Observable，由于可以有任何多个数据，因此需要一个额外的状态来表示完成，一经完成后便不能再产生数据。
+此外，由于 Promise 仅有一个数据，故数据被获取即为 Promise 完成，仅需要一个状态。而对于 Observable，由于可以有任意多个数据，因此需要一个额外的状态来表示完成，一经完成后便不能再产生数据。
 
 在当前的 RxJS 实现中，我们可以通过 .toPromise 运算符来将 Observable 转换为 Promise。
 
@@ -201,7 +201,7 @@ for await (let item of someObservable) {
 + 对于组合，（最简单的方式）需要使用 .mergeMap 方法，用来把两个 Observable 整合为一个 Observable；
 + 对于使用，我们需要使用 .subscribe 方法，用来通知 Observer 我们需要它开始工作。
 
-其他的运算符也不外乎是 **变换** 或者 **组合** 的某种特定操作，在理解了 Observable 的基本原理下，仔细阅读文档和对应的点线图就能很快了解某个运算符了。
+其它的运算符也不外乎是 **变换** 或者 **组合** 的某种特定操作，在理解了 Observable 的基本原理下，仔细阅读文档和对应的点线图就能很快了解某个运算符了。
 
 当然还可能有另一类运算符，比如 .toPromise 等，这些并不返回 Observable 的方法其实本身并不是一个运算符，仅仅是对 Observable 的原型扩展。
 
@@ -210,7 +210,7 @@ for await (let item of someObservable) {
 
 在 Angular 2 中，其实必然会用到 Observable，因为在 @Output 对应的 EventEmitter 实际上就是一个 Subject（同时为 Observable 和 Observer），不过虽然 Angular 2 使用了，这并没有和我们的代码产生联系，所以如果不想使用 Rx，也可以完全无视它。
 
-另一个使用了 Rx 的地方是 Http 模块，其中 Observable 作为大部分 API 的交互对象使用。当然，Http 本身就不是必须的，仅仅是一个官方的外部扩展，相比于其他第三方的库而言也没有任何实现上的特殊性（当然可能 API 设计上更为统一）。所以如果仍然不想使用 Observable，可以使用 .toPromise 的方式转换为 Promise 来使用，或者使用第三方的 Http Client 比如 SuperAgent 等，还可以直接使用 Fetch API。由于 Zone.js 的存在，并不需要对 Angular 进行对应封装。
+另一个使用了 Rx 的地方是 Http 模块，其中 Observable 作为大部分 API 的交互对象使用。当然，Http 本身就不是必须的，仅仅是一个官方的外部扩展，相比于其它第三方的库而言也没有任何实现上的特殊性（当然可能 API 设计上更为统一）。所以如果仍然不想使用 Observable，可以使用 .toPromise 的方式转换为 Promise 来使用，或者使用第三方的 Http Client 比如 SuperAgent 等，还可以直接使用 Fetch API。由于 Zone.js 的存在，并不需要对 Angular 进行对应封装。
 
 其实在 Router 模块中也使用了 Rx，比如 [ActivatedRoute](https://angular.io/docs/ts/latest/api/router/index/ActivatedRoute-interface.html) 中的一些 API 都是以 Observable 的方式交互，用来实现动态响应。当然，我们也可以只使用 [ActivatedRouteSnapshot](https://angular.io/docs/ts/latest/api/router/index/ActivatedRouteSnapshot-interface.html)，这样就可以直接处理数据本身。同样，Router 模块也同样没有任何实现特殊性，如果我们愿意，我们也可以使用 [UI-Router](https://ui-router.github.io/ng2/) 的 Angular 2 版本。
 
