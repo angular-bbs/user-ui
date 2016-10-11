@@ -160,7 +160,7 @@ module.exports = {
         loaders: ['raw-loader', 'sass-loader']
       },
       {
-        test: /initial\.scss$/,
+        test: /main\.scss$/,
         loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader!sass-loader?sourceMap' })
       },
 
@@ -208,7 +208,7 @@ module.exports = {
    */
   plugins: [
     new ExtractTextPlugin({
-      filename: 'initial.css', allChunks: true
+      filename: 'main.css', allChunks: true
     }),
     /*
      * Plugin: ForkCheckerPlugin
