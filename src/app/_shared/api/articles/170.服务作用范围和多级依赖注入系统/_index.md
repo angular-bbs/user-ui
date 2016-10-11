@@ -115,8 +115,8 @@ Angular对主动加载模块和惰性加载模块中服务提供商的处理方�
 
   * 视图子级是在宿主组件模板中使用的组件和指令。
   * 内容子级是宿主组件选择器中间包含的内容，比如
-    ```
-    <parent-component>
-        <content-children></content-children>    
-    </parent-component>
-    ```
+      ```
+      <parent-component>
+          <content-children></content-children>    
+      </parent-component>
+      ```
