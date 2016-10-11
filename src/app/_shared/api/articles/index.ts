@@ -182,6 +182,16 @@ const items: Article[] = [
     tags: [],
     authors: ['trotyl'],
   },
+  {
+    id: '注解与装饰器',
+    title: '注解与装饰器的点点滴滴',
+    summary: '注解（Annotation）和装饰器（Decorator）是两个截然不同的概念，但在 Angular 中往往容易造成混淆，本文将简要阐述两个的区别与联系',
+    content: require('./180.注解与装饰器的点点滴滴/_index.md'),
+    first: false,
+    column: 'trotyl',
+    tags: [],
+    authors: ['trotyl'],
+  },
 ];
 
 @Injectable()
