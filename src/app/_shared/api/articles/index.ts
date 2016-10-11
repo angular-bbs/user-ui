@@ -164,8 +164,8 @@ const items: Article[] = [
     authors: ['雪狼'],
   },
   {
-    id: '服务作用范围和多级依赖注入系统',
-    title: '服务作用范围和多级依赖注入系统',
+    id: 'Angular依赖注入机制与服务的作用范围',
+    title: 'Angular依赖注入机制与服务的作用范围',
     summary: '要想深入理解Angular 2，依赖注入系统是必须迈过的一道坎，而Angular 2中的依赖注入系统在更加强大的同时，也多出来很多需要注意的地方。今天就有请叶志敏为你深入讲解服务与依赖注入系统',
     content: require('./170.服务作用范围和多级依赖注入系统/_index.md'),
     first: true,
