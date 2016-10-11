@@ -67,7 +67,7 @@ Angular对主动加载模块和惰性加载模块中服务提供商的处理方�
 
 主动加载模块的服务提供商被Angular升级到应用根注入器中，作用范围贯穿整个应用。这样设计的主要原因是为了让我们能够通过模块扩展应用。见下图所示：
 
-![Eager Load](./eager load module.png)
+![Eager Load](./eager-load-module.png)
 
 重点有以下几点:
 
@@ -85,7 +85,7 @@ Angular对主动加载模块和惰性加载模块中服务提供商的处理方�
 
 ### 惰性加载模块
 
-![Lazy Load](./lazy load.png)
+![Lazy Load](./lazy-load.png)
 
 重点在于：
 
