@@ -1,6 +1,9 @@
 import {Injectable} from "@angular/core";
 import {Author} from "../../models/author";
 import {Observable} from "rxjs/Observable";
+
+let age = new Date().getFullYear() - 2009;
+
 const items: Author[] = [
   {
     id: '雪狼',
@@ -23,7 +26,7 @@ const items: Author[] = [
   {
     id: 'indooorsman',
     name: '王传业',
-    bio: '前端老司机，驾龄7年',
+    bio: `前端老司机，驾龄${age}年`,
     description: require('./66.王传业.md'),
     avatar: require('./_images/王传业.jpg'),
     columnist: false,
