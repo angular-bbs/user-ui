@@ -1,6 +1,6 @@
 # 如何理解 RxJS ？
 
-在 Angular 2 中，我们遇到了一个新的概念 —— RxJS[^new]。
+在 Angular 2 中，我们遇到了一个新的概念 —— RxJS。
 
 对很多人而言，这可能是一个比较难以理解的地方。所谓的难以理解并不是说 API 有多复杂，而是对于 RxJS 本身的理念就无从下手。
 
@@ -8,7 +8,7 @@
 
 ## 函数响应式编程（FRP）
 
-FRP 早在上世纪 90 年代就已经被提出[^1]，但由于早期的编译器和运行时能力有限，大部分编程实践中往往采用的是人迁就机器的理念，即**命令式编程**，或者叫广义的面向过程[^procedural]。
+[FRP](https://en.wikipedia.org/wiki/Functional_reactive_programming) 早在上世纪 90 年代就已经被提出，但由于早期的编译器和运行时能力有限，大部分编程实践中往往采用的是人迁就机器的理念，即**命令式编程**，或者叫广义的面向过程。（这里指包括面向对象在内的以指定步骤的方式来编程的方式）
 
 而另一类编程方式，叫做**声明式编程**。在声明式编程中，并不会为一个操作指定步骤，而只是单纯的给出我们的意图，而函数响应式编程就是声明式编程中的一个重要实践。
 
@@ -113,9 +113,11 @@ allPeople$.filter(person => person.age >= 18)
 
 事实上，我们确实也可以把 Observable 看成一个有可变数据量的 Promise，而 Promise 只能包含一个数据。
 
-如果看成状态机的话，那么 Promise 具有 3 个状态[^2]：pending、resolved、rejected。而 Observable 有 N + 3 个状态：idle、pending、resolved_0、resolved_1 ... resolved_N、completed 和 error。
+如果看成状态机的话，那么 Promise 具有 3 个状态：pending、resolved、rejected（如果 [Cancelable Promise](https://github.com/tc39/proposal-cancelable-promises) 正式通过，那么还会增加一个状态）。而 Observable 有 N + 3 个状态：idle、pending、resolved_0、resolved_1 ... resolved_N、completed 和 error。
 
-因此，相比于 Promise 这个有限状态机而言，Observable 既可能是有限状态机，也可能是无限状态机（N 为无穷）。并且 Observable 还具有可订阅性，对于 Cold Observable[^3] 而言，只有订阅后才开始起作用，而 Promise 一经产生便开始起作用。
+因此，相比于 Promise 这个有限状态机而言，Observable 既可能是有限状态机，也可能是无限状态机（N 为无穷）。并且 Observable 还具有可订阅性，对于 Cold Observable 而言，只有订阅后才开始起作用，而 Promise 一经产生便开始起作用。
+
+*Observable 可以分为 Cold Observable 和 Hot Observable，Cold Observable 只有被订阅后才开始产生事件，比如封装了 Http 的 Observable，而 Hot Observable 始终产生事件，比如封装了某元素 Click 事件的 Observable。*
 
 此外，由于 Promise 仅有一个数据，故数据被获取即为 Promise 完成，仅需要一个状态。而对于 Observable，由于可以有任意多个数据，因此需要一个额外的状态来表示完成，一经完成后便不能再产生数据。
 
@@ -164,7 +166,7 @@ Observable[Symbol.iterator] = function () {
 }
 ```
 
-这样[^4]，我们就能够通过 for...of 循环的方式来使用：
+这样（仅供表意的实现版本，并没有经过严格验证，请勿直接用于实际项目中），我们就能够通过 for...of 循环的方式来使用：
 
 ```typescript
 for (let itemPromise of someObservable) {
@@ -173,7 +175,7 @@ for (let itemPromise of someObservable) {
 }
 ```
 
-不过，这样我们仍然需要在循环体中使用 await，并不美观（其实已经比较美观了，只是为了引出下文这么说），为此我们可以更进一步，直接实现 Async Iterable[^5]：
+不过，这样我们仍然需要在循环体中使用 await，并不美观（其实已经比较美观了，只是为了引出下文这么说），为此我们可以更进一步，直接实现 Async Iterable（目前仍然是 Stage 3 的[提案](https://github.com/tc39/proposal-async-iteration)，有望进入 ES2017 中）：
 
 ```typescript
 Observable[Symbol.asyncIterator] = function () {
@@ -224,12 +226,3 @@ Rx 的知识在 Angular 2 中并不必须，主要用在 API 交互上，之所�
 理解了 Iterable 和 AsyncIterable 之后，也可能把 Observable 看成一个 AsyncIterable 的特例，也就是一个异步的迭代容器。
 
 Rx 提供了大量的运算符，用于对 Observable 的组合与变换。
-
-
-[^new]: 也可能并没有遇到，因为是否需要在应用中直接使用 RxJS 完全是可选的，如果不想用 RxJS 的话也完全可以不直接使用。（至于 Angular 在内部有没有用和我们没什么关系了，好比我们说没有操作 DOM 的时候难道真的没有操作 DOM 吗？只是我们不去直接操作而已）
-[^procedural]: 这里的面向过程指包括面向对象在内的以指定步骤的方式来编程的方式。
-[^1]: https://en.wikipedia.org/wiki/Functional_reactive_programming
-[^2]: 如果 https://github.com/tc39/proposal-cancelable-promises 正式通过，那么还会增加一个状态。
-[^3]: Observable 可以分为 Cold Observable 和 Hot Observable，Cold Observable 只有被订阅后才开始产生事件，比如封装了 Http 的 Observable，而 Hot Observable 始终产生事件，比如封装了某元素 Click 事件的 Observable。
-[^4]: 仅供表意的实现版本，并没有经过严格验证，请勿直接用于实际项目中。
-[^5]: 目前仍然是 Stage 3 的提案（https://github.com/tc39/proposal-async-iteration），有望进入 ES2017 中。
