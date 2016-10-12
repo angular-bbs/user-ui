@@ -173,6 +173,15 @@ const items: Article[] = [
     authors: ['叶志敏'],
   },
   {
+    id: 'AngularConnect 2016视频',
+    title: 'AngularConnect 2016视频',
+    summary: '朋友，听说过AC 2016吗？串台了……回来。Angular的顶级大神们刚刚在伦敦开完了正式发布后的首次大会，其中干货满满。然而他们把视频都上传到了YouTube，然后，你懂的…… 不过谷歌开发技术推广部把它们都上传到了国内，而且我们已经为其中之一配上了中文字幕。这是我们的分享。',
+    content: require('./160.AngularConnect 2016视频/_index.md'),
+    first: true,
+    tags: [],
+    authors: ['汪志成', '叶志敏', '程路', '大漠穷秋'],
+  },
+  {
     id: '如何理解RxJS',
     title: '如何理解 RxJS？',
     summary: 'RxJS 可能对很多人而言是一个从没听说过的新名词，那么 RxJS 到底是什么呢？本文中将予以简要介绍',
