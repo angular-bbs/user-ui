@@ -88,9 +88,7 @@ let AppComponent = Component({
 
 **所以 Angular 2 中其实并没有通过 Decorator（这个语言特性）来实现附加数据，而是在 Decorator 的应用过程中，通过 Reflect.metadata 来附加数据，Decorator 在这里的意义仅仅是作为语法糖，把函数调用写的更好看了而已。**
 
-另外，虽然我们的用法没有发生变化，但经过上面的讨论我们很容易知道在 Angular 2 中原先配合 AtScript 的 Component 实体的实现和现在配合 ES next 的 Component 实体的实现是完全不一样的，前者就是 ComponentMetadata，而后者是一个 ComponentDecoratorFactory。
-
-在 rc6 及之前 Component 这个 Factory 函数的配置对象的类型叫做 ComponentMetadata，rc7 及之后也同样叫 Component，但两者是不同的实体（前者是 const，后者是 interface），也就是说在 TypeScript 中如果 `import { Component } from '@angular/core'` 这样是同时引入了两个叫做 Component 的同名标识，本文不是 TypeScript 相关所以不做过多介绍。
+另外，虽然我们的用法没有发生变化，但经过上面的讨论我们很容易知道在 Angular 2 中原先配合 AtScript 的 Component 实体的实现和现在配合 ES next 的 Component 实体的实现是完全不一样的，前者就是 ComponentMetadata，而后者是一个 ComponentDecoratorFactory。在 rc6 及之前 Component 这个 Factory 函数的配置对象的类型叫做 ComponentMetadata，rc7 及之后也同样叫 Component，但两者是不同的实体（前者是 const，后者是 interface），也就是说在 TypeScript 中如果 `import { Component } from '@angular/core'` 这样是同时引入了两个叫做 Component 的同名标识，本文不是 TypeScript 相关所以不做过多介绍。
 
 
 ## 总结
