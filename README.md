@@ -22,7 +22,7 @@ Angular 2
 
 Angular中文社区热烈欢迎各位投稿。延续程序员的光荣传统，我们使用Github接收稿件！
 
-首先，你要会发Pull Request，如果不会用可以参见<http://blog.jobbole.com/76854/>。
+首先，你要会发Pull Request，如果不会用可以参见<http://wwsun.github.io/posts/github-work-flow.html>。
 
 然后，请找到`src/app/_shared/api/articles`目录，仿照我已经写的这些文章，把你的文章放进去（用Markdown、Jade、HTML都可以，可以引用图片等），并在index.ts中引用它。
 
