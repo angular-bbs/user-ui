@@ -5,7 +5,7 @@
 
 对于很多 Java 开发人员来说，注解（Annotation）已经是一个十分熟悉的概念。而在 JavaScript 中（目前仍然是 Stage 2 的 ES Proposal），引入了一个类似的语法——装饰器（Decorator）。
 
-甚至有很多人在生活中不加区分两个的概念，把装饰器也叫做注解。那么，装饰器和注解到底有什么联系与区别呢？
+甚至有很多人在日常工作中不区分这两个概念，把装饰器也叫做注解。那么，装饰器和注解到底有什么联系与区别呢？
 
 ## 概念
 
@@ -78,9 +78,9 @@ let AppComponent = Component({
 
 ## 事实上
 
-我们发现，对于注解有一个构造函数调用，对于装饰器而言有一个普通的函数调用。**既然有这个函数调用过程，我们其实可以该函数调用中做任何事情！**
+我们发现，对于注解有一个构造函数调用，对于装饰器而言有一个普通的函数调用。**既然有这个函数调用过程，我们其实可以在该函数调用中做任何事情！**
 
-**或者说的更为直白一些，（AtScript 的）注解和（ES next 的）装饰器在实现上可以相互模拟！**
+**或者说得更为直白一些，（AtScript 的）注解和（ES next 的）装饰器在实现上可以相互模拟！**
 
 *对于装饰器而言，如果想要实现注解的功能，在原来的类型上挂点什么东西就好；对于注解而言，如果想要实现装饰器的功能，把现有类型（或其属性）按需替换掉就好。当然，后者可能会有一些限制，因为前提是要能够获取到目标类型，但 Annotation 本身并没有提供这个功能。*
 
@@ -90,7 +90,7 @@ let AppComponent = Component({
 
 另外，虽然我们的用法没有发生变化，但经过上面的讨论我们很容易知道在 Angular 2 中原先配合 AtScript 的 Component 实体的实现和现在配合 ES next 的 Component 实体的实现是完全不一样的，前者就是 ComponentMetadata，而后者是一个 ComponentDecoratorFactory。
 
-在 rc6 及之前 Component 这个函数的配置对象的类型叫做 ComponentMetadata，rc7 及之后也同样叫 Component，但是不同的实体（前者是 const，后者是 interface），也就是说在 TypeScript 中如果 `import { Component } from '@angular/core'` 这样是同时引入了两个叫做 Component 的同名标识，本文不是 TypeScript 相关所以不做过多介绍。
+在 rc6 及之前 Component 这个 Factory 函数的配置对象的类型叫做 ComponentMetadata，rc7 及之后也同样叫 Component，但两者是不同的实体（前者是 const，后者是 interface），也就是说在 TypeScript 中如果 `import { Component } from '@angular/core'` 这样是同时引入了两个叫做 Component 的同名标识，本文不是 TypeScript 相关所以不做过多介绍。
 
 
 ## 总结
