@@ -132,6 +132,7 @@ module.exports = {
         loaders: [
           'awesome-typescript-loader',
           'angular2-template-loader',
+          'angular2-router-loader',
           '@angularclass/hmr-loader'
         ],
         exclude: [/\.(spec|e2e)\.ts$/]
@@ -287,6 +288,11 @@ module.exports = {
     new HtmlElementsPlugin({
       headTags: require('./head-config.common')
     }),
+  
+    new webpack.ContextReplacementPlugin(
+      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      __dirname
+    ),
 
   ],
 
