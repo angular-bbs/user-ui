@@ -40,6 +40,15 @@ const items: Author[] = [
     avatar: require('./_images/王传业.jpg'),
     columnist: false,
     homepage: 'https://csser.me'
+  },
+  {
+    id: 'lhtin',
+    name: '丁乐华',
+    bio: 'Why didn\'t the spider go to school? Because she learned everything on the web.',
+    description: require('./250.丁乐华.md'),
+    avatar: require('./_images/250.丁乐华.md'),
+    columnist: false,
+    homepage: 'https://github.com/lhtin'
   }
 ];
 @Injectable()

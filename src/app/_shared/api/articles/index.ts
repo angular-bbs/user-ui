@@ -210,6 +210,15 @@ const items: Article[] = [
     tags: ['ts'],
     authors: ['袁志'],
   },
+  {
+    id: 'RxJS Overview阅读笔记',
+    title: 'RxJS Overview阅读笔记',
+    summary: 'RxJS 是事件监听与Promise的组合，同时提供了丰富的操作返回数据的接口。',
+    content: require('./250.RxJS Overview阅读笔记/_index.md'),
+    first: true,
+    tags: ['RxJS'],
+    authors: ['lhtin'],
+  },
 ];
 
 @Injectable()
