@@ -15,19 +15,19 @@ const routes: Routes = [
       {path: '', pathMatch: 'full', redirectTo: '/user'},
       {
         path: 'about', data: {title: '关于我们'},
-        loadChildren: () => System.import('./about/_about.module')
+        loadChildren: './about/_about.module'
       },
       {
         path: 'bbs', data: {title: '微站论坛'},
-        loadChildren: () => System.import('./bbs/_bbs.module')
+        loadChildren: './bbs/_bbs.module'
       },
       {
         path: 'library', data: {title: '资料中心'},
-        loadChildren: () => System.import('./library/_library.module')
+        loadChildren: './library/_library.module'
       },
       {
         path: 'user', data: {title: '用户中心'},
-        loadChildren: () => System.import('./user/_user.module')
+        loadChildren: './user/_user.module'
       },
       {path: '**', component: NotFoundComponent},
     ]
