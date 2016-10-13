@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {routing} from './_user.routing';
+import { UserRoutingModule} from './_user-routing.module';
 import {USER_COMPONENTS} from './index';
 import SharedModule from '../_shared/_shared.module';
 
@@ -8,7 +8,7 @@ import SharedModule from '../_shared/_shared.module';
   imports: [
     CommonModule,
     SharedModule,
-    routing,
+    UserRoutingModule,
   ],
   declarations: [...USER_COMPONENTS],
 })

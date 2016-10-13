@@ -15,6 +15,10 @@ const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 const HtmlElementsPlugin = require('./html-elements-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+var container = require('markdown-it-container');
+var subscript = require('markdown-it-sub');
+var superscript = require('markdown-it-sup');
+
 /*
  * Webpack Constants
  */
@@ -89,6 +93,7 @@ module.exports = {
    * See: http://webpack.github.io/docs/configuration.html#module
    */
   module: {
+  
 
     /*
      * An array of applied pre and post loaders.
@@ -173,8 +178,8 @@ module.exports = {
         loader: 'raw-loader'
       },
       {
-        test: /\.md$/,
-        loader: 'raw-loader'
+        test:   /\.md$/,
+        loader: 'raw-loader!markdown-it'
       },
       {
         test: /\.jade$/,
@@ -199,6 +204,8 @@ module.exports = {
     ]
 
   },
+  
+ 
 
   /*
    * Add additional plugins to the compiler.
@@ -301,6 +308,13 @@ module.exports = {
     module: false,
     clearImmediate: false,
     setImmediate: false
+  },
+  
+  
+  'markdown-it': {
+    preset: 'default',
+    typographer: true,
+    use: [subscript, superscript, [container, "contained"]]
   }
 
 };

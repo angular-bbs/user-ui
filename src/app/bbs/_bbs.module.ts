@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {routing} from './_bbs.routing';
+import { BbsRoutingModule} from './_bbs-routing.module';
 import SharedModule from '../_shared/_shared.module';
 import {THREAD_COMPONENTS} from './thread/index';
 import {BbsHomeComponent} from './home.component';
@@ -9,7 +9,7 @@ import {BbsHomeComponent} from './home.component';
   imports: [
     CommonModule,
     SharedModule,
-    routing
+    BbsRoutingModule
   ],
   declarations: [...THREAD_COMPONENTS, BbsHomeComponent]
 })
