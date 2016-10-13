@@ -202,10 +202,10 @@ const items: Article[] = [
     authors: ['trotyl'],
   },
    {
-    id: 'TS的介绍 —— 不管你是否已掌握都值得一读',
+    id: 'TypeScript的新特性',
     title: 'TypeScript的新特性',
     summary: 'Angular 2把TypeScript作为首选语言，很多新人可能还不太熟悉，就我来把一些个人的理解分享给大家。小鲜肉的处女作，多谢捧场',
-    content: require('./161.TS的介绍不管你是否掌握都值得一读/_index.md'),
+    content: require('./161.TypeScript的新特性/_index.md'),
     first: true,
     tags: ['ts'],
     authors: ['袁志'],
