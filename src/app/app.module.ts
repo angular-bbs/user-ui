@@ -7,7 +7,6 @@ import SharedModule from './_shared/_shared.module';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {routing} from './app.routing';
 import {RouterModule} from '@angular/router';
-import {LeanNgModuleLoader} from './lean-ng-module-loader';
 
 @NgModule({
   declarations: [
@@ -21,9 +20,6 @@ import {LeanNgModuleLoader} from './lean-ng-module-loader';
     RouterModule,
     SharedModule.forRoot(),
     routing,
-  ],
-  providers: [
-    {provide: NgModuleFactoryLoader, useClass: LeanNgModuleLoader},
   ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]
