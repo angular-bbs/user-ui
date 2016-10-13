@@ -1,11 +1,11 @@
-import {Injectable, NgModuleFactory, NgModuleFactoryLoader, Compiler, Type} from '@angular/core';
+import { Injectable, NgModuleFactory, NgModuleFactoryLoader, Compiler, Type } from '@angular/core';
 
 class LoaderCallback {
   constructor(public callback) {
   }
 }
 
-export let load: Type = (callback: Function) => {
+export let load: any = (callback: Function) => {
   return new LoaderCallback(callback);
 };
 

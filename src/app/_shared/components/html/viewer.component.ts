@@ -1,5 +1,6 @@
-import {Component, Input, OnChanges, SimpleChange, SimpleChanges} from '@angular/core';
-import {SafeHtml, DomSanitizer} from '@angular/platform-browser';
+import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
+import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
+import { SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'html-viewer',

@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'bbs-home',
-  templateUrl: './home.component.html',
-  styleUrls: [
-    './home.component.scss'
+  template: require('./home.component.html'),
+  styles: [
+    require('./home.component.scss')
   ]
 })
 export class BbsHomeComponent implements OnInit {

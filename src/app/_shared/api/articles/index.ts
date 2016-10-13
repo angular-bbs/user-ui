@@ -133,6 +133,16 @@ const items: Article[] = [
     tags: [],
     authors: ['trotyl']
   },
+  {
+    id: 'Angular 2中的路由',
+    title: 'Angular 2中的路由',
+    summary: 'Angular 2推出了一个强大的路由系统，这里我们先做一个简介，后面再逐渐展开',
+    content: require('./130.Angular 2中的路由/_index.md'),
+    first: true,
+    column: '雪狼湖',
+    tags: [],
+    authors: ['雪狼'],
+  },
 ];
 
 @Injectable()
