@@ -79,7 +79,7 @@ module.exports = {
     root: helpers.root('src'),
 
     // remove other default values
-    modulesDirectories: ['node_modules'],
+    modulesDirectories: ['node_modules']
 
   },
 
@@ -105,8 +105,7 @@ module.exports = {
           flags: 'g'
         },
         include: [helpers.root('src')]
-      },
-
+      }
     ],
 
     /*
@@ -191,12 +190,12 @@ module.exports = {
         test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         // Limiting the size of the woff fonts breaks font-awesome ONLY for the extract text plugin
         // loader: "url?limit=10000"
-        loader: 'url',
+        loader: 'url'
       },
       {
         test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
-        loader: 'file',
-      },
+        loader: 'file'
+      }
     ]
 
   },
@@ -237,10 +236,16 @@ module.exports = {
      *
      * See: https://www.npmjs.com/package/copy-webpack-plugin
      */
-    new CopyWebpackPlugin([{
-      from: 'src/assets',
-      to: 'assets'
-    }]),
+    new CopyWebpackPlugin([
+      {
+        from: {
+          glob: 'src/**/_images/*',
+          dot: true
+        },
+        to: '_images',
+        flatten: true
+      }
+    ]),
 
     /*
      * Plugin: HtmlWebpackPlugin
