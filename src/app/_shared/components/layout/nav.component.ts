@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'layout-nav',
-  template: require('./nav.component.html'),
-  styles: [
-    require('./nav.component.scss')
+  templateUrl: './nav.component.html',
+  styleUrls: [
+    './nav.component.scss'
   ],
 
 })
