@@ -1,4 +1,4 @@
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, Title} from '@angular/platform-browser';
 import {NgModule, NgModuleFactoryLoader} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
@@ -26,6 +26,7 @@ import {LeanNgModuleLoader} from './lean-ng-module-loader';
     AppComponent
   ],
   providers: [
+    Title
     // { provide: NgModuleFactoryLoader, useClass: LeanNgModuleLoader },
   ],
   // entryComponents: [AppComponent],
