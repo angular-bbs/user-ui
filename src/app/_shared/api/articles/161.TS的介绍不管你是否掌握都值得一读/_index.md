@@ -10,14 +10,14 @@
 - OOP
 (以后持续更新)
 
-声明：联系QQ 200569525 本教程绝对是原创的。
+
 
 
 
 
 ## TS的函数应用
 
-函数是一门语言不可缺少的部分，TS声明函数和js最大的区别就是将弱类型的JS再编写的时候变成了强类型的TS。
+函数是一门语言不可缺少的部分，最大的区别在于，将j弱类型的JS语法，在编写的过程中使用强类型的TS语法。
 
     var greetUnnamed = function(name : string) : string {
       if(name){
@@ -25,7 +25,7 @@
       }
     }
 
-上述代码声明了一个函数，他的参数类型是字符串，返回值类型是字符串这个是大多数TS教程的声明办法
+上述代码声明了一个函数，它的参数类型是字符串，返回值类型是字符串这个是大多数TS教程的声明办法
 
 
 
@@ -73,7 +73,7 @@
       return foo + bar + (foobar !== undefined ? foobar : 0);
     }
 
-很多人可能认为这样就可以实现了,但是TS有更好更简洁的语法。
+很多人认为这样就可以实现了,但是TS有更好更简洁的语法。
     
     var add = (foo : number, bar : number, foobar : number = 10) : number =>{
       return foo + bar + foobar;
@@ -83,7 +83,7 @@
 
 #### 不定参数
 
-在写JS的时候,经常会遇到一个情况函数参数未知。我们都是通过 `arguments` 来判断的.TS给你一种更强大的方法:
+在写JS的时候,经常会遇到一个情况函数参数未知问题。我们都是通过 `arguments` 来判断的.TS给你一种更强大的方法:
 
     
     var add = ( a: number, b : number,...foo : number[]) : number =>{
@@ -126,10 +126,47 @@
       }
     }
 
-这个时候fn他的参数既可以是字符串，也可以是数字，也可以布尔值，不同的参数执行的逻辑代码不一样。当然这个是简单的，实际应用中可能会更复杂。
+这个时候`fn`它的参数，既可以是字符串，也可以是数字，也可以布尔值，不同的参数执行的逻辑代码不一样。当然这个是个简单的例子，在实际应用中可能会更复杂的代码逻辑。
+
+这个牵涉2部分函数的预定义部分，和函数主体的声明部分
+
+  下面是函数的预定义部分，声明函数接受的各种参数，和返回值情况
+
+	    function fn (name: string) : string;/这里是预定义函数的各种参数类型
+	
+	    function fn (age: number) : string; /这里是预定义函数的各种参数类型
+	
+	    function fn (single: boolean) : string; //这里是预定义函数的各种参数类型
+
+  下面是函数的定义部分，函数的所有逻辑都在这里声明
+
+	    var fn =(value: (string | number | boolean) : string =>{ 
+	      switch(typeof value){
+	         case "string":
+	           return "输入的是字符串";
+	         case "number":
+	           return "输入的是数字"; 
+	         case "boolean":
+	           return "输入的是布尔值"; 
+	         default:
+	           console.log("非法参数");
+	      }
+	    }
 
 重点介绍一下 `value: (string | number | boolean)` 变量 value这里声明的是多个可选类型，包括了（字符串 数字 布尔）。 这个语法同样适用于
 变量的定义，所以尽量不要用any，而是限定你需要的多个类型。这样程序更加健壮。
+例子:
+
+		var str:string='1111';
+		var num:number=22222;
+
+		//以上是声明2个变量值类型分别是字符串和数字
+
+		var strOrnum:(string|number)='1111';
+		var strOrnum2:(string|number)=2222;
+
+		//这样这个变量既可以是字符串也可以是是数字
+
 
 ### 函数的另一块就是变量的作用域了
 
@@ -140,42 +177,46 @@
 
 
 
-###  立即执行函数，其实在TS里面他就是所谓的类，当然关于OOP下章介绍
+###  立即执行函数（IIF），其实在TS里面他就是所谓的类，当然关于OOP下章介绍
+关于oop，其实就是面向对象编程，其目的是提高代码的可维护性，和代码的复用性。oop与面向过程编程的最大区别就是代码的架构，和抽象。面向过程基本是一个个函数组成，代码的复用通过函数来实现，维护性差组织性不好，所以出现了oop。oop 一般通过类来实现模板，通过继承来实现代码的复用，通过子类实现代码差异化，通过接口来规范代码的API，做到代码的无缝替换，还有抽象类帮助开发者让代码具体实现拖后，又不遗漏。还可以让其他开发者自己实现。还有另一大特性就是封装，数据的访问权限，方法的访问权限，这些最主要是防止多人开发集成的时候，无意或者恶意的代码，造成的系统的破坏。当然还有更多特性。
+
+关于IIF，其实就是一个函数，它声明后立即执行。为什么要这么做，其实它的最主要目的用于js的变量可访问性控制，用于减少全局变量。
+
 解释：TS的类编译成js他其实是立即执行函数，配合构造函数来实现的，当然所谓的私有属性也都能访问，但是TS编码阶段它会检测。
 
 
     class Person {
       private _name : string;
-      constructor() {
-        this._name = "wike";
-      }
-      get() : string {
-        return this._name;
-      }
-      set(val : string) : void {
-        this._name = val;
-      }
-      say() : void {
-        console.log("my name is"+this._name);
-      }
+	      constructor() {
+	        this._name = "wike";
+	      }
+	      get() : string {
+	        return this._name;
+	      }
+	      set(val : string) : void {
+	        this._name = val;
+	      }
+	      say() : void {
+	        console.log("my name is"+this._name);
+	      }
     }
 
 大概编译后的代码（lhtin提供）：
 
     var Person = (function () {
-    function Person() {
-    this._name = "wike";
-    }
-    Person.prototype.get = function () {
-    return this._name;
-    };
-    Person.prototype.set = function (val) {
-    this._name = val;
-    };
-    Person.prototype.say = function () {
-    console.log("my name is" + this._name);
-    };
-    return Person;
+	    function Person() {
+	    this._name = "wike";
+	    }
+	    Person.prototype.get = function () {
+	    return this._name;
+	    };
+	    Person.prototype.set = function (val) {
+	    this._name = val;
+	    };
+	    Person.prototype.say = function () {
+	    console.log("my name is" + this._name);
+	    };
+	    return Person;
     }());
 
 
@@ -190,7 +231,7 @@
     	console.log(arr);
     }
 
-这里就是arr的类型不是简单类型，而是复杂类型这个时候我们就声明一个类 这个类定义了arr的类型
+假设我们需要声明一个变量，他的类型不再是简单类型，而是复杂类型。这个时候我们就声明一个类，类中的成员定义分别定义类型。 上面定义了一个自定义类型，这个类型是个对象他必须要有name属性，且name属性是字符串，和age属性，age属性是数字。
 
     userfn([{name:"wike",age:27},{name:"test",age:28}]) //这个时候不会报错
     
@@ -242,25 +283,29 @@
 这样就转义了,当然了需要自己定义 `formathtml` 定义代码如下
 
     function formathtml(literals, ...placeholders) {
-    let result = "";
-    for (let i = 0; i < placeholders.length; i++) {
-    result += literals[i];
-    result += placeholders[i]
-    .replace(/&/g, '&amp;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, ''')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-    }
-    result += literals[literals.length - 1];
-    return result;
+	    let result = "";
+	    for (let i = 0; i < placeholders.length; i++) {
+	    result += literals[i];
+	    result += placeholders[i]
+	    .replace(/&/g, '&amp;')
+	    .replace(/"/g, '&quot;')
+	    .replace(/'/g, ''')
+	    .replace(/</g, '&lt;')
+	    .replace(/>/g, '&gt;');
+	    }
+	    result += literals[literals.length - 1];
+	    return result;
     }
 
 这个比较复杂了，如果看不懂也没关系。网上应该有很多例子，思路我大概说下。
+
 第一个参数：
-  模板字符串数组，他是根据你的字符串模板变量，根据里面的预定义变量来分割，则个例子得到的就是 `["&lt;h1&gt;",' ','&lt;/h1&gt;']`。
+
+  模板字符串数组，他是根据你的字符串模板变量，根据里面的预定义变量来分割，则个例子得到的就是 `["<h1>",' ','</h1>']`。
+
 第二个参数
-  模板里面的多个预定义变量数组，这里也就是 ["${name}","${surname}"]。
+
+  模板里面的多个预定义变量数组，这里也就是 `["${name}","${surname}"]`。
 
 如果你看过prototype的源码,他里面的模板其实原理差不多。
 
@@ -275,19 +320,20 @@
 不过箭头函数正确的绑定了this。给个例子：
     
     	class Person {
-    	name : string;
-    	  constructor(name : string) {
-    	this.name = name;
-    	  }
-    	  greet() {
-    	alert(`Hi! My name is ${this.name}`);
-    	  }
-    	  greetDelay(time : number) {
-    	setTimeout(function() {
-    	  alert(`Hi! My name is ${this.name}`);
-    	}, time);
-    	  }
+	    	name : string;
+	    	constructor(name : string) {
+	    		this.name = name;
+	    	 }
+	    	 greet() {
+	    		alert(`Hi! My name is ${this.name}`);
+	    	 }
+	    	  greetDelay(time : number) {
+	    		setTimeout(function() {
+	    		  alert(`Hi! My name is ${this.name}`);
+	    		}, time);
+	    	  }
     	}
+
     	var remo = new Person("remo");
     	remo.greet(); // "Hi! My name is remo"
     	remo.greetDelay(1000); // "Hi! My name is "//这里就出现BUG了
@@ -295,18 +341,18 @@
 我的做法：
     
     	class Person {
-    	name : string;
-    	  constructor(name : string) {
-    	this.name = name;
-    	  }
-    	  greet() {
-    	   alert(`Hi! My name is ${this.name}`);
-    	  }
-    	  greetDelay(time : number) {
-    	   setTimeout(() => {
-    	 alert(`Hi! My name is ${this.name}`);
-    	   }, time);
-    	  }
+	    	name : string;
+	    	  constructor(name : string) {
+	    	this.name = name;
+	    	  }
+	    	  greet() {
+	    	   alert(`Hi! My name is ${this.name}`);
+	    	  }
+	    	  greetDelay(time : number) {
+	    	   setTimeout(() => {
+	    	 alert(`Hi! My name is ${this.name}`);
+	    	   }, time);
+	    	  }
     	}
     	
     	var remo = new Person("remo");

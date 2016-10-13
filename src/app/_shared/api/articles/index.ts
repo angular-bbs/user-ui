@@ -165,7 +165,7 @@ const items: Article[] = [
   },
    {
     id: 'TS的介绍 —— 不管你是否已掌握都值得一读',
-    title: 'TS的介绍不管你是否掌握都值得一读',
+    title: 'TS的介绍 —— 不管你是否已掌握都值得一读',
     summary: 'angluar2.0出来了,TS其实早就存在但是赶上了angluar2.0的热潮！很多新人还不太熟悉,在此我写一些我个人的理解。',
     content: require('./161.TS的介绍不管你是否掌握都值得一读/_index.md'),
     first: true,
