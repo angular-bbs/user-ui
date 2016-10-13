@@ -15,9 +15,6 @@ const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 const HtmlElementsPlugin = require('./html-elements-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-var container = require('markdown-it-container');
-var subscript = require('markdown-it-sub');
-var superscript = require('markdown-it-sup');
 
 /*
  * Webpack Constants
@@ -173,38 +170,36 @@ module.exports = {
        *
        * See: https://github.com/webpack/raw-loader
        */
-      {
-        test: /\.html$/,
-        loader: 'raw-loader'
-      },
-      {
-        test:   /\.md$/,
-        loader: 'raw-loader!markdown-it'
-      },
-      {
-        test: /\.jade$/,
-        loader: 'raw-loader'
-      },
+      {test: /\.html$/, loader: 'html!markup-inline'},
+      {test: /\.(md|markdown)$/, loader: 'html!markup-inline!markdown-it'},
+      {test: /\.(pug|jade)$/, loader: 'html!markup-inline!jade-html'},
       /* File loader for supporting images, for example, in CSS files.
       */
-      {
-        test: /\.(jpg|png|gif)$/,
-        loader: 'file'
-      },
+      {test: /\.(svg|gif|jpg|jpeg|png)$/, loader: 'url?limit=8192&name=images/[hash].[ext]'},
       {
         test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         // Limiting the size of the woff fonts breaks font-awesome ONLY for the extract text plugin
         // loader: "url?limit=10000"
         loader: 'url'
-      },
-      {
-        test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
-        loader: 'file'
       }
     ]
 
   },
-  
+  'markdown-it': {
+    preset: 'default',
+    typographer: true,
+    use: [
+      require('markdown-it-highlightjs'),
+      require('markdown-it-sub'),
+      require('markdown-it-sup'),
+      require('markdown-it-abbr'),
+      require('markdown-it-deflist'),
+      require('markdown-it-emoji'),
+      require('markdown-it-footnote'),
+      require('markdown-it-ins'),
+      require('markdown-it-mark'),
+    ]
+  },
  
 
   /*
@@ -308,13 +303,6 @@ module.exports = {
     module: false,
     clearImmediate: false,
     setImmediate: false
-  },
-  
-  
-  'markdown-it': {
-    preset: 'default',
-    typographer: true,
-    use: [subscript, superscript, [container, "contained"]]
   }
 
 };
