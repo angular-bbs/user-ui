@@ -10,7 +10,7 @@ Angular 2
 
 ## 启动
 
-进入本目录，运行`npm install`命令。
+进入本目录，运行`npm install`命令。也可以使用[Yarn](https://yarnpkg.com/en/docs/install)来安装。
 
 墙速有限或者存在连接问题的同学,可能无法正常使用npm安装依赖包，推荐安装并使用cnpm代替npm，运行以下指令：
 `npm i cnpm -g`
