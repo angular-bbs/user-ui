@@ -12,7 +12,7 @@ import {PartnerHomeComponent} from './partner/home.component';
 import {PartnerShowComponent} from './partner/show.component';
 import {ResourceHomeComponent} from './resource/home.component';
 import {ResourceShowComponent} from './resource/show.component';
-import {NgModule} from '@angular/core/src/metadata/ng_module';
+import {NgModule} from '@angular/core';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: LibraryHomeComponent},

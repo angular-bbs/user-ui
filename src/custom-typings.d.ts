@@ -2,7 +2,7 @@
 // https://github.com/typings/typings
 // https://www.typescriptlang.org/docs/handbook/writing-declaration-files.html
 
- 
+
 // declare var module: { id: string };
 // declare var require: any;
 
@@ -64,8 +64,8 @@ interface SystemJS {
 }
 
 interface GlobalEnvironment {
-  ENV;
-  HMR;
+  ENV: string;
+  HMR: boolean;
   SystemJS: SystemJS;
   System: SystemJS;
 }
