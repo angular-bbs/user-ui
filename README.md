@@ -10,7 +10,7 @@ Angular 2
 
 ## 启动
 
-进入本目录，运行`npm install`命令。
+进入本目录，运行`npm install`命令。也可以使用[Yarn](https://yarnpkg.com/en/docs/install)来安装。
 
 运行`npm start`命令，启动完成后会在<http://localhost:4200>启动一个开发服务器。
 
