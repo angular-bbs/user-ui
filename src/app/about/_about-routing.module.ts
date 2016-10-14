@@ -7,6 +7,7 @@ import {BookShowComponent} from './book/show.component';
 import {BookHomeComponent} from './book/home.component';
 import {ShowcaseShowComponent} from './showcase/show.component';
 import {ShowcaseHomeComponent} from './showcase/home.component';
+import {NgModule} from '@angular/core';
 const routes: Routes = [
   {path: '', pathMatch: 'full', data: {title: '首页'}, component: AboutHomeComponent},
   {path: 'join', data: {title: '合作共赢'}, component: AboutJoinComponent},
@@ -29,4 +30,11 @@ const routes: Routes = [
     ],
   },
 ];
-export const routing = RouterModule.forChild(routes);
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+
+export class AboutRoutingModule {
+}

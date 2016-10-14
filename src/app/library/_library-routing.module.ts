@@ -12,6 +12,7 @@ import {PartnerHomeComponent} from './partner/home.component';
 import {PartnerShowComponent} from './partner/show.component';
 import {ResourceHomeComponent} from './resource/home.component';
 import {ResourceShowComponent} from './resource/show.component';
+import {NgModule} from '@angular/core';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: LibraryHomeComponent},
@@ -64,4 +65,12 @@ const routes: Routes = [
     ],
   },
 ];
-export const routing = RouterModule.forChild(routes);
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+
+export class LibraryRoutingModule {
+}
+

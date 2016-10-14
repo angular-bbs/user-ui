@@ -12,6 +12,11 @@ Angular 2
 
 进入本目录，运行`npm install`命令。也可以使用[Yarn](https://yarnpkg.com/en/docs/install)来安装。
 
+墙速有限或者存在连接问题的同学,可能无法正常使用npm安装依赖包，推荐安装并使用cnpm代替npm，运行以下指令：
+`npm i cnpm -g`
+`cnpm install`
+
+
 运行`npm start`命令，启动完成后会在<http://localhost:4200>启动一个开发服务器。
 
 ## 工具
@@ -22,7 +27,7 @@ Angular 2
 
 Angular中文社区热烈欢迎各位投稿。延续程序员的光荣传统，我们使用Github接收稿件！
 
-首先，你要会发Pull Request，如果不会用可以参见<http://wwsun.github.io/posts/github-work-flow.html>。
+首先，你要会发Pull Request，如果不会用可以参见<http://blog.jobbole.com/76854/>。
 
 然后，请找到`src/app/_shared/api/articles`目录，仿照我已经写的这些文章，把你的文章放进去（用Markdown、Jade、HTML都可以，可以引用图片等），并在index.ts中引用它。
 
