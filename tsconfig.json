@@ -6,10 +6,11 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "sourceMap": true, 
+    "sourceMap": true,
     "strictNullChecks": false,
     "baseUrl": "./src",
-    "paths": [],
+    "paths": {
+    },
     "lib": [
       "dom",
       "es6"
@@ -35,7 +36,5 @@
   },
   "compileOnSave": false,
   "buildOnSave": false,
-  "atom": {
-    "rewriteTsconfig": false
-  }
+  "atom": { "rewriteTsconfig": false }
 }
