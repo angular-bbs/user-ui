@@ -17,11 +17,7 @@ Angular 2
 `cnpm install`
 
 
-运行`npm start`命令，启动完成后会在<http://localhost:4200>启动一个开发服务器。
-
-## 工具
-
-运行`npm run g c name-action`可以创建`src/app/name/action.*`文件，内含`NameActionComponent`组件，并自动加入NgModule中。
+运行`npm start`命令，启动完成后会在<http://localhost:3000>启动一个开发服务器。
 
 ## 重要！！！投稿指南！
 
