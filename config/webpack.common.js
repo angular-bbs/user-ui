@@ -35,14 +35,14 @@ const METADATA = {
 module.exports = function (options) {
   isProd = options.env === 'production';
   return {
-    
+
     /*
      * Static metadata for index.html
      *
      * See: (custom attribute)
      */
     metadata: METADATA,
-    
+
     /*
      * Cache generated modules and chunks to improve performance for multiple incremental builds.
      * This is enabled by default in watch mode.
@@ -51,7 +51,7 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#cache
      */
     //cache: false,
-    
+
     /*
      * The entry point for the bundle
      * Our Angular.js app
@@ -59,39 +59,39 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#entry
      */
     entry: {
-      
+
       'polyfills': './src/polyfills.ts',
       'vendor': './src/vendor.ts',
       'main': './src/main.ts'
-      
+
     },
-    
+
     /*
      * Options affecting the resolving of modules.
      *
      * See: http://webpack.github.io/docs/configuration.html#resolve
      */
     resolve: {
-      
+
       /*
        * An array of extensions that should be used to resolve modules.
        *
        * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
        */
       extensions: ['', '.ts', '.js', '.json'],
-      
+
       // An array of directory names to be resolved to the current directory
       modules: [helpers.root('src'), 'node_modules'],
-      
+
     },
-    
+
     /*
      * Options affecting the normal modules.
      *
      * See: http://webpack.github.io/docs/configuration.html#module
      */
     module: {
-      
+
       /*
        * An array of applied pre and post loaders.
        *
@@ -108,9 +108,9 @@ module.exports = function (options) {
           },
           include: [helpers.root('src')]
         },
-      
+
       ],
-      
+
       /*
        * An array of automatically applied loaders.
        *
@@ -120,7 +120,7 @@ module.exports = function (options) {
        * See: http://webpack.github.io/docs/configuration.html#module-loaders
        */
       loaders: [
-        
+
         /*
          * Typescript loader support for .ts and Angular 2 async routes via .async.ts
          * Replace templateUrl and stylesUrl with require()
@@ -132,13 +132,13 @@ module.exports = function (options) {
           test: /\.ts$/,
           loaders: [
             '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd,
-            'awesome-typescript-loader',
+            'awesome-typescript-loader?doTypeCheck=false',
             'angular2-template-loader',
             'angular2-router-loader',
           ],
           exclude: [/\.(spec|e2e)\.ts$/]
         },
-        
+
         /*
          * Json loader support for *.json files.
          *
@@ -148,7 +148,7 @@ module.exports = function (options) {
           test: /\.json$/,
           loader: 'json-loader'
         },
-        
+
         /*
          * to string and css loader support for *.css files
          * Returns file content as string
@@ -158,17 +158,17 @@ module.exports = function (options) {
           test: /\.css$/,
           loaders: ['to-string', 'css']
         },
-        
+
         {
           test: /\.scss$/,
           loaders: ["to-string", "css?sourceMap", "sass?sourceMap"]
         },
-  
+
         {
           test: /main\.scss$/,
           loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader!sass-loader?sourceMap' })
         },
-        
+
         /* Raw loader support for *.html
          * Returns file content as string
          *
@@ -179,7 +179,7 @@ module.exports = function (options) {
           loader: 'html!markup-inline',
           exclude: [helpers.root('src/index.html')]
         },
-        
+
         {test: /\.(md|markdown)$/, loader: 'html!markup-inline!markdown-it'},
         {test: /\.(pug|jade)$/, loader: 'html!markup-inline!jade-html'},
         /* File loader for supporting images, for example, in CSS files.
@@ -192,7 +192,7 @@ module.exports = function (options) {
           loader: 'url'
         }
       ],
-      
+
       postLoaders: [
         {
           test: /\.js$/,
@@ -205,7 +205,7 @@ module.exports = function (options) {
         }
       ]
     },
-    
+
     'markdown-it': {
       preset: 'default',
       typographer: true,
@@ -221,7 +221,7 @@ module.exports = function (options) {
         require('markdown-it-mark'),
       ]
     },
-    
+
     /*
      * Add additional plugins to the compiler.
      *
@@ -229,13 +229,13 @@ module.exports = function (options) {
      */
     plugins: [
       new ExtractTextPlugin({filename: 'css/[name]_[hash].css', allChunks: true}),
-      
+
       new AssetsPlugin({
         path: helpers.root('dist'),
         filename: 'webpack-assets.json',
         prettyPrint: true
       }),
-      
+
       /*
        * Plugin: ForkCheckerPlugin
        * Description: Do type checking in a separate process, so webpack don't need to wait.
@@ -254,7 +254,7 @@ module.exports = function (options) {
       new webpack.optimize.CommonsChunkPlugin({
         name: ['polyfills', 'vendor'].reverse()
       }),
-      
+
       /**
        * Plugin: ContextReplacementPlugin
        * Description: Provides context to Angular's use of System.import
@@ -267,7 +267,7 @@ module.exports = function (options) {
         /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
         helpers.root('src') // location of your src
       ),
-      
+
       /*
        * Plugin: CopyWebpackPlugin
        * Description: Copy files and directories in webpack.
@@ -290,7 +290,7 @@ module.exports = function (options) {
       }, {
         from: 'src/assets/humans.txt'
       }]),
-      
+
       /*
        * Plugin: HtmlWebpackPlugin
        * Description: Simplifies creation of HTML files to serve your webpack bundles.
@@ -303,7 +303,7 @@ module.exports = function (options) {
         template: 'src/index.html',
         chunksSortMode: 'dependency'
       }),
-      
+
       /*
        * Plugin: HtmlHeadConfigPlugin
        * Description: Generate html tags based on javascript maps.
@@ -329,9 +329,9 @@ module.exports = function (options) {
       new HtmlElementsPlugin({
         headTags: require('./head-config.common')
       }),
-    
+
     ],
-    
+
     /*
      * Include polyfills or mocks for various node stuff
      * Description: Node configuration
@@ -346,6 +346,6 @@ module.exports = function (options) {
       clearImmediate: false,
       setImmediate: false
     }
-    
+
   };
 }
