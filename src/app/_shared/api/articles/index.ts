@@ -210,6 +210,15 @@ const items: Article[] = [
     tags: ['ts'],
     authors: ['袁志'],
   },
+   {
+    id: '杂谈：何不食肉糜？',
+    title: '杂谈：何不食肉糜？',
+    summary: '今天，我们不谈技术。来聊点八卦吧，雪狼的第一重身份其实是儒生，他为什么选择翻译官方文档？因为这源于儒者的信仰。请听我细说从头。',
+    content: require('./190.杂谈：何不食肉糜？/_readme.md'),
+    first: true,
+    tags: ['过去'],
+    authors: ['雪狼'],
+  },
 ];
 
 @Injectable()
