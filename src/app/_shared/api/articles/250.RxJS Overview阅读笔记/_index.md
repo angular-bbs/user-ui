@@ -2,11 +2,13 @@
 
 *RxJS Overview*为官方对RxJS的一个概述，点击[这里](http://reactivex.io/rxjs/manual/overview.html)进行原文阅读。
 
+非常感谢 @雪狼 @trotyl 指出我在概念理解上的问题。
+
 ## 前言
 
 本文是我阅读*RxJS Overview*时所做的笔记。该概述（Overview）写得非常之清晰和简洁，是很好的入门RxJS资料。概述内容包括：**RxJS涉及到的主要概念及概念相关的必要背景知识**，其中主要概念包括：Observable、Observer、Subscription、Subject、Operator、Scheduler，本文会一一进行介绍。尤其是那些时不时出现的手书斜体格式的总结文字，非常值得认真思考。本文尝试进行总结，力求把RxJS的核心思想表达清楚。
 
-用一句话介绍RxJS的话，就是**RxJS将异步数据抽象为数据流，并提供对数据流进行各种操作的接口**。
+用一句话介绍RxJS的话，就是**RxJS将异步数据抽象为数据流，并提供对数据流进行各种转换操作的接口**。
 
 ## 数据传输
 
@@ -79,7 +81,7 @@ observable.subscribe(function (event) {
 
 ### Observable
 
-使用RxJS的第一步就是得到一个Observable，可以把它理解为数据流，**它可以向订阅者（即消费者）推送多个数据**。Observable分两种，分别是Cold Observable和Hot Observable。Cold Observable的特点是每个订阅者独享该Observable推送的数据序列，并且数据生产过程是在添加订阅者（比如执行了`subscribe`方法）的时候才开始启动的；而Hot Observable的订阅者则共享该Observable推送的数据序列，同时一旦启动了数据生产过程（比如执行了`connect`方法），Hot Observable的订阅者就无法接收到它订阅之前的数据序列。
+使用RxJS的第一步就是得到一个Observable，可以把它理解为数据流，**它可以向订阅者（即消费者）推送多个数据**。Observable分两种，分别是Cold Observable和Hot Observable。Cold Observable的特点是每个订阅者独享该Observable推送的数据序列，并且数据生产过程是在添加订阅者（比如执行了`subscribe`方法）的时候才开始启动的；而Hot Observable的订阅者则共享该Observable推送的数据序列，启动数据生产过程一般通过特定方法（比如调用`connect`方法）来启动。
 
 以下代码展示Cold Observable中订阅者独享数据序列的特点：
 
@@ -207,10 +209,11 @@ after
 done
 ```
 
-由于目前JS解释器都是单线程运行JS代码，Scheduler的作用局限于提供异步等策略。但是在Rx.NET等服务端的实现中，Scheduler有非常大的作用，比如可以将耗时的任务放到新的线程中，从而提高主线程的响应速度。对这部分感兴趣的同学可以去阅读Rx的服务端实现，比如Rx.NET。
+由于目前JS解释器都是单线程运行JS代码，Scheduler的作用局限于提供异步等策略。但是在Rx.NET、RxJava等Rx
+的实现中，Scheduler有非常大的作用，比如可以将耗时的任务放到新的线程中，从而提高主线程的响应速度。对这部分感兴趣的同学可以去阅读Rx的相关实现，比如Rx.NET、RxJava。所有语言和平台的Rx实现在[这里](http://reactivex.io/languages.html)可以看到。
 
 ## 总结
 
-本文主要介绍了RxJS中涉及到的基本概念，并提供代码示例。理解这些概念是使用好RxJS的基础，同时RxJS包含了丰富的Operator。在解决实际问题时，对这些Operator的理解会有利于找到快速高效的解决方法。如果你打算继续深入学习RxJS的话，建议从Operator入手，并结合实际问题。
+本文主要介绍了RxJS中涉及到的基本概念，并提供代码示例。理解这些概念是使用好RxJS的基础，同时RxJS包含了丰富的Operator。在解决实际问题时，对这些Operator的理解有利于找到快速高效的解决方法。如果你打算继续深入学习RxJS的话，建议从Operator入手，并结合实际问题。
 
 接下来的问题是：为什么要使用RxJS？RxJS适合解决哪些问题？这些是下一篇RxJS文章所涉及到的内容，敬请期待。
