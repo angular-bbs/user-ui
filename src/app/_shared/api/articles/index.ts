@@ -219,6 +219,15 @@ const items: Article[] = [
     tags: ['过去'],
     authors: ['雪狼'],
   },
+   {
+    id: '如何选择合适的框架',
+    title: '如何选择合适的框架',
+    summary: '无论是在社区还是在公司，我都不愿意公开比较两个框架，因为我无法容忍自己公开发表不够专业的意见。那么我在公开发表意见方面恪守着哪些原则呢？请看本文。',
+    content: require('./200.如何选择合适的框架/_readme.md'),
+    first: true,
+    tags: ['现在', '未来'],
+    authors: ['雪狼'],
+  },
 ];
 
 @Injectable()
