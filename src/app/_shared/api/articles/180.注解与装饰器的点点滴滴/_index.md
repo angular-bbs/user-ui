@@ -1,6 +1,6 @@
 # 注解与装饰器的点点滴滴
 
-原文地址： https://zhuanlan.zhihu.com/p/22277764
+原文地址：<https://zhuanlan.zhihu.com/p/22277764>
 
 
 对于很多 Java 开发人员来说，注解（Annotation）已经是一个十分熟悉的概念。而在 JavaScript 中（目前仍然是 Stage 2 的 ES Proposal），引入了一个类似的语法——装饰器（Decorator）。
