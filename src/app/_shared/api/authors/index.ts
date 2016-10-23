@@ -49,6 +49,15 @@ const items: Author[] = [
     avatar: require('./_images/250.丁乐华.jpg'),
     columnist: false,
     homepage: 'https://github.com/lhtin'
+  },
+  {
+    id: 'timathon',
+    name: 'Tim刘',
+    bio: '翻滚翻滚翻滚',
+    description: require('./Tim刘.md'),
+    avatar: require('./_images/Tim刘.png'),
+    columnist: false,
+    homepage: 'https://github.com/timathon'
   }
 ];
 @Injectable()

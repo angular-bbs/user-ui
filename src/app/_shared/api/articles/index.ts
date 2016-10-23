@@ -237,6 +237,15 @@ const items: Article[] = [
     tags: ['RxJS'],
     authors: ['丁乐华'],
   },
+  {
+    id: '一个简单的RxJS Test Spec',
+    title: '一个简单的RxJS Test Spec',
+    summary: '简单介绍如何编写RxJS Test Spec以及相关基本概念。',
+    content: require('./一个简单的RxJS Test Spec/_index.md'),
+    first: true,
+    tags: ['RxJS'],
+    authors: ['Tim刘'],
+  },
 ];
 
 @Injectable()
