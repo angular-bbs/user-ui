@@ -246,6 +246,15 @@ const items: Article[] = [
     tags: ['现在'],
     authors: ['雪狼'],
   },
+  {
+    id: '应用RxJS模拟Redux',
+    title: '应用RxJS模拟Redux',
+    summary: '参考RxJS Doc中的state store示例，加入Subject，模拟Redux。',
+    content: require('./mock-redux-with-rxjs/_index.md'),
+    first: true,
+    tags: ['RxJS'],
+    authors: [],
+  },
 ];
 
 @Injectable()
