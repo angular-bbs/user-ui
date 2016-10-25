@@ -237,6 +237,15 @@ const items: Article[] = [
     tags: ['RxJS'],
     authors: ['丁乐华'],
   },
+  {
+    id: 'Angular 2官方文档导读',
+    title: 'Angular 2官方文档导读',
+    summary: '上两周的文章仍然偏深，这周我们写一些入门级的。我们就先从官方文档导读开始。本文将告诉你如何通过阅读官方文档来快速入门。',
+    content: require('./220.Angular 2官方文档导读/_index.md'),
+    first: true,
+    tags: ['现在'],
+    authors: ['雪狼'],
+  },
 ];
 
 @Injectable()
