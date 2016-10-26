@@ -246,6 +246,15 @@ const items: Article[] = [
     tags: ['现在'],
     authors: ['雪狼'],
   },
+  {
+    id: '一个简单的RxJS Test Spec',
+    title: '一个简单的RxJS Test Spec',
+    summary: '简要介绍如何编写并运行RxJS Unit Test Spec',
+    content: require('./a-simple-rxjs-test-spec/_index.md'),
+    first: true,
+    tags: ['RxJS'],
+    authors: [],
+  },
 ];
 
 @Injectable()
