@@ -91,10 +91,12 @@ export class AuthorApi {
     let author$: Observable<Author>;
     let item: Author;
 
-    if(!isNaN(index)) {
-      item = items[index]; // 找到了，item改成找到的author
+    if(index === null) {
+      // author not found, item = spectreAuthor
+      item = spectreAuthor;
     } else {
-      item = spectreAuthor; // 找不到，item改成spectreAuthor
+      // authoer found, item = author
+      item = items[index];
     }
     
     return Observable.of(item)
