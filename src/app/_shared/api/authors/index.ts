@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Author} from "../../models/author";
 import {Observable} from "rxjs/Observable";
+import 'rxjs/add/observable/of';
 
 let age = new Date().getFullYear() - 2009;
 
@@ -53,7 +54,52 @@ const items: Author[] = [
 ];
 @Injectable()
 export class AuthorApi {
-  query(params = {}): Observable<Author> {
-    return Observable.from(items);
+  // AuthorApi.query可以直接用来模拟从数据库里查找作者信息。
+  // 只是返回Observable.from([Authors])有些太含蓄了。
+  // 查找作者信息操作结束后，如果找到了，返回Observable.of(author)
+  // 找不到的话，应该是转到一个404页面，这里暂且返回一个Observable.of(spectreAuthor)
+
+  // query可以分为queryOne以及queryAll，matchById这个有点儿绕
+
+
+
+  queryOne(params: {id: string}): Observable<Author> {
+
+    let index: number = null;
+
+    // 用for loop来找author，不用Observable.from([]).find()
+    // 因为find()如果找不到，上一行的Observable就成了Observable.never()了
+    // 而Observable.never()不会调用observer的任何callback
+    for (let i = 0; i < items.length; i++) {
+      if(items[i].id === params.id) {
+        index = i  // 找到了，index改成i，找不到，index还是null
+        break; // 找到了，不用接着找了。
+      }
+    }
+
+    let spectreAuthor: Author =   {
+      id: 'spectre',
+      name: '我叫404',
+      bio: '数据库里没有我，怎么办？',
+      description: '你看我不到。',
+      avatar: require('../articles/50.弯道超车！后端程序员的Angular快速指南/team.jpg'),
+      columnist: false,
+      homepage: 'https://wx.angular.cn/library/author'
+    }
+
+    let author$: Observable<Author>;
+    let item: Author;
+
+    if(index) {
+      item = items[index]; // 找到了，item改成找到的author
+    } else {
+      item = spectreAuthor; // 找不到，item改成spectreAuthor
+    }
+    
+    return Observable.of(item)
+  }
+
+  queryAll(): Observable<Author[]> {
+    return Observable.of(items)
   }
 }

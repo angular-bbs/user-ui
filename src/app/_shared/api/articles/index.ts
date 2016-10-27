@@ -208,7 +208,7 @@ const items: Article[] = [
     content: require('./161.TypeScript的新特性/_index.md'),
     first: true,
     tags: ['ts'],
-    authors: ['袁志'],
+    authors: ['wike'],
   },
    {
     id: '杂谈：何不食肉糜？',
@@ -235,7 +235,7 @@ const items: Article[] = [
     content: require('./250.RxJS Overview阅读笔记/_index.md'),
     first: true,
     tags: ['RxJS'],
-    authors: ['丁乐华'],
+    authors: ['lhtin'],
   },
   {
     id: 'Angular 2官方文档导读',
