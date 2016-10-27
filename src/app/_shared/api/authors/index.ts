@@ -72,7 +72,6 @@ export class AuthorApi {
     // 而Observable.never()不会调用observer的任何callback
     for (let i = 0; i < items.length; i++) {
       if(items[i].id === params.id) {
-        console.log(i);
         index = i  // 找到了，index改成i，找不到，index还是null
         break; // 找到了，不用接着找了。
       }
