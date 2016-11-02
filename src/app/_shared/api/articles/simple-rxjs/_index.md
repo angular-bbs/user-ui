@@ -1,5 +1,7 @@
 # 白话RxJS
 
+初稿日期：2016-11-02
+
 ## 变量命名Style
 （个人约定，非任何best practice）
 - `Observable`变量以`$`结尾，如`state$`；  
@@ -145,7 +147,7 @@ x_.unsubscribe();
 ## `Subject`：有`next`和`subscribe`方法，有一个observers列表
 `Subject`是一个`Observable`，因为它有`subscribe`方法；`Subject`又是一个`Observer`，因为它有`next`方法。  
 它维护一个observers列表，当运行`subject.subscribe(observerX)`的时候，这个`observerX`就被加到列表里，`unsubscribe`时从列表中删掉。   
-`Subject`像是一个proxy，外部可以调用`subject.next(value)`时，这个`value`会`forEach`给`Subject`的`observers`。  
+`Subject`像是一个proxy，外部调用`subject.next(value)`时，这个`value`会被`forEach`给`Subject`的`observers`。  
 
 ```js
 const FakeSubjectClass = function() {
@@ -228,7 +230,7 @@ x$ !== y$                            // x$还是那个x$
 ...
 ```
 如果`Observable`是一幅画，`Instance Operator`就是滤镜。  
-经过滤镜处理，我们拿到的一幅新的画，原来的画还在。  
+经过滤镜处理，我们拿到了一幅新的画，原来的画还在。  
 
 
 ## `Scheduler`：控制并发事件
@@ -249,13 +251,6 @@ const merged$ = Rx.Observable.merge(xOnAnimationFrame$, xOnAsync$, xOnAsap$, xOn
 const merged_ = merged$.subscribe(console.log);
 ```
 
-## `TestScheduler`：虚拟时间机器
-TestScheduler是测试RxJS代码时用到的一个虚拟时间机器，Observable可以挂靠其上。  
-我们定义的Observable在真实环境下可能要跑上一段时间才结束。而在TestScheduler里，就是一个同步的执行。    
-比如`Observable.interval(20).take(20)`，这个`observable`每隔20 ms推送一个递增数字，一共推20个，需要用时400 ms。  
-通过`Observable.interval(20, testScheduler).take(20)`，来设定`Observable`运行在虚拟时间机器上，在测试环境下，瞬间结束。  
-其中的`testScheduler`是`TestScheduler`的一个实例。  
-关于如何使用TestScheduler，后续文章中会提到。  
 
 ## 总结
 提到`Observable`的时候，就想想`Function`，一个有随意数量`return`的`Function`。  
