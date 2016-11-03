@@ -255,6 +255,15 @@ const items: Article[] = [
     tags: ['RxJS'],
     authors: ['Tim刘'],
   },
+  {
+    id: '白话RxJS',
+    title: '白话RxJS',
+    summary: '尝试使用“白话”来介绍RxJS。',
+    content: require('./simple-rxjs/_index.md'),
+    first: true,
+    tags: ['RxJS'],
+    authors: ['Tim刘'],
+  },
 ];
 
 @Injectable()
