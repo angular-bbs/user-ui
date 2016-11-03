@@ -50,7 +50,16 @@ const items: Author[] = [
     avatar: require('./_images/250.丁乐华.jpg'),
     columnist: false,
     homepage: 'https://github.com/lhtin'
-  }
+  },
+  {
+    id: '王開寧',
+    name: '王開寧',
+    bio: '终于找到真爱的前端码农',
+    description: require('./260.王開寧.md'),
+    avatar: require('./_images/260.王開寧.jpg'),
+    columnist: false,
+    homepage: 'https://twincle.github.io'
+  },
 ];
 @Injectable()
 export class AuthorApi {
