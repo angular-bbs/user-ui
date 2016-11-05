@@ -43,8 +43,7 @@ store.dispatch({ type: 'INCREMENT' }) // will log 1 on the console
 如此，可以大体断定，redux在实现State Store功能的过程中，用到了RxJS。  
 
 那么我们能不能直接用RxJS来直接实现State Store的功能呢？   
-RxJS的文档里就有答案，不过不是在[reactivex.io/rxjs][]，而是在Github的Repo里。   
-就在这里：[RxJS官方教程 - State Stores][]。   
+RxJS的文档里就有答案，就在这里：[RxJS官方教程 - State Stores][]。   
 
 本文将先介绍一些RxJS的基本概念， 而后，依据官方State Stores示例，并引入`Subject`，来实现开头部分redux示例中的功能。  
 水平所限，难免有错漏，请大家多指教。另外，我写的比较啰嗦，请大家多包涵。  
@@ -52,7 +51,7 @@ RxJS的文档里就有答案，不过不是在[reactivex.io/rxjs][]，而是在G
 ## 相关概念
 以下为粗略理解，具体参见[官方文档][]。
 1. `Observer`：是一个Object，里面有3个Callback，形如`{next: nextFn, error: errorFn, complete: completeFn}`。   
-  3个Callback都不是必须的，但要按顺序写，比如`{next: null, error: null, complete: completeFn}`。   
+  3个Callback都不是必须的。   
   示例：
       ```js
       const observer = {next: (v) => console.log(v)}; // 这个Observer只有next callback
@@ -88,12 +87,11 @@ RxJS的文档里就有答案，不过不是在[reactivex.io/rxjs][]，而是在G
     subjectB$$.subscribe(observable); // 订阅一个BehaviorSubject，会把当前数据立即推送给observer
     console.log(subjectB$$.getValue()); // getValue()获取留存的最后一个数据
     ```
-5. [scan运算符][]：如果把`Observable`推送的数据流类比成`Array`的话，那么`Observable.scan`运算符就是`Array.reduce`。  
-  （可是`Observable.scan`该怎么翻译呢？`Array.reduce`呢？）
-  示例：  
+5. [scan运算符][]：如果把Observable推送的数据流类比成Array的话，那么Observable.prototype.scan运算符就类似Array.prototype.reduce，  
+  不同在于Array.prototype.reduce是把Array中所有的数值累积后形成一个值，而Observable.prototype.scan是把当前值和之前的累积值再次累积形成一个值，参见示例：  
     ```js
     observable$.scan((accumulated, current) => accumulated + current, 0);
-    // 类似Array的reduce，比如：[1, 2, 3].reduce((acc, curr) => acc + curr, 0);
+    // 类似Array.prototype.reduce，比如：[1, 2, 3].reduce((acc, curr) => acc + curr, 0);
     ```  
 
 ## 编写代码  
@@ -227,20 +225,13 @@ const clicks_ = Observable.merge(incButtonClick$, decButtonClick$)
 [官方文档][]
 [scan运算符][]
 
-## 吐槽
-[RxJS Doc在github上的源码][]里有这么一句：  
-> These files are not meant for reading directly in GitHub, ... You should find the docs at http://reactivex.io/rxjs/, ...  
 
-但是呢，有几个非常有用的.md文件，在reactivex.io/rxjs里是找不到的。  
-其中一个.md里面就有这个State Store。  
-强烈建议大家翻阅一下[RxJS Doc在github上的源码][]。  
 
 **Happy coding！**
 
-[reactivex.io/rxjs]: http://reactivex.io/rxjs
-[RxJS官方教程 - State Stores]: https://github.com/ReactiveX/rxjs/blob/master/doc/tutorial/applications.md#state-stores
+
 [redux]: https://github.com/reactjs/redux#the-gist
-[RxJS Doc在github上的源码]: https://github.com/ReactiveX/rxjs/tree/master/doc#rxjs-official-docs-at-httpreactivexiorxjs
 [repo]: https://github.com/rxjs-space/rxjs-typescript-starter
 [官方文档]: http://reactivex.io/rxjs/manual/overview.html
 [scan运算符]: http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-scan
+[RxJS官方教程 - State Stores]: http://reactivex.io/rxjs/manual/tutorial.html#state-stores
