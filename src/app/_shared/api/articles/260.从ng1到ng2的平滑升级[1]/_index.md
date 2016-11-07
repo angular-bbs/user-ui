@@ -5,7 +5,7 @@
 1. 使用的ng1版本为1.2.X+；
 2. 使用的Javascript版本为es3或少量es5特性；
 3. 暂时不考虑其他外部依赖，例如第三方ng1插件等；
-4. 如果你有一些es6的知识，阅读本文将会更加轻松。
+4. 如果你有一些typescript的知识，阅读本文将会更加轻松。
 
 本文的目标是：
 
@@ -115,7 +115,7 @@ var indexCtrl = function ($scope) {
 
 > 这里有一个问题要注意，因为`app-controller.js`中要调用`indexCtrl`这个变量，因此一定要在调用之前定义这个变量，否则调用时`indexCtrl`为`undefined`。避免这个问题的方法，一种是在html中引用js文件时首先引用定义indexCtrl的js文件，最后引用`app-controller.js`文件；第二种是使用typescript中的模块管理功能管理相互之间的依赖。本文最终会形成typescript版本的代码，所以这个问题仅在改动过程中出现。
 
-## 2、不再使用丑陋的$scope
+## 2、不再使用丑陋的`$scope`
 
 `index.controller.js`中的代码使用了`$scope`，而`$scope`是使用DI的方式注入到方法中，因此这里并没有对ng1产生直接的依赖，这也是依赖注入的一大好处。
 
@@ -173,7 +173,7 @@ var indexCtrl = function () {
 };
 ```
 
-## 3、向es6及typescript进发
+## 3、向typescript进发
 
 我们现在的js代码还停留在es3阶段，要靠近ng2，我们还需要使用typescript。
 
