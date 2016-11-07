@@ -235,7 +235,7 @@ const items: Article[] = [
     content: require('./250.RxJS Overview阅读笔记/_index.md'),
     first: true,
     tags: ['RxJS'],
-    authors: ['lhtin'],
+    authors: ['钉子哥'],
   },
   {
     id: 'Angular 2官方文档导读',
@@ -255,6 +255,15 @@ const items: Article[] = [
     tags: ['RxJS'],
     authors: ['Tim刘'],
   },
+  {
+    id: '依赖注入简介',
+    title: '依赖注入简介',
+    summary: '什么是依赖注入？又为什么需要依赖注入？本文尝试给出一个简短的回答。',
+    content: require('./250.依赖注入简介/_index.md'),
+    first: true,
+    tags: ['DI'],
+    authors: ['钉子哥'],
+  }
 ];
 
 @Injectable()
