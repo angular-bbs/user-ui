@@ -263,6 +263,15 @@ const items: Article[] = [
     first: true,
     tags: ['DI'],
     authors: ['钉子哥'],
+  },
+  {
+    id: '一个依赖注入小框架的实现',
+    title: '一个依赖注入小框架的实现',
+    summary: '《依赖注入简介》介绍了下依赖注入的原理，本文尝试使用ES5代码来做一个依赖注入框架的实现。',
+    content: require('./250.一个依赖注入小框架的实现/_index.md'),
+    first: true,
+    tags: ['DI'],
+    authors: ['钉子哥'],
   }
 ];
 
