@@ -52,7 +52,7 @@ const items: Author[] = [
     homepage: 'https://github.com/lhtin'
   },
   {
-    id: 'Tim刘',
+    id: 'timliu',
     name: 'Tim刘',
     bio: '小白小白小白',
     description: require('./Tim刘.md'),
