@@ -256,6 +256,7 @@ const items: Article[] = [
     authors: ['Tim刘'],
   },
   {
+<<<<<<< HEAD
     id: '依赖注入简介',
     title: '依赖注入简介',
     summary: '什么是依赖注入？又为什么需要依赖注入？本文尝试给出一个简短的回答。',
@@ -273,6 +274,16 @@ const items: Article[] = [
     tags: ['DI'],
     authors: ['钉子哥'],
   }
+=======
+    id: '从ng1到ng2的平滑升级[1]',
+    title: '从ng1到ng2的平滑升级[1]',
+    summary: '系列文章：手把手教你将ng1项目平滑升级至ng2',
+    content: require('./260.从ng1到ng2的平滑升级[1]/_index.md'),
+    first: true,
+    tags: ['ng1', 'ng2', '平滑升级', 'es6', 'typescript'],
+    authors: ['王開寧'],
+  },
+>>>>>>> fad447625a4e7b15785286c10b95197a98fe645b
 ];
 
 @Injectable()
