@@ -49,13 +49,8 @@
     "webdriver:update": "npm run webdriver-manager update",
     "webpack-dev-server": "webpack-dev-server",
     "webpack": "webpack",
-    "u:watch": "webpack --watch --config config/webpack.config.u.js",
-    "preu:build": "rimraf dist",
-    "u:build": "webpack --config config/webpack.config.u.js",
-    "u:build:prod": "webpack --progress -p --config config/webpack.config.u.js",
-    "preu:start": "npm run u:build",
-    "u:server": "nodemon dist/server/index.js",
-    "u:start": "npm run u:server"
+    "start:u": "npm run server:u",
+    "server:u": "webpack-dev-server --config config/_universal-config/webpack.client.prod.js --progress --profile --watch --content-base src/"
   },
   "private": true,
   "dependencies": {
