@@ -12,7 +12,7 @@ const routes: Routes = [
     path: '',
     canActivateChild: [ChangeTitle],
     children: [
-      {path: '', pathMatch: 'full', redirectTo: '/user'},
+      {path: '', pathMatch: 'full', redirectTo: '/library/article'},
       {
         path: 'about', data: {title: '关于我们'},
         loadChildren: './about/_about.module'
