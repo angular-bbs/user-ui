@@ -1,127 +1,267 @@
-var webpack = require('webpack');
-var path = require('path');
-var clone = require('js.clone');
-var webpackMerge = require('webpack-merge');
+/**
+ * @author: @AngularClass
+ */
 
-// var CompressionPlugin = require("compression-webpack-plugin"); // see in giz: below
+const path = require('path');
+const webpack = require('webpack');
 
-var commonPlugins = [
-  new webpack.ContextReplacementPlugin(
-    // The (\\|\/) piece accounts for path separators in *nix and Windows
-    /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
-    root('./src'),
-    {
-      // your Angular Async Route paths relative to this root directory
+const helpers = require('../helpers');
+const webpackMerge = require('webpack-merge'); // used to merge webpack configs
+const commonConfig = require('../webpack.common.js'); // the settings that are common to prod and dev
+
+/**
+ * Webpack Plugins
+ */
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
+const DefinePlugin = require('webpack/lib/DefinePlugin');
+const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
+const IgnorePlugin = require('webpack/lib/IgnorePlugin');
+const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
+const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
+
+/**
+ * Webpack Constants
+ */
+const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
+const HOST = process.env.HOST || 'localhost';
+const PORT = process.env.PORT || 8080;
+const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
+  host: HOST,
+  port: PORT,
+  ENV: ENV,
+  HMR: false
+});
+
+module.exports = function(env) {
+  const commonConfigObj = commonConfig({env: ENV});
+  const commonPluginsWithoutCommonsChunkPlugin = commonConfigObj.plugins.filter(plugin => {
+    return !(plugin instanceof webpack.optimize.CommonsChunkPlugin);
+  })
+  const commonConfigWithoutCommonsChunkPlugin = Object.assign({}, commonConfigObj, {
+    plugins: commonPluginsWithoutCommonsChunkPlugin
+  })
+  return webpackMerge(commonConfigWithoutCommonsChunkPlugin, {
+    target: 'node',
+    entry: './src/_universal-src/server.ts',
+    context: helpers.root(),
+
+    /**
+     * Switch loaders to debug mode.
+     *
+     * See: http://webpack.github.io/docs/configuration.html#debug
+     */
+    debug: false,
+
+    /**
+     * Developer tool to enhance debugging
+     *
+     * See: http://webpack.github.io/docs/configuration.html#devtool
+     * See: https://github.com/webpack/docs/wiki/build-performance#sourcemaps
+     */
+    devtool: 'source-map',
+
+    /**
+     * Options affecting the output of the compilation.
+     *
+     * See: http://webpack.github.io/docs/configuration.html#output
+     */
+    output: {
+
+      /**
+       * The output directory as absolute path (required).
+       *
+       * See: http://webpack.github.io/docs/configuration.html#output-path
+       */
+      path: helpers.root('dist/server'),
+
+      filename: 'index.js',
+      libraryTarget: 'commonjs2'
+
+    },
+
+    /**
+     * Add additional plugins to the compiler.
+     *
+     * See: http://webpack.github.io/docs/configuration.html#plugins
+     */
+    plugins: [
+
+      /**
+       * Plugin: WebpackMd5Hash
+       * Description: Plugin to replace a standard webpack chunkhash with md5.
+       *
+       * See: https://www.npmjs.com/package/webpack-md5-hash
+       */
+      // new WebpackMd5Hash(),
+
+      /**
+       * Plugin: DedupePlugin
+       * Description: Prevents the inclusion of duplicate code into your bundle
+       * and instead applies a copy of the function at runtime.
+       *
+       * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+       * See: https://github.com/webpack/docs/wiki/optimization#deduplication
+       */
+      // new DedupePlugin(), // see: https://github.com/angular/angular-cli/issues/1587
+
+      /**
+       * Plugin: DefinePlugin
+       * Description: Define free variables.
+       * Useful for having development builds with debug logging or adding global constants.
+       *
+       * Environment helpers
+       *
+       * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+       */
+      // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
+      new DefinePlugin({
+        'ENV': JSON.stringify(METADATA.ENV),
+        'HMR': METADATA.HMR,
+        'process.env': {
+          'ENV': JSON.stringify(METADATA.ENV),
+          'NODE_ENV': JSON.stringify(METADATA.ENV),
+          'HMR': METADATA.HMR,
+        }
+      }),
+
+      /**
+       * Plugin: UglifyJsPlugin
+       * Description: Minimize all JavaScript output of chunks.
+       * Loaders are switched into minimizing mode.
+       *
+       * See: https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
+       */
+      // NOTE: To debug prod builds uncomment //debug lines and comment //prod lines
+      // new UglifyJsPlugin({
+      //   // beautify: true, //debug
+      //   // mangle: false, //debug
+      //   // dead_code: false, //debug
+      //   // unused: false, //debug
+      //   // deadCode: false, //debug
+      //   // compress: {
+      //   //   screw_ie8: true,
+      //   //   keep_fnames: true,
+      //   //   drop_debugger: false,
+      //   //   dead_code: false,
+      //   //   unused: false
+      //   // }, // debug
+      //   // comments: true, //debug
+
+
+      //   beautify: false, //prod
+      //   mangle: { screw_ie8 : true, keep_fnames: true }, //prod
+      //   compress: { screw_ie8: true }, //prod
+      //   comments: false //prod
+      // }),
+
+      /**
+       * Plugin: NormalModuleReplacementPlugin
+       * Description: Replace resources that matches resourceRegExp with newResource
+       *
+       * See: http://webpack.github.io/docs/list-of-plugins.html#normalmodulereplacementplugin
+       */
+
+      new NormalModuleReplacementPlugin(
+        /angular2-hmr/,
+        helpers.root('config/modules/angular2-hmr-prod.js')
+      ),
+
+      /**
+       * Plugin: IgnorePlugin
+       * Description: Don’t generate modules for requests matching the provided RegExp.
+       *
+       * See: http://webpack.github.io/docs/list-of-plugins.html#ignoreplugin
+       */
+
+      // new IgnorePlugin(/angular2-hmr/),
+
+      /**
+       * Plugin: CompressionPlugin
+       * Description: Prepares compressed versions of assets to serve
+       * them with Content-Encoding
+       *
+       * See: https://github.com/webpack/compression-webpack-plugin
+       */
+      //  install compression-webpack-plugin
+      // new CompressionPlugin({
+      //   regExp: /\.css$|\.html$|\.js$|\.map$/,
+      //   threshold: 2 * 1024
+      // })
+
+    ],
+
+    /**
+     * Static analysis linter for TypeScript advanced options configuration
+     * Description: An extensible linter for the TypeScript language.
+     *
+     * See: https://github.com/wbuchwalter/tslint-loader
+     */
+    tslint: {
+      emitErrors: true,
+      failOnHint: true,
+      resourcePath: 'src'
+    },
+
+    /**
+     * Html loader advanced options
+     *
+     * See: https://github.com/webpack/html-loader#advanced-options
+     */
+    // TODO: Need to workaround Angular 2's html syntax => #id [bind] (event) *ngFor
+    htmlLoader: {
+      minimize: true,
+      removeAttributeQuotes: false,
+      caseSensitive: true,
+      customAttrSurround: [
+        [/#/, /(?:)/],
+        [/\*/, /(?:)/],
+        [/\[?\(?/, /(?:)/]
+      ],
+      customAttrAssign: [/\)?\]?=/]
+    },
+
+    module: {
+      loaders: [
+        { test: /@angular(\\|\/)material/, loader: "imports-loader?window=>global" }
+      ],
+    },
+    externals: includeClientPackages([
+      // include these client packages so we can transform their source with webpack loaders
+
+      // '@angular/common',
+      // '@angular/compiler',
+      // '@angular/core',
+      // '@angular/forms',
+      // '@angular/http',
+      // '@angular/platform-browser',
+      // '@angular/platform-browser-dynamic',
+      // '@angular/platform-server',
+      // '@angular/router',
+
+      '@angular/material'
+    ]),
+    /*
+     * Include polyfills or mocks for various node stuff
+     * Description: Node configuration
+     *
+     * See: https://webpack.github.io/docs/configuration.html#node
+     */
+    node: {
+      global: 'window',
+      crypto: 'empty',
+      process: false,
+      module: false,
+      clearImmediate: false,
+      setImmediate: false,
+      __dirname: true, // this is from universal-starter webpack.client.config
+      // __filename: true, // this is from universal-starter webpack.client.config
+      // Buffer: false, // this is from universal-starter webpack.client.config
     }
-  ),
 
-  // gzip: 
-  // To use gzip, you can run 'npm install compression-webpack-plugin --save-dev'
-  // add 'var CompressionPlugin = require("compression-webpack-plugin");' on the top
-  // and comment out below codes
-  //
-  // new CompressionPlugin({
-  //   asset: "[path].gz[query]",
-  //   algorithm: "gzip",
-  //   test: /\.js$|\.css$|\.html$/,
-  //   threshold: 10240,
-  //   minRatio: 0.8
-  // })
-];
+  });
+}
 
-var commonConfig = {
-  resolve: {
-    extensions: ['.ts', '.js', '.json']
-  },
-  context: __dirname,
-  output: {
-    publicPath: path.resolve(__dirname),
-    filename: 'index.js'
-  },
-  module: {
-    loaders: [
-      // TypeScript
-      { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'] },
-      { test: /\.html$/, loader: 'raw-loader' },
-      { test: /\.css$/, loader: 'raw-loader' },
-      { test: /\.json$/, loader: 'json-loader' }
-    ],
-  },
-  plugins: [
-    // Use commonPlugins.
-  ]
-
-};
-
-// Client.
-var clientPlugins = [
-
-];
-
-var clientConfig = {
-  target: 'web',
-  entry: './src/client',
-  output: {
-    path: root('dist/client')
-  },
-  node: {
-    global: true,
-    __dirname: true,
-    __filename: true,
-    process: true,
-    Buffer: false
-  }
-};
-
-
-// Server.
-var serverPlugins = [
-
-];
-
-var serverConfig = {
-  target: 'node',
-  entry: './src/server', // use the entry file of the node server if everything is ts rather than es5
-  output: {
-    path: root('dist/server'),
-    libraryTarget: 'commonjs2'
-  },
-  module: {
-    loaders: [
-      { test: /@angular(\\|\/)material/, loader: "imports-loader?window=>global" }
-    ],
-  },
-  externals: includeClientPackages([
-    // include these client packages so we can transform their source with webpack loaders
-
-    // '@angular/common',
-    // '@angular/compiler',
-    // '@angular/core',
-    // '@angular/forms',
-    // '@angular/http',
-    // '@angular/platform-browser',
-    // '@angular/platform-browser-dynamic',
-    // '@angular/platform-server',
-    // '@angular/router',
-
-    '@angular/material'
-  ]),
-  node: {
-    global: true,
-    __dirname: true,
-    __filename: true,
-    process: true,
-    Buffer: false
-  }
-};
-
-module.exports = [
-  // Client
-  webpackMerge(clone(commonConfig), clientConfig, { plugins: clientPlugins.concat(commonPlugins) }),
-
-  // Server
-  webpackMerge(clone(commonConfig), serverConfig, { plugins: serverPlugins.concat(commonPlugins) })
-];
 
 function includeClientPackages(packages) {
   return function(context, request, cb) {
@@ -139,7 +279,3 @@ function checkNodeImport(context, request, cb) {
   cb();
 }
 
-function root(args) {
-  args = Array.prototype.slice.call(arguments, 0);
-  return path.join.apply(path, [__dirname].concat(args));
-}

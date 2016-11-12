@@ -2,18 +2,22 @@
 import { __platform_browser_private__ } from '@angular/platform-browser';
 function universalMaterialSupports(eventName: string): boolean { return Boolean(this.isCustomEvent(eventName)); }
 __platform_browser_private__.HammerGesturesPlugin.prototype.supports = universalMaterialSupports;
-// End Fix Material Support
+// End Fix Material 
 
-import { NgModule, Inject, Optional, SkipSelf } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+
+import {/*BrowserModule,*/ Title} from '@angular/platform-browser';
+import {NgModule, NgModuleFactoryLoader, Inject, Optional, SkipSelf} from '@angular/core';
 import { UniversalModule, isBrowser, isNode } from 'angular2-universal/node'; // for AoT we need to manually split universal packages
+import {RouterModule} from '@angular/router';
+import {FormsModule} from '@angular/forms';
+// import {HttpModule} from '@angular/http';
 
-import { SharedModule } from './shared/shared.module';
-import { HomeModule } from './home/home.module';
-import { AboutModule } from './about/about.module';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { CacheService } from './shared/cache.service';
+import {AppComponent} from '../app.component';
+import SharedModule from '../_shared/_shared.module';
+import {NotFoundComponent} from '../not-found/not-found.component';
+import {AppRoutingModule} from '../app-routing.module';
+import {LeanNgModuleLoader} from '../lean-ng-module-loader';
+import { CacheService } from './cache.service';
 
 // import * as LRU from 'modern-lru';
 
@@ -25,18 +29,16 @@ export function getLRU(lru?: any) {
 
 @NgModule({
   bootstrap: [ AppComponent ],
-  declarations: [ AppComponent ],
+  declarations: [ AppComponent, NotFoundComponent ],
   imports: [
     UniversalModule, // NodeModule, NodeHttpModule, and NodeJsonpModule are included
     FormsModule,
 
-    SharedModule,
-    HomeModule,
-    AboutModule,
-
+    SharedModule.forRoot(),
     AppRoutingModule
   ],
   providers: [
+    Title,
     { provide: 'isBrowser', useValue: isBrowser },
     { provide: 'isNode', useValue: isNode },
 
@@ -50,7 +52,7 @@ export function getLRU(lru?: any) {
     CacheService
   ]
 })
-export class MainModule {
+export class AppModule {
   constructor(public cache: CacheService) {
 
   }

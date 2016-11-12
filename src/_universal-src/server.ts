@@ -23,13 +23,13 @@ import { enableProdMode } from '@angular/core';
 import { createEngine } from 'angular2-express-engine';
 
 // App
-import { AppModule } from './app/app.node.module';
+import { AppModule } from '../app/_universal-app/app.node.module';
 
 // enable prod for faster renders
 enableProdMode();
 
 const app = express();
-const ROOT = path.join(path.resolve(__dirname, '..'));
+const ROOT = path.resolve(__dirname, '../../');
 
 // Express View
 app.engine('.html', createEngine({
@@ -43,15 +43,16 @@ app.engine('.html', createEngine({
   ]
 }));
 app.set('port', process.env.PORT || 3000);
-app.set('views', __dirname);
+const viewsDir = path.resolve(ROOT, '../client');
+app.set('views', viewsDir);
 app.set('view engine', 'html');
 
 app.use(cookieParser('Angular 2 Universal'));
 app.use(bodyParser.json());
 
 // Serve static files
-app.use('/assets', express.static(path.join(__dirname, 'assets'), {maxAge: 30}));
-app.use(express.static(path.join(ROOT, 'dist/client'), {index: false}));
+app.use('/assets', express.static(path.resolve(ROOT, '../client/assents'), {maxAge: 30}));
+app.use(express.static(path.resolve(ROOT, '../client'), {index: false}));
 
 
 // import { serverApi } from './backend/api'; // these 3 lines are universal example

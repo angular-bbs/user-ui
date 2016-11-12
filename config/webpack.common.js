@@ -62,7 +62,6 @@ module.exports = function (options) {
 
       'polyfills': './src/polyfills.ts',
       'vendor': './src/vendor.ts',
-      // 'main': './src/universal/client.ts'
       'main': './src/main.ts'
 
     },

@@ -32,7 +32,7 @@ const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
 
 module.exports = function(env) {
   return webpackMerge(commonConfig({env: ENV}), {
-
+    // target: 'web',
     entry: {
 
       'polyfills': './src/polyfills.ts',
@@ -68,7 +68,7 @@ module.exports = function(env) {
        *
        * See: http://webpack.github.io/docs/configuration.html#output-path
        */
-      path: helpers.root('dist'),
+      path: helpers.root('dist/client'),
 
       /**
        * Specifies the name of each output file on disk.
@@ -249,7 +249,10 @@ module.exports = function(env) {
       process: false,
       module: false,
       clearImmediate: false,
-      setImmediate: false
+      setImmediate: false,
+      // __dirname: true, // this is from universal-starter webpack.client.config
+      // __filename: true, // this is from universal-starter webpack.client.config
+      // Buffer: false, // this is from universal-starter webpack.client.config
     }
 
   });
