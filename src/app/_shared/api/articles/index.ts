@@ -295,7 +295,8 @@ const items: Article[] = [
 
 @Injectable()
 export class ArticleApi {
+  private itemsLastestComesFirst: Article[] = items.concat().reverse();
   query(params = {}): Observable<Article> {
-    return Observable.from(items).filter((item)=>!item.hidden);
+    return Observable.from(this.itemsLastestComesFirst).filter((item)=>!item.hidden);
   }
 }
