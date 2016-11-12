@@ -253,7 +253,7 @@ const items: Article[] = [
     content: require('./mock-redux-with-rxjs/_index.md'),
     first: true,
     tags: ['RxJS'],
-    authors: ['Tim刘'],
+    authors: ['timliu'],
   },
   {
     id: '依赖注入简介',
@@ -280,7 +280,16 @@ const items: Article[] = [
     content: require('./250.一个依赖注入小框架的实现/_index.md'),
     first: true,
     tags: ['DI'],
-    authors: ['钉子哥'],
+    authors: ['钉子哥']
+  },
+  {
+    id: 'simple-javascript-event-loop-and-async',
+    title: '白话Javascript的Event Loop和Async',
+    summary: '以编程初学者的视角描述Javascript, Event Loop和Async的模样',
+    content: require('./timliu/simple-javascript-event-loop-and-async/_index.md'),
+    first: true,
+    tags: ['event loop', 'async'],
+    authors: ['timliu'],
   }
 ];
 
