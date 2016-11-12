@@ -156,12 +156,13 @@ const FakeSubjectClass = function() {
 
 FakeSubjectClass.prototype.subscribe = function(observer) {
   let that = this;
-  // 添加新observer，获取其所在的index；添加之前会检查是否observers已经有了这个observer，这里偷懒了没写
-  let indexA = (that.observers.push(observer) - 1); 
+  // 添加新observer，添加之前会检查是否observers已经有了这个observer，如果有，就什么也不做
+  if (that.observers.indexOf(observer) >= 0) return;
+  that.observers.push(observer);
   return {
     unsubscribe: () => {
-      // 从observers列表里将这个位置在indexA的observer删除
-      that.observers = that.observers.filter((observer, index) => index !== indexA) 
+      // 从observers列表里将这个observer删除
+      that.observers = that.observers.filter((observerX) => observerX !== observer) 
     }
   }
 }
