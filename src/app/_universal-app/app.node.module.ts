@@ -5,7 +5,8 @@ __platform_browser_private__.HammerGesturesPlugin.prototype.supports = universal
 // End Fix Material 
 
 
-import {/*BrowserModule,*/ Title} from '@angular/platform-browser';
+import {/*BrowserModule,*/ Title} from '@angular/platform-browser'; 
+import { ServerTitle } from './server-title.service';
 import {NgModule, NgModuleFactoryLoader, Inject, Optional, SkipSelf} from '@angular/core';
 import { UniversalModule, isBrowser, isNode } from 'angular2-universal/node'; // for AoT we need to manually split universal packages
 import {RouterModule} from '@angular/router';
@@ -38,7 +39,7 @@ export function getLRU(lru?: any) {
     AppRoutingModule
   ],
   providers: [
-    Title,
+    { provide: Title, useClass: ServerTitle},
     { provide: 'isBrowser', useValue: isBrowser },
     { provide: 'isNode', useValue: isNode },
 

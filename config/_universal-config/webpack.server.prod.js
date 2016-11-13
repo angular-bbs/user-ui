@@ -4,6 +4,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const helpers = require('../helpers');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
@@ -223,7 +224,16 @@ module.exports = function(env) {
 
     module: {
       loaders: [
-        { test: /@angular(\\|\/)material/, loader: "imports-loader?window=>global" }
+        { test: /@angular(\\|\/)material/, loader: "imports-loader?window=>global" },
+        {
+          test: /\.scss$/,
+          loaders: 'raw-loader'
+        },
+
+        {
+          test: /main\.scss$/,
+          loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'raw-loader' })
+        },
       ],
     },
     externals: includeClientPackages([
