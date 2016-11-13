@@ -361,12 +361,12 @@ RxJS 提供了非常多的操作，像下面这些。
 Aggregate,All,Amb,ambArray,ambWith,AssertEqual,averageFloat,averageInteger,averageLong,blocking,blockingFirst,blockingForEach,blockingSubscribe,Buffer,bufferWithCount,bufferWithTime,bufferWithTimeOrCount,byLine,cache,cacheWithInitialCapacity,case,Cast,Catch,catchError,catchException,collect,concatWith,Connect,connect_forever,cons,Contains,doAction,doAfterTerminate,doOnComplete,doOnCompleted,doOnDispose,doOnEach,doOnError,doOnLifecycle,doOnNext,doOnRequest,dropUntil,dropWhile,ElementAt,ElementAtOrDefault,emptyObservable,fromNodeCallback,fromPromise,fromPublisher,fromRunnable,Generate,generateWithAbsoluteTime,generateWithRelativeTime,Interval,intervalRange,into,latest (Rx.rb version of Switch),length,mapTo,mapWithIndex,Materialize,Max,MaxBy,mergeArray,mergeArrayDelayError,mergeWith,Min,MinBy,multicastWithSelector,nest,Never,Next,Next (BlockingObservable version),partition,product,retryWhen,Return,returnElement,returnValue,runAsync,safeSubscribe,take_with_time,takeFirst,TakeLast,takeLastBuffer,takeLastBufferWithTime,windowed,withFilter,withLatestFrom,zipIterable,zipWith,zipWithIndex
 ```
 
-关于每一个操作的含义，可以查看[官网](http://reactivex.io/documentation/operators.html)进行了解。下面将举几个例子。
+关于每一个操作的含义，可以查看[官网](http://reactivex.io/documentation/operators.html)进行了解。operators 具有静态（static）方法和实例（ instance）方法，下面使用 Rx.Observable.xx 和 Rx.Observable.prototype.xx 来简单区分，举几个例子。
 
-**of**
+**Rx.Observable.of**
 of 可以将普通数据转换成流式数据 Observable。如上面的 Rx.Observable.of(2)。
 
-**fromEvent**
+**Rx.Observable.fromEvent**
 除了数值外，RxJS 还提供了关于事件的操作，fromEvent 可以用来监听事件。当事件触发时，将事件 event 转成可流动的 Observable 进行传输。下面示例表示：监听文本框的 keyup 事件，触发 keyup 可以产生一系列的 event Observable。
 ``` javascript
 var text = document.querySelector('#text');
@@ -374,7 +374,7 @@ Rx.Observable.fromEvent(text, 'keyup')
              .subscribe(e => console.log(e));
 ```
 
-**map**
+**Rx.Observable.prototype.map**
 map 方法跟我们平常使用的方式是一样的，不同的只是这里是将流进行改变，然后将新的流传出去。上面示例已有涉及，这里不再多讲。 
 
 ``` javascript
@@ -389,14 +389,14 @@ Rx 提供了许多的操作，为了更好的理解各个操作的作用，我�
 
 箭头可以理解为时间轴，上面的数据经过中间的操作，转变成下面的模样。
 
-**mergeMap**
+**Rx.Observable.prototype.mergeMap**
 mergeMap 也是 RxJS 中常用的接口，我们来结合 marbles 图(flatMap(alias))来理解它
 
 ![rxjs_flatmap](https://cloud.githubusercontent.com/assets/10385585/19889614/cb4bed20-a070-11e6-9de0-7f04d8de53cc.png)
 
 上面的数据流中，产生了新的分支流(流中流)，mergeMap 的作用则是将分支流调整回主干上，最终分支上的数据流都经过主干的其他操作，其实也是将流中流进行扁平化。
 
-**switchMap**
+**Rx.Observable.prototype.switchMap**
 switchMap 与 mergeMap 都是将分支流疏通到主干上，而不同的地方在于 switchMap 只会保留最后的流，而取消抛弃之前的流。
 
 除了上面提到的 marbles，也可以 ASCII 字符的方式来绘制可视化图表，下面将结合 Map、mergeMap 和 switchMap 进行对比来理解。
@@ -415,7 +415,7 @@ switchMap 与 mergeMap 都是将分支流疏通到主干上，而不同的地方
 
 mergeMap 和 switchMap 中，A 和 B 是主干上产生的流，a1、a2 为 A 在分支上产生，b1、b2 为 B 在分支上产生，可看到，最终将归并到主干上。switchMap 只保留最后的流，所以将 A 的 a2 抛弃掉。
 
-**debounceTime**
+**Rx.Observable.prototype.debounceTime**
 debounceTime 操作可以操作一个时间戳 TIMES，表示经过 TIMES 毫秒后，没有流入新值，那么才将值转入下一个操作。
 
 ![rxjs_debounce](https://cloud.githubusercontent.com/assets/10385585/19889647/f6ce3aac-a070-11e6-8a35-b04f05afbe36.png)
@@ -434,10 +434,10 @@ Rx.Observable.fromEvent(text, 'keyup')
 ```
 这里我们并不想输出事件，而想拿到文本输入值，请求搜索，最终渲染出结果。涉及到两个新的 Operators 操作，简单理解一下：
 
-- **pluck('target', 'value')**
+- **Rx.Observable.prototype.pluck('target', 'value')**
 将输入的 event，输出成 event.target.value。
 
-- **mergeMap()**
+- **Rx.Observable.prototype.mergeMap()**
 将请求搜索结果输出回给 Observer 上进行渲染。
 
 ``` javascript
@@ -449,10 +449,10 @@ Rx.Observable.fromEvent(text, 'keyup')
 ```
 上面代码实现了简单搜索呈现，但同样存在一开始提及的两个问题。那么如何减少请求数，以及取消已无用的请求呢？我们来了解 RxJS 提供的其他 Operators 操作，来解决上述问题。
 
-- **debounceTime(TIMES)**
+- **Rx.Observable.prototype.debounceTime(TIMES)**
 表示经过 TIMES 毫秒后，没有流入新值，那么才将值转入下一个环节。这个与前面使用 setTimeout 来实现函数节流的方式有一致效果。
 
-- **switchMap()** 
+- **Rx.Observable.prototype.switchMap()** 
 使用 switchMap 替换 mergeMap，将能取消上一个已无用的请求，只保留最后的请求结果流，这样就确保处理展示的是最后的搜索的结果。
 
 最终实现如下，与一开始的实现进行对比，可以明显看出 RxJS 让代码变得十分简洁。
