@@ -389,20 +389,20 @@ Rx 提供了许多的操作，为了更好的理解各个操作的作用，我�
 
 箭头可以理解为时间轴，上面的数据经过中间的操作，转变成下面的模样。
 
-**FlatMap**
-FlatMap 也是 RxJS 中常用的接口，我们来结合 marbles 图来理解它
+**mergeMap**
+mergeMap 也是 RxJS 中常用的接口，我们来结合 marbles 图(flatMap(alias))来理解它
 
 ![rxjs_flatmap](https://cloud.githubusercontent.com/assets/10385585/19889614/cb4bed20-a070-11e6-9de0-7f04d8de53cc.png)
 
-上面的数据流中，产生了新的分支流(流中流)，FlatMap 的作用则是将分支流调整回主干上，最终分支上的数据流都经过主干的其他操作，其实也是将流中流进行扁平化。
+上面的数据流中，产生了新的分支流(流中流)，mergeMap 的作用则是将分支流调整回主干上，最终分支上的数据流都经过主干的其他操作，其实也是将流中流进行扁平化。
 
 **switchMap**
-switchMap 与 FlatMap 都是将分支流疏通到主干上，而不同的地方在于 switchMap 只会保留最后的流，而取消抛弃之前的流。
+switchMap 与 mergeMap 都是将分支流疏通到主干上，而不同的地方在于 switchMap 只会保留最后的流，而取消抛弃之前的流。
 
-除了上面提到的 marbles，也可以 ASCII 字符的方式来绘制可视化图表，下面将结合 Map、FlatMap 和 switchMap 进行对比来理解。
+除了上面提到的 marbles，也可以 ASCII 字符的方式来绘制可视化图表，下面将结合 Map、mergeMap 和 switchMap 进行对比来理解。
 
 ```
-@Map             @FlatMap            @switchMap
+@Map             @mergeMap            @switchMap
                          ↗  ↗                 ↗  ↗
 -A------B-->           a2 b2                a2 b2  
 -2A-----2B->          /  /                 /  /  
@@ -413,7 +413,7 @@ switchMap 与 FlatMap 都是将分支流疏通到主干上，而不同的地方�
                 --a1-b1-a2-b2-->     --a1-b1---b2-->
 ```
 
-FlatMap 和 switchMap 中，A 和 B 是主干上产生的流，a1、a2 为 A 在分支上产生，b1、b2 为 B 在分支上产生，可看到，最终将归并到主干上。switchMap 只保留最后的流，所以将 A 的 a2 抛弃掉。
+mergeMap 和 switchMap 中，A 和 B 是主干上产生的流，a1、a2 为 A 在分支上产生，b1、b2 为 B 在分支上产生，可看到，最终将归并到主干上。switchMap 只保留最后的流，所以将 A 的 a2 抛弃掉。
 
 **debounceTime**
 debounceTime 操作可以操作一个时间戳 TIMES，表示经过 TIMES 毫秒后，没有流入新值，那么才将值转入下一个操作。
@@ -437,14 +437,14 @@ Rx.Observable.fromEvent(text, 'keyup')
 - **pluck('target', 'value')**
 将输入的 event，输出成 event.target.value。
 
-- **flatMap()**
+- **mergeMap()**
 将请求搜索结果输出回给 Observer 上进行渲染。
 
 ``` javascript
 var text = document.querySelector('#text');
 Rx.Observable.fromEvent(text, 'keyup')
              .pluck('target', 'value') // <--
-             .flatMap(url => Http.get(url)) // <--
+             .mergeMap(url => Http.get(url)) // <--
              .subscribe(data => render(data))
 ```
 上面代码实现了简单搜索呈现，但同样存在一开始提及的两个问题。那么如何减少请求数，以及取消已无用的请求呢？我们来了解 RxJS 提供的其他 Operators 操作，来解决上述问题。
@@ -453,7 +453,7 @@ Rx.Observable.fromEvent(text, 'keyup')
 表示经过 TIMES 毫秒后，没有流入新值，那么才将值转入下一个环节。这个与前面使用 setTimeout 来实现函数节流的方式有一致效果。
 
 - **switchMap()** 
-使用 switchMap 替换 flatMap，将能取消上一个已无用的请求，只保留最后的请求结果流，这样就确保处理展示的是最后的搜索的结果。
+使用 switchMap 替换 mergeMap，将能取消上一个已无用的请求，只保留最后的请求结果流，这样就确保处理展示的是最后的搜索的结果。
 
 最终实现如下，与一开始的实现进行对比，可以明显看出 RxJS 让代码变得十分简洁。
 ``` javascript
