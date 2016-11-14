@@ -218,11 +218,11 @@ inputElem.focus(); // 可以输入新的todo了
 希望通过此文，能够帮助大家进一步了解RxJS。
 
 ## 参考：
-[Mock Redux with RxJS][]
-[Repo][]
-[`Observable.ajax`运算符][]
-[`observers`列表][]
-[JSON Server][]
+[Mock Redux with RxJS][]  
+[Repo][]  
+[`Observable.ajax`运算符][]  
+[`observers`列表][]  
+[JSON Server][]  
 
 [Mock Redux with RxJS]: https://wx.angular.cn/library/article/%E5%BA%94%E7%94%A8RxJS%E6%A8%A1%E6%8B%9Fredux
 [Repo]: https://github.com/rxjs-space/rxjs-typescript-starter
