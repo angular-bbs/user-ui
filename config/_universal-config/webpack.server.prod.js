@@ -258,14 +258,14 @@ module.exports = function(env) {
      * See: https://webpack.github.io/docs/configuration.html#node
      */
     node: {
-      global: 'window',
+      global: true,
       crypto: 'empty',
-      process: false,
+      process: true,
       module: false,
       clearImmediate: false,
       setImmediate: false,
       __dirname: true, // this is from universal-starter webpack.client.config
-      // __filename: true, // this is from universal-starter webpack.client.config
+      __filename: true, // this is from universal-starter webpack.client.config
       // Buffer: false, // this is from universal-starter webpack.client.config
     }
 

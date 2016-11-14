@@ -12,6 +12,7 @@
     "u:watch": "build the universal build and update on files changes, scripts run in parallel",
     "preu:start": "before u:start, build the universal build",
     "u:start": "start a express server and update on files changes in dist folder",
+    "postu:start": "no such script, run u:watch manually, in another console",
     "u:client:dev": "start a webpack-dev-server for client part of the universal build, served at localhost:8080"
   },
   "scripts": {
@@ -71,6 +72,7 @@
     "u:watch": "run-p u:client:watch u:server:watch",
     "preu:start": "npm run u:build",
     "u:start": "nodemon dist/server/index.js",
+    "u:starta": "nodemon dist/server/index.js",
     "u:client:dev": "webpack-dev-server --config config/_universal-config/webpack.client.prod.js --progress --profile --watch --content-base src/"
   },
   "private": true,

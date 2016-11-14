@@ -4,6 +4,8 @@
 // if you are including modules that modify Promise, such as NewRelic,, you must include them before polyfills
 import 'angular2-universal-polyfills';
 
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/mergeMap';
@@ -39,7 +41,7 @@ import { AppModule } from '../app/_universal-app/app.node.module';
 enableProdMode();
 
 const app = express();
-const ROOT = path.resolve(__dirname, '../../');
+const ROOT = path.join(path.resolve(__dirname, '../../'));
 
 // Express View
 app.engine('.html', createEngine({
@@ -53,7 +55,7 @@ app.engine('.html', createEngine({
   ]
 }));
 app.set('port', process.env.PORT || 3000);
-const viewsDir = path.resolve(ROOT, '../client');
+const viewsDir = path.join(ROOT, 'dist/client');
 app.set('views', viewsDir);
 app.set('view engine', 'html');
 
@@ -61,8 +63,8 @@ app.use(cookieParser('Angular 2 Universal'));
 app.use(bodyParser.json());
 
 // Serve static files
-app.use('/assets', express.static(path.resolve(ROOT, '../client/assents'), {maxAge: 30}));
-app.use(express.static(path.resolve(ROOT, '../client'), {index: false}));
+app.use('/assets', express.static(path.join(ROOT, 'dist/client/assets'), {maxAge: 30}));
+app.use(express.static(path.join(ROOT, 'dist/client'), {index: false}));
 
 
 // import { serverApi } from './backend/api'; // these 3 lines are universal example
@@ -81,6 +83,8 @@ function ngApp(req, res) {
 }
 // Routes with html5pushstate
 // ensure routes match client-side-app
+app.get('/', ngApp);
+app.get('/library/article/', ngApp);
 app.get('/*', ngApp);
 // app.get('/about', ngApp);
 // app.get('/about/*', ngApp);
