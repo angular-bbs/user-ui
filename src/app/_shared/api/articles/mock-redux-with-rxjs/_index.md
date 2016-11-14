@@ -49,13 +49,15 @@ RxJS的文档里就有答案，就在这里：[RxJS官方教程 - State Stores][
 水平所限，难免有错漏，请大家多指教。另外，我写的比较啰嗦，请大家多包涵。  
 
 ## 相关概念
-以下为粗略理解，具体参见[官方文档][]。
+以下为粗略理解，具体参见[官方文档][]。  
+
 1. `Observer`：是一个Object，里面有3个Callback，形如`{next: nextFn, error: errorFn, complete: completeFn}`。   
   3个Callback都不是必须的。   
   示例：
       ```js
       const observer = {next: (v) => console.log(v)}; // 这个Observer只有next callback
       ```
+
 2. `Observable`：定义在某个时点通过调用`observer.callback(v)`（比如`observer.next(v)`）将数据`v`推送给`observer`；  
   `Observable`不会自动运行，而是要通过`subscribe`方法来启动，  
   比如，`observable.subscribe(observer)`就是启动`observable`，同时指定`observer`为数据推送对象；  
@@ -72,6 +74,7 @@ RxJS的文档里就有答案，就在这里：[RxJS官方教程 - State Stores][
     observable$.subscribe(observer); // 启动observable，并指定数据传给observer。
     // observable$.subscribe({next: nextFn}) 可以简写成 observable$.subscribe(nextFn)
     ```
+
 3. `Subject`：既是一个`Observer`（有`next` Callback，即`subject.next(v)`），又是一个`Observable`（有`subscribe`方法，即`subject.subcribe(observer)`）。   
   示例：  
     ```js
@@ -79,6 +82,7 @@ RxJS的文档里就有答案，就在这里：[RxJS官方教程 - State Stores][
     observable$.subscribe(subject$$); // 因为subject$$是一个observer，我们可以用subject$$来订阅observable$
     subject$$.subscribe(observer); // 因为subject$$也是一个observable，它可以被别的observer订阅
     ```
+
 4. `BehaviorSubject`：是一个`Subject`，能留存最后一个数据；创建时需指定初始数据；  
   可以通过`getValue()`获取留存的最后一个数据。（RxJS version 5文档中没提`getValue`方法）   
   示例：  
@@ -87,6 +91,7 @@ RxJS的文档里就有答案，就在这里：[RxJS官方教程 - State Stores][
     subjectB$$.subscribe(observable); // 订阅一个BehaviorSubject，会把当前数据立即推送给observer
     console.log(subjectB$$.getValue()); // getValue()获取留存的最后一个数据
     ```
+    
 5. [scan运算符][]：如果把Observable推送的数据流类比成Array的话，那么Observable.prototype.scan运算符就类似Array.prototype.reduce，  
   不同在于Array.prototype.reduce是把Array中所有的数值累积后形成一个值，而Observable.prototype.scan是把当前值和之前的累积值再次累积形成一个值，参见示例：  
     ```js
@@ -221,7 +226,6 @@ const clicks_ = Observable.merge(incButtonClick$, decButtonClick$)
 ## 参考
 [redux][]  
 [RxJS官方教程 - State Stores][]  
-[RxJS Doc在github上的源码][]  
 [官方文档][]
 [scan运算符][]
 
