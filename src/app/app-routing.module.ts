@@ -21,15 +21,17 @@ const routes: Routes = [
         path: 'bbs', data: {title: '微站论坛'},
         loadChildren: './bbs/_bbs.module'
       },
-      {
-        path: 'library', data: {title: '资料中心'},
-        loadChildren: './library/_library.module'
-      },
+      // {
+      //   path: 'library', data: {title: '资料中心'},
+      //   loadChildren: './library/_library.module'
+      // },
+      // imported LibraryModule in root AppModule
       {
         path: 'user', data: {title: '用户中心'},
         loadChildren: './user/_user.module'
       },
-      {path: '**', component: NotFoundComponent},
+      // {path: '**', component: NotFoundComponent}, 
+      // moved to separate module so that redirectTo can work properly
     ]
   },
 ];

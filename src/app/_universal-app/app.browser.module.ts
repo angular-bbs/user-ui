@@ -7,10 +7,12 @@ import {FormsModule} from '@angular/forms';
 
 import {AppComponent} from '../app.component';
 import SharedModule from '../_shared/_shared.module';
-import {NotFoundComponent} from '../not-found/not-found.component';
+// import {NotFoundComponent} from '../not-found/not-found.component';
 import {AppRoutingModule} from '../app-routing.module';
 import {LeanNgModuleLoader} from '../lean-ng-module-loader';
 import { CacheService } from './cache.service';
+import LibraryModule from '../library/_library.module';
+import {NotFoundModule} from '../not-found/not-found.module';
 
 export function getLRU() {
   return new Map();
@@ -21,7 +23,10 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
 
 @NgModule({
   bootstrap: [ AppComponent ],
-  declarations: [ AppComponent, NotFoundComponent ],
+  declarations: [ 
+    AppComponent, 
+    // NotFoundComponent
+  ],
   imports: [
     UniversalModule, // BrowserModule, HttpModule, and JsonpModule are included
 
@@ -30,7 +35,9 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
     // HttpModule,
     // RouterModule, // duplicate with SharedModule
     SharedModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    LibraryModule, // add this module in the root to avoid lazy loading
+    NotFoundModule // moved NotFoundComponent to this module for routing concerns
   ],
   providers: [
     Title,
