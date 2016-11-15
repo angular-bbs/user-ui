@@ -12,33 +12,79 @@
 
 # 二、升级service/factory/provider
 
-> 关于service、factory、provider：相信你在使用ng1的时候一定对这三个概念产生过困惑，网上也有很多相关文章讨论三者之间的差别和联系。但稍微深入研究一下就会知道，这三者本质相同，只是做了不同的语法糖包装。本文以service为例完成升级过程。
+> 关于service、factory、provider：在ng1中，我们可以通过`angular.Module`的这三个方法，来创建自己的服务，并将这些组件注册在ng1环境中，今后通过依赖注入的方式在项目中使用。相信你在使用ng1的时候一定对这三个概念产生过困惑，网上也有很多相关文章讨论三者之间的差别和联系。但稍微深入研究一下就会知道，这三者本质相同，只是做了不同的语法糖包装。本文以service为例完成升级过程。
+
+> 扩展阅读，源码探索：上述三者的关系，也可以通过ng1的源代码来更清楚的了解，源码地址：[https://github.com/angular/angular.js/blob/v1.5.8/src/auto/injector.js#L688](https://github.com/angular/angular.js/blob/v1.5.8/src/auto/injector.js#L688)（适用于ng1.5.8，不同版本行号可能有所变化）。简单来说，使用factory需要你返回一个对象，对象的属性可以被外部访问到；使用service需要你定义一个构造函数，在依赖注入时ng1会自动使用`new`关键字调用构造函数并返回对象，因此在创建过程中可以使用`this`关键字设置类的属性和方法；使用provider则要将外部访问的属性和方法定义在`$get`属性上。
 
 首先来定义一个项目中用到的service：
 
-```
+```JavaScript
 // user.service.js
 // 一个简单的service，用来获取用户列表
 
 app.service('UserService', ['$http', function ($http) {
-  var service = {};
-  
+
   // 这里假定了一个api地址：/user
+  this.listUser = function () {
+    return $http.get('/user').then(function (res) {
+      return res.data;
+    });
+  };
+
+}]);
+```
+
+> 这里也提供使用factory和provider创建`UserService`的代码版本，供大家参考。
+
+```JavaScript
+// user.service.js
+// 使用factory方法创建UserService
+
+app.factory('UserService', ['$http', function ($http) {
+
+  // 定义一个对象
+  var service = {};
+
   service.listUser = function () {
     return $http.get('/user').then(function (res) {
       return res.data;
     });
   };
   
+  // 返回这个对象
   return service;
+
 }]);
 ```
+
+```JavaScript
+// user.service.js
+// 使用provider方法创建UserService
+
+app.provider('UserService', ['$http', function ($http) {
+
+  // 需要将外部调用的属性和方法定义在$get方法中
+  this.$get = function () {
+    var service;
+    service.listUser = function () {
+      return $http.get('/user').then(function (res) {
+        return res.data;
+      });
+    };
+    return service;
+  };
+
+}]);
+```
+
+> 从代码中也可以看出来，除了创建服务的过程中使用的语法不同，但其核心业务代码并没有区别。
+> 一句话总结一下：factory是provider的$get属性，而service是生成factory所返回的对象的构造函数。
 
 ## 1、分离框架代码和业务代码
 
 与controller的升级类似，我们先将业务代码剥离成一个单独的文件，并将所有注册service代码集中到一个文件中。
 
-```
+```JavaScript
 // app-service.js
 // 这个文件专门用来注册所有的service
 
@@ -51,15 +97,13 @@ app.service('UserService', ['$http', userService])
 // user.service.js
 
 var userService = function ($http) {
-  var service = {};
   
-  service.listUser = function () {
+  this.listUser = function () {
     return $http.get('/user').then(function (res) {
       return res.data;
     });
   };
-  
-  return service;
+
 };
 ```
 
@@ -67,13 +111,13 @@ var userService = function ($http) {
 
 ## 2、根据最佳实践处理依赖
 
-但是和controller不同的是，这个service中所依赖的`$http`并不像`$scope`一样可以通过某种语法，从方法中完全解耦，有时候我们也必须面对这个事实，一些框架相关的API确实必须一定程度的参与到业务代码中。
+和controller不同的是，这个service中所依赖的`$http`并不像`$scope`一样可以通过某种语法（例如`as`语法），从function中完全解耦，有时候我们也必须面对这个事实，一些框架相关的API确实必须一定程度的参与到业务代码中。
 
-不过好在这个依赖是通过DI的方式注入到方法中，方法也并没有直接对ng1产生依赖，因此到这里为止，关于`$http`这个依赖就这样处理也无伤大雅。
+好在`$http`是ng1中内置的服务，和所有其他服务一样，这个依赖可以通过DI的方式注入到方法中，方法也并没有直接对ng1产生依赖，因此到这里为止，对于`$http`这个服务的依赖就这样处理也无伤大雅。
 
-不过编写代码我们总希望能够尽可能优化代码。
+不过编写代码我们总希望能够尽可能优化代码，目前为止代码还有进一步优化的空间。
 
-这里我们会发现一个问题，如果今后`userService`的依赖，除了`$http`外又增加了`$log`依赖，这时你就必须同时修改`app-service.js`文件和`user.service.js`文件两个文件。一处调整涉及到两处修改并不符合最佳实践。设想在多人团队合作的项目中，不同人负责的多个service代码都调整了依赖内容，则会导致`app-service.js`文件被多个人同时修改，在通过版本控制软件提交时也会增加代码review的难度。
+试想这样一个问题，如果今后`userService`的依赖，除了`$http`外又增加了`$log`依赖，这时你就必须同时修改`app-service.js`文件和`user.service.js`文件两个文件。一处调整涉及到两处修改并不符合最佳实践。设想在多人团队合作的项目中，不同人负责的多个service代码都调整了依赖内容，则会导致`app-service.js`文件被多个人同时修改，在通过版本控制软件提交时也会增加代码review的难度。
 
 > 最佳实践：我们希望将service的依赖内容与service代码放在同一处，减少依赖调整所带来的文件修改数量，这也一定程度上符合高内聚和单一职责原则。
 
@@ -81,21 +125,18 @@ ng1为我们提供了一种实现方式：`$inject`。（官方文档：[https:/
 
 简单来说，我们将一个__字符串数组__作为`$inject`属性赋值给一个方法，ng1就会按照数组中的字符串对方法注入依赖，我们来看一下代码：
 
-```
+```JavaScript
 // user.service.js
 
 // 这里我们假设service增加了一个$log依赖
 var userService = function ($http, $log) {
 
-  var service = {};
-  
-  service.listUser = function () {
+  this.listUser = function () {
     return $http.get('/user').then(function (res) {
       return res.data;
     });
   };
   
-  return service;
 };
 
 // 这里使用$inject属性对service注入依赖
@@ -106,7 +147,7 @@ userService.$inject = ['$http', '$log'];
 
 同时注册service的代码也可以做相应的简化：
 
-```
+```JavaScript
 // app-service.js
 
 // 由于在service文件中已经声明了service所需要的依赖，因此这里直接将service方法作为参数即可
@@ -122,7 +163,7 @@ app.service('UserService', userService)
 
 和之前一样，我们也需要将es3代码升级为typescript代码。
 
-```
+```TypeScript
 // user.service.ts
 
 // 原来的service方法以class的方式定义
@@ -149,7 +190,7 @@ export default class UserService {
 }
 ```
 
-```
+```TypeScript
 // app-service.ts
 
 import app from './app';
@@ -167,7 +208,7 @@ app.service('UserService', userService)
 
 升级前的重构准备工作都做完了，升级至ng2就指日可待啦。
 
-```
+```TypeScript
 // user.service.ts
 
 import { Http, Response } from '@angular/http';
@@ -211,7 +252,7 @@ export default class UserService {
 
 这时你可以通过这样来实现：
 
-```
+```TypeScript
 let someValue : any = { foo : 'bar' };
 
 export default someValue;
@@ -219,7 +260,7 @@ export default someValue;
 
 或者这样：
 
-```
+```TypeScript
 const PI = 3.1415926;
 
 export default PI;
