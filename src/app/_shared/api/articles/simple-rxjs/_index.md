@@ -58,7 +58,7 @@ const x$ = () => {
   // 然后就没有然后了
 }
 ```
-`Observable`可以`return`很多次，任意多次，每次`return`可能需要满足一定条件，比如“鼠标点击的时候”。  
+`Observable`可以`return`任意多次，每次`return`可能需要满足一定条件，比如“鼠标点击的时候”。  
 可是，怎么可能`return`多于1次呢？  
 这是伪代码，其实`Observable`应该是这样：  
 
@@ -156,14 +156,17 @@ const FakeSubjectClass = function() {
 
 FakeSubjectClass.prototype.subscribe = function(observer) {
   let that = this;
-  // 添加新observer，添加之前会检查是否observers已经有了这个observer，如果有，就什么也不做
-  if (that.observers.indexOf(observer) >= 0) return;
-  that.observers.push(observer);
-  return {
-    unsubscribe: () => {
-      // 从observers列表里将这个observer删除
+  let subscription = {
+    unsubscribe: () => { // unsubsribe要做的就是从observers列表里将这个observer删除
       that.observers = that.observers.filter((observerX) => observerX !== observer) 
     }
+  };
+  // 添加新observer，添加之前会检查是否observers已经有了这个observer，如果有，就直接返回subscription
+  if (that.observers.indexOf(observer) >= 0) {
+    return subscription;
+  } else {
+    that.observers.push(observer);
+    return subscription;
   }
 }
 
@@ -180,7 +183,7 @@ x$$.subscribe(observerB); // 这个observerB被加到了x$$的observers列表里
 x$.subscribe(x$$); // 当x$向外推送时，调用的是x$$.next；x$$.next转身马上就forEach转给它的observers。
 ```
 顺带提一下`unicast`和`multicast`的资源消耗。  
-说`Observable`是`unicast`，而`Subject`是`multicast`，就是因为这个`observers列表` -- 在`Observable`里是没有的这个列表的。   
+说`Observable`是`unicast`，而`Subject`是`multicast`，就是因为这个`observers列表` -- 在`Observable`里没有这个属性。   
 每次运行`Observable.subscribe()`都相当于一个`Function.call()`，是一个独立的运行，需要单独消耗资源。  
 而`Subject.subscribe()`消耗资源很少。  
 比如：
