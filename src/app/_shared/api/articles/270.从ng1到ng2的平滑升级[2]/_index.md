@@ -18,7 +18,7 @@
 
 首先来定义一个项目中用到的service：
 
-```JavaScript
+```javascript
 // user.service.js
 // 一个简单的service，用来获取用户列表
 
@@ -36,7 +36,7 @@ app.service('UserService', ['$http', function ($http) {
 
 > 这里也提供使用factory和provider创建`UserService`的代码版本，供大家参考。
 
-```JavaScript
+```javascript
 // user.service.js
 // 使用factory方法创建UserService
 
@@ -57,7 +57,7 @@ app.factory('UserService', ['$http', function ($http) {
 }]);
 ```
 
-```JavaScript
+```javascript
 // user.service.js
 // 使用provider方法创建UserService
 
@@ -84,7 +84,7 @@ app.provider('UserService', ['$http', function ($http) {
 
 与controller的升级类似，我们先将业务代码剥离成一个单独的文件，并将所有注册service代码集中到一个文件中。
 
-```JavaScript
+```javascript
 // app-service.js
 // 这个文件专门用来注册所有的service
 
@@ -125,7 +125,7 @@ ng1为我们提供了一种实现方式：`$inject`。（官方文档：[https:/
 
 简单来说，我们将一个__字符串数组__作为`$inject`属性赋值给一个方法，ng1就会按照数组中的字符串对方法注入依赖，我们来看一下代码：
 
-```JavaScript
+```javascript
 // user.service.js
 
 // 这里我们假设service增加了一个$log依赖
@@ -147,7 +147,7 @@ userService.$inject = ['$http', '$log'];
 
 同时注册service的代码也可以做相应的简化：
 
-```JavaScript
+```javascript
 // app-service.js
 
 // 由于在service文件中已经声明了service所需要的依赖，因此这里直接将service方法作为参数即可
@@ -163,7 +163,7 @@ app.service('UserService', userService)
 
 和之前一样，我们也需要将es3代码升级为typescript代码。
 
-```TypeScript
+```typescript
 // user.service.ts
 
 // 原来的service方法以class的方式定义
@@ -190,7 +190,7 @@ export default class UserService {
 }
 ```
 
-```TypeScript
+```typescript
 // app-service.ts
 
 import app from './app';
@@ -208,7 +208,7 @@ app.service('UserService', userService)
 
 升级前的重构准备工作都做完了，升级至ng2就指日可待啦。
 
-```TypeScript
+```typescript
 // user.service.ts
 
 import { Http, Response } from '@angular/http';
@@ -220,7 +220,7 @@ import { Observable } from 'rxjs';
 // 如果没有定义，后面的User类型使用any来暂时代替也尚无不可
 import User from './user.model';
 
-@Injectable
+@Injectable()
 export default class UserService {
 
   // 这里不再使用ng1的注入方式，而通过在AppModule注解的imports属性引入HttpModule
@@ -252,7 +252,7 @@ export default class UserService {
 
 这时你可以通过这样来实现：
 
-```TypeScript
+```typescript
 let someValue : any = { foo : 'bar' };
 
 export default someValue;
@@ -260,7 +260,7 @@ export default someValue;
 
 或者这样：
 
-```TypeScript
+```typescript
 const PI = 3.1415926;
 
 export default PI;
