@@ -274,6 +274,15 @@ const items: Article[] = [
     authors: ['王開寧'],
   },
   {
+    id: '白话RxJS',
+    title: '白话RxJS',
+    summary: '尝试使用“白话”来介绍RxJS。',
+    content: require('./simple-rxjs/_index.md'),
+    first: true,
+    tags: ['RxJS'],
+    authors: ['timliu'],
+  },
+  {
     id: '一个依赖注入小框架的实现',
     title: '一个依赖注入小框架的实现',
     summary: '《依赖注入简介》介绍了下依赖注入的原理，本文尝试使用ES5代码来做一个依赖注入框架的实现。',
