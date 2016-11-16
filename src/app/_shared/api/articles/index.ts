@@ -312,7 +312,7 @@ const items: Article[] = [
     id: 'simple-rxjs',
     title: '白话RxJS',
     summary: '本文将尝试用白话来解读RxJS。',
-    content: require('./timliu/simple-rxjs/_index.md'),
+    content: require('./simple-rxjs/_index.md'),
     first: true,
     tags: ['rxjs'],
     authors: ['timliu'],
