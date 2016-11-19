@@ -316,6 +316,15 @@ const items: Article[] = [
     first: true,
     tags: ['rxjs'],
     authors: ['timliu'],
+  },
+  {
+    id: '如何优雅升级ng2小版本',
+    title: '280.如何优雅升级ng2小版本',
+    summary: '使用npm命令，搞定ng2小版本升级',
+    content: require('./280.如何优雅升级ng2小版本/_index.md'),
+    first: true,
+    tags: ['ng2升级', 'npm 常用命令'],
+    authors: ['木丁糖'],
   }
 ];
 
