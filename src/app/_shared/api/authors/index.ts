@@ -50,6 +50,15 @@ const items: Author[] = [
     avatar: require('./_images/250.丁乐华.jpg'),
     columnist: false,
     homepage: 'https://github.com/lhtin'
+  },
+  {
+    id: 'dapao',
+    name: '大炮',
+    bio: '上天不要移開險峻，請賜予吾攀登之力',
+    description: require('./67.大炮.md'),
+    avatar: require(''),
+    columnist: false,
+    homepage: 'https://github.com/btcioner/About-ME'
   }
 ];
 @Injectable()
@@ -97,7 +106,7 @@ export class AuthorApi {
       // authoer found, item = author
       item = items[index];
     }
-    
+
     return Observable.of(item)
   }
 
