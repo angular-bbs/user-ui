@@ -310,7 +310,7 @@ const items: Article[] = [
   },
   {
     id: '应用RxJS模拟redux-第二集-Todo-App',
-    title: '应用RxJS模拟redux 第二集 Todo-App',
+    title: '应用RxJS模拟redux - 第二集 - Todo App',
     summary: '以Redux的思维，借助RxJS，制作一个Todo App。',
     content: require('./timliu/mock-redux-with-rxjs-episode-2-todo-app/_index.md'),
     first: true,

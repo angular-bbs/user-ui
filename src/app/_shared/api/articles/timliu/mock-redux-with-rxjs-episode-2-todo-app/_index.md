@@ -1,13 +1,13 @@
-# Mock Redux with RxJS - Episode 2 - Todo App
+# 应用RxJS模拟redux - 第二集 - Todo App
 
 初稿日期：2016年11月08日
 
 
 ## 写作原因/目的
 在上集[Mock Redux with RxJS][]里，我们用RxJS模拟了Redux的最基本的功能，即实现了一个`state`为数字的`state store`。
-现实生活中，`state`的内容要复杂的多，而且除了改变`state`，我们还要处理`side effects`，比如更新`dom`、发送`ajax`请求等等。  
+现实生活中，`state`的内容要复杂的多，而且除了改变`state`，我们还要处理[“副作用（`side effects`）”][]，比如更新`dom`、发送`ajax`请求等等。  
 - 本集想要说明的是：  
-  **应用RxJS，在改变`state`的同时，我们可以很直接的处理`side effects`，不需要像Redux那样使用`Thunk Middleware`。**    
+  **应用RxJS，在改变`state`的同时，我们可以很直接的处理`side effects`，不需要像Redux那样使用[中间件（middleware）][]。**    
   落实在代码上就是：  
   ```js
   // 从上集的
@@ -24,7 +24,7 @@
   })
   ```
   仅此而已。  
-接下来的部分都是上面代码的具体应用，大家赶时间的话，可以全部跳过。    
+余下全文都是上面代码的具体应用，大家赶时间的话，可以全部跳过。    
 
 本集承接上集，以Redux的思维，借助RxJS，制作一个Todo App。  
 
@@ -130,7 +130,7 @@
 
 
 = = = = = 分割线 = = = = =   
-以`app启动`为例，走一遍流程。  
+以“app启动”为例，走一遍流程。  
 
 页面载入后，app启动，运行`action$$.next({type: CONST.GET_ALL_START})`。  
 找找这个action的handler，  
@@ -218,14 +218,18 @@ inputElem.focus(); // 可以输入新的todo了
 希望通过此文，能够帮助大家进一步了解RxJS。
 
 ## 参考：
-[Mock Redux with RxJS][]  
-[Repo][]  
-[`Observable.ajax`运算符][]  
-[`observers`列表][]  
-[JSON Server][]  
+- [Mock Redux with RxJS][]  
+- [“副作用（`side effects`）”][]
+- [中间件（middleware）][]
+- [Repo][]  
+- [`Observable.ajax`运算符][]  
+- [`observers`列表][]  
+- [JSON Server][]  
 
 [Mock Redux with RxJS]: https://wx.angular.cn/library/article/%E5%BA%94%E7%94%A8RxJS%E6%A8%A1%E6%8B%9Fredux
 [Repo]: https://github.com/rxjs-space/rxjs-typescript-starter
 [`Observable.ajax`运算符]: https://github.com/ReactiveX/rxjs/blob/master/src/observable/dom/AjaxObservable.ts
 [`observers`列表]: http://reactivex.io/rxjs/file/es6/Subject.js.html#lineNumber25
 [JSON Server]: https://github.com/typicode/json-server
+[“副作用（`side effects`）”]: https://en.wikipedia.org/wiki/Side_effect_(computer_science)
+[中间件（middleware）]: http://redux.js.org/docs/advanced/Middleware.html

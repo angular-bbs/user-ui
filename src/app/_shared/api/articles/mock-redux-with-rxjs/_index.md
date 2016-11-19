@@ -1,3 +1,5 @@
+# 应用RxJS模拟redux
+
 初稿日期：2016年10月25日
 
 ## 变量名Style约定
@@ -96,7 +98,10 @@ RxJS的文档里就有答案，就在这里：[RxJS官方教程 - State Stores][
   不同在于Array.prototype.reduce是把Array中所有的数值累积后形成一个值，而Observable.prototype.scan是把当前值和之前的累积值再次累积形成一个值，参见示例：  
     ```js
     observable$.scan((accumulated, current) => accumulated + current, 0);
+    // 假设observable$推送的第一个数值为1，在推送第一个数值的时候，accumulated是0，即初始值，current是1，返回值是accumulated = accumulated + current即1；
+    // observable$每次推送新的数值，都会有一个新的accumulated数值推送，不需要等到observable$运行结束（即调用observer.complete()）
     // 类似Array.prototype.reduce，比如：[1, 2, 3].reduce((acc, curr) => acc + curr, 0);
+    // 但是Array.prototype.reduce返回的结果是要把array中的所有数值都积累起来，而Observable.prototype.scan是积累到当前值
     ```  
 
 ## 编写代码  
