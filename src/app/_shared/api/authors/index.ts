@@ -52,14 +52,23 @@ const items: Author[] = [
     homepage: 'https://github.com/lhtin'
   },
   {
-    id: 'Tim刘',
+    id: 'timliu',
     name: 'Tim刘',
     bio: '小白小白小白',
     description: require('./Tim刘.md'),
     avatar: require('./_images/Tim刘.png'),
     columnist: false,
     homepage: 'https://github.com/rxjs-space'
-  }
+  },
+  {
+    id: '王開寧',
+    name: '王開寧',
+    bio: '终于找到真爱的前端码农',
+    description: require('./260.王開寧.md'),
+    avatar: require('./_images/260.王開寧.jpg'),
+    columnist: false,
+    homepage: 'https://twincle.github.io'
+  },
 ];
 @Injectable()
 export class AuthorApi {
@@ -71,7 +80,6 @@ export class AuthorApi {
   // query可以分为queryOne以及queryAll，matchById这个有点儿绕
 
 
-
   queryOne(params: {id: string}): Observable<Author> {
 
     let index: number = null;
@@ -80,13 +88,13 @@ export class AuthorApi {
     // 因为find()如果找不到，上一行的Observable就成了Observable.never()了
     // 而Observable.never()不会调用observer的任何callback
     for (let i = 0; i < items.length; i++) {
-      if(items[i].id === params.id) {
+      if (items[i].id === params.id) {
         index = i  // 找到了，index改成i，找不到，index还是null
         break; // 找到了，不用接着找了。
       }
     }
 
-    let spectreAuthor: Author =   {
+    let spectreAuthor: Author = {
       id: 'spectre',
       name: '我叫404',
       bio: '数据库里没有我，怎么办？',
@@ -99,14 +107,14 @@ export class AuthorApi {
     let author$: Observable<Author>;
     let item: Author;
 
-    if(index === null) {
+    if (index === null) {
       // author not found, item = spectreAuthor
       item = spectreAuthor;
     } else {
       // authoer found, item = author
       item = items[index];
     }
-    
+
     return Observable.of(item)
   }
 
