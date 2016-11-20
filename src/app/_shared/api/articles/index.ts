@@ -316,6 +316,15 @@ const items: Article[] = [
     first: true,
     tags: ['rxjs'],
     authors: ['timliu'],
+  },
+  {
+    id: 'Angular2中的通信方式',
+    title: 'Angular2中的通信方式',
+    summary: 'Angular 2 中，我们难免需要进行组件间的相互通信，但是这些通信方式你真的都知道吗？',
+    content: require('./280.Angular2中的通信方式/_index.md'),
+    first: true,
+    tags: ['ng2'],
+    authors: ['trotyl'],
   }
 ];
 
