@@ -287,7 +287,7 @@ class Child implements OnInit {
 
 归功于 ng2 引入的 [Hierarchical Injector](https://angular.io/docs/ts/latest/guide/hierarchical-dependency-injection.html) 机制，每个组件／指令都可以有独立（并继承）的 Injector。相比于 ng1 中的全局唯一的 Injector 而言，在 ng2 中我们可以对提供商进行细粒度控制。
 
-我们可以使用 @Optional 的依赖来进行数据传递（或者在模块／根组件中提供默认内容）：
+我们可以使用 @Optional() 的依赖来进行数据传递（或者在模块／根组件中提供默认内容）：
 
 ```typescript
 @Component({
