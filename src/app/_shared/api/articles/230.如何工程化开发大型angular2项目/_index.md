@@ -54,7 +54,7 @@ git remote add upstream git@192.168.1.1:/git/main-base
     }
     // 具体代码可以克隆angular-seed去查看
 ```
-    另外angular2提供接口能够优化打包出来的代码enableProdMode，但是我们开发时是不需要用到该接口如何去分离开来呢？gulp有个好插件，完美解决该问题，[gulp-template](https://www.npmjs.com/package/gulp-template)。我们只要在我们
+    另外angular2提供[enableProdMode](https://angular.io/docs/ts/latest/api/core/index/enableProdMode-function.html)接口能够优化打包出来的代码，但是我们开发时是不需要用到该接口如何去分离开来呢？gulp有个好插件，完美解决该问题，[gulp-template](https://www.npmjs.com/package/gulp-template)。我们只要在我们
     代码中加入类似<%= BUILD_TYPE %>，这样就可以赋值给BUILD_TYPE，我们可以合理得去控制。
 ```
     import { enableProdMode } from '@angular/core';
