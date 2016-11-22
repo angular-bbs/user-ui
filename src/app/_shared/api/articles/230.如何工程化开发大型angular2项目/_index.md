@@ -54,14 +54,14 @@
     }
     // 具体代码可以克隆angular-seed去查看
 ```
-    另外angular2提供[enableProdMode](https://angular.io/docs/ts/latest/api/core/index/enableProdMode-function.html)接口能够优化打包出来的代码，但是我们开发时是不需要用到该接口如何去分离开来呢？gulp有个好插件，完美解决该问题，[gulp-template](https://www.npmjs.com/package/gulp-template)。我们只要在我们
+  另外angular2提供[enableProdMode](https://angular.io/docs/ts/latest/api/core/index/enableProdMode-function.html)接口能够优化打包出来的代码，但是我们开发时是不需要用到该接口如何去分离开来呢？gulp有个好插件，完美解决该问题，[gulp-template](https://www.npmjs.com/package/gulp-template)。我们只要在我们
     代码中加入类似<%= BUILD_TYPE %>，这样就可以赋值给BUILD_TYPE，我们可以合理得去控制。
 ```
     import { enableProdMode } from '@angular/core';
     ...
     if (String('<%= BUILD_TYPE %>') === 'prod') { enableProdMode(); }
 ```
-    关于开发配置十分细碎，所以不做详述，可以日后咨询。
+  关于开发配置十分细碎，所以不做详述，可以日后咨询。
 
 ## 下篇预告：
 下篇会涉及项目目录结构管理，以及angular2在移动端开发的经验，项目打包上线的经验
