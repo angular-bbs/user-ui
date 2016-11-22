@@ -316,7 +316,17 @@ const items: Article[] = [
     first: true,
     tags: ['RxJS'],
     authors: ['timliu']
+  },
+  {
+    id: 'simple-prototype-chain',
+    title: '白话 JS 的原型链',
+    summary: '本文记录笔者学习 JS 原型链的过程中的一些心得。',
+    content: require('./timliu/simple-prototype-chain/_index.md'),
+    first: true,
+    tags: ['JavaScript', 'prototype', 'prototype chain'],
+    authors: ['timliu']
   }
+
 ];
 
 @Injectable()
