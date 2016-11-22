@@ -264,7 +264,8 @@ Foo.prototype 在出生的时候，有两个属性：
 -摘自MDN之《[Object.prototype.\_\_proto__][]》
 
 ## 总结
-[[Prototype]] 是“我没有找它”指针；\_\_proto__ 和 [[Prototype]] 等效；func 的实例的原型是 func.prototype。  
+- 如果 A 是 B 的原型，那么原型链是 `B --> A`，assertion 是 `B.__proto__ === A`。  
+- 如果 Foo 是构造函数，foo 是它的一个实例，那么原型链是 `foo --> Foo.prototype`，assertion 是 `foo.__proto__ === Foo.prototype`。
 
 ## 参考
 - [继承与原型链][]
