@@ -15,7 +15,7 @@ git remote add upstream https://github.com/mgechev/angular-seed.git
     git fetch upstream
     git merge upstream/master
 ```
-平时我们想要更新主仓库时，只要git pull以下upstram远端，就可以保持最新了。如果不想人工手动去更新的化可以交给jenkins定时去更新，这样主心仓库永远是最新的了。
+平时我们想要更新主仓库时，只要git pull一下upstram远端，就可以保持最新了。如果不想人工手动去更新的化可以交给jenkins定时去更新，这样主心仓库永远是最新的了。
 ### 创建衍生库：
 因为我们所有项目围绕主心库而衍生出来的，所以衍生库和主心库的关心和angular-seed关系一致。我们指定我们衍生库的远端upstream为我们的主心库，这样只要主心库是最新的，这样所有衍生库都可以保持同步更新。可以享受主心库提供的共用配置和
 业务逻辑。看上去过程比较繁琐，其实只需要将整个操作过程的指令集合到bash脚本中，执行脚本是指定参数名为你的项目名称。这样快速就可以构建一个angular2项目，所以整套流程适合有复杂业务的项目。
