@@ -159,13 +159,13 @@ var Employee = function(name, title) {
   this.title = title;
 }; // 这是后代构造函数
 
-Employee.prototype.__proto__ = Person.prototype;  // 这一行与《Object.prototype》不一样
+Employee.prototype.__proto__ = Person.prototype;  // 这一行与《Object.prototype》原文不一样
 // 设置后代构造函数的 prototype 的 [[Prototype]] 指向上一级的 prototype，即 Employee.prototype 继承 Person.prototype
 
 var john = new Employee('John', 'CXO'); 
 // new 相当于：var john = {}; john.__proto__ = Employee.prototype; Employee.call(john);
-john.canTalk === true; // true. 这是调用了上级构造函数初始化实例得到的
-john.title === 'CXO'; // true. 这是调用了后代构造函数初始化实例得到的
+john.canTalk === true; // true. 这是调用了上级构造函数得到的
+john.title === 'CXO'; // true. 这是调用了后代构造函数得到的
 john.greet(); // Hi, I am John. 这是上级构造函数prototype上的方法
 ```
 
@@ -176,7 +176,7 @@ john.greet(); // Hi, I am John. 这是上级构造函数prototype上的方法
 这样我们就有了原型链 `john --> Employee.prototype --> Person.prototype`。  
 Person.prototype 长什么样呢？见下一节。
 
-## 原生构造函数 与 原型链的尽头 与 func.prototype 出生时的样子
+## 原生构造函数 与 func.prototype 出生时的样子 与 原型链的尽头
 [JavaScript的内建对象][]，有很多自身就是构造函数，比如Object, Function, Array, String, Number，Boolean，RegExp等等。怎么知道一个内建对象是不是构造函数呢？  
 比如，Object，在console里敲入`Object`，看到`function Object() { [native code] }`，那么，Object 就是一个构造函数。  
 比如，Math，在console里敲入`Math`，看不到`function`字样，那么，Math 就不是一个构造函数。  
@@ -238,7 +238,7 @@ Foo.prototype 在出生的时候，有两个属性：
 原型链的尽头  
 
 我来念一段经：
-- JavaScript里的“东西”都是对象，对象继承构造函数的 prototype（`foo.__proto__ === Foo.prototype;`），  
+- JavaScript里的“东西”都是对象，对象 继承 构造函数的 prototype（`foo.__proto__ === Foo.prototype;`），  
 - 构造函数的 prototype 继承 Object.prototype （`Foo.prototype.__proto__ === Object.prototype;` ），
 - Object.prototype 继承 null （`Object.prototype.__proto__ === null;`）, 
 - null.[[Prototype]] 不存在（`null.__proto__; // throw`）。
@@ -250,7 +250,7 @@ Foo.prototype 在出生的时候，有两个属性：
 - Object.getPrototypeOf(someObject)：取代 \_\_proto__ 的 getter 功能（\_\_proto__ 已被弃用）。
 - Object.setPrototypeOf(someObject)：取代 \_\_proto__ 的 setter 功能（\_\_proto__ 已被弃用）。
 - Object.create()：`var targeObject = Object.create(sourceObject)`，这行相当于： `targetObject = {__proto__: sourceObject}`。  
-    “例5”的原型（《[Object.prototype][]》的示例）使用了 Object.create()，而且还有一行： `Employee.prototype.constructor = Employee;`。大家想想为什么要两行？   
+    “例5”的原型（《[Object.prototype][]》的示例）使用了 Object.create()，而且还有一行： `Employee.prototype.constructor = Employee;`。大家想想为什么要后面这行？   
 - SomeType.isPrototypeOf(someObject)：`Foo.prototype.isPrototypeOf(foo); // true`。
 - someObject instanceof SomeType：`foo instanceof Foo; // true`。
 
