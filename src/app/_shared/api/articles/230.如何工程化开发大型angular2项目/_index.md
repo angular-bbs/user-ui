@@ -11,7 +11,7 @@
 上面的图画得比较烂，我还是来好好解释一下。首先我们得有一个主心库，这个库十分重要，里面没有业务逻辑的代码，主要是平时开发时所需要的所有脚本，以及npm的一些基本依赖。另外一些共用组件，共用逻辑代码（例如登录验证等等）。主心库创
 立完后，我们需要建立一个upstream的远端指向angular-seed项目
 ```
-git remote add upstream https://github.com/mgechev/angular-seed.git 
+    git remote add upstream https://github.com/mgechev/angular-seed.git 
     git fetch upstream
     git merge upstream/master
 ```
@@ -20,7 +20,7 @@ git remote add upstream https://github.com/mgechev/angular-seed.git
 因为我们所有项目围绕主心库而衍生出来的，所以衍生库和主心库的关心和angular-seed关系一致。我们指定我们衍生库的远端upstream为我们的主心库，这样只要主心库是最新的，这样所有衍生库都可以保持同步更新。可以享受主心库提供的共用配置和
 业务逻辑。看上去过程比较繁琐，其实只需要将整个操作过程的指令集合到bash脚本中，执行脚本是指定参数名为你的项目名称。这样快速就可以构建一个angular2项目，所以整套流程适合有复杂业务的项目。
 ```
-git remote add upstream git@192.168.1.1:/git/main-base 
+    git remote add upstream git@192.168.1.1:/git/main-base 
     git fetch upstream
     git merge upstream/master
 ```
@@ -31,7 +31,7 @@ git remote add upstream git@192.168.1.1:/git/main-base
 ```
     gulp build.dev --color --env-config dev
 ```
-    执行上述命令，就是启动开发dev环境的配置。利用yargs这个node工具去接收我们传递过去的参数，以此来区分开是开发模式下还是prod模式下。下面贴一段代码举例一下：
+  执行上述命令，就是启动开发dev环境的配置。利用yargs这个node工具去接收我们传递过去的参数，以此来区分开是开发模式下还是prod模式下。下面贴一段代码举例一下：
 
 ```
     import { argv } from 'yargs';
@@ -64,5 +64,5 @@ git remote add upstream git@192.168.1.1:/git/main-base
     关于开发配置十分细碎，所以不做详述，可以日后咨询。
 
 ## 下篇预告：
-    下篇会涉及项目目录结构管理，以及angular2在移动端开发的经验，项目打包上线的经验
-    ps： 正在寻找新的工作机会，感兴趣的朋友加我QQ： 846432362
+下篇会涉及项目目录结构管理，以及angular2在移动端开发的经验，项目打包上线的经验
+ps： 正在寻找新的工作机会，感兴趣的朋友加我QQ： 846432362
