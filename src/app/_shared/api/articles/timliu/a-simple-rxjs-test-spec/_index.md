@@ -89,7 +89,7 @@ describe('Observable.interval', () => {
 1. import TestScheduler
 2. describe -> it ->
 3. 创建 TestScheduler 实例，命名这个实例为 testScheduler，这个过程在上面的“相关概念 / assertDeepEqual”一节有提到。
-4. 定义要被测试的 Observable 'e1`，挂上 testScheduler，挂上 testScheduler，挂上 testScheduler。 e1 构建使用了 interval、take、concat、never 等运算符，先不必清楚这个 e1 具体长什么样，稍后会在测试输出里看到。
+4. 定义要被测试的 Observable 'e1'，挂上 testScheduler，挂上 testScheduler，挂上 testScheduler。 e1 构建使用了 interval、take、concat、never 等运算符，先不必清楚这个 e1 具体长什么样，稍后会在测试输出里看到。
 5. 定义期望的 Marble Diagram，有两部分，数据时间轴 'expected' 以及每个数据对应的数值 'values'。
 6. 调用 expectObserable().toBe()，这个是 TestScheduler的 method，写出来就是：   
   `testScheduler.expectObservable(e1).toBe(expected, values);`。  
