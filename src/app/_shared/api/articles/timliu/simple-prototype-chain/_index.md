@@ -247,7 +247,8 @@ Foo.prototype; // 回车，然后看到返回下面的一个 Object
 - Object.prototype 继承 null，即 `Object.prototype.__proto__ === null;`, 
 - null.[[Prototype]] 不存在，即 `null.__proto__; // Error`。
 
-所以，原型链总会是 `foo --> Foo.prototype --> Object.prototype --> null`，即原型链的的尽头是 null。万物皆 null，null 即万物。善哉善哉。  
+所以，原型链总会是 `foo --> Foo.prototype --> Object.prototype --> null`，即原型链的的尽头是 null。（Foo.prototype 可能不是直接继承 Object.prototype，而是继承另外一个对象，而另外一个对象继承另外一个另外的对象，但最终都会找到 Object.prototype 头上。）  
+万物皆 null，null 即万物。善哉善哉。  
 
 ## 几个相关方法、运算符
 （详情参考MDN文档）
