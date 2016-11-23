@@ -316,12 +316,22 @@ const items: Article[] = [
     first: true,
     tags: ['RxJS'],
     authors: ['timliu']
+  },
+  {
+    id: '从ng1到ng2的平滑升级[2]',
+    title: '从ng1到ng2的平滑升级[2]',
+    summary: '系列文章：手把手教你将ng1项目平滑升级至ng2',
+    content: require('./270.从ng1到ng2的平滑升级[2]/_index.md'),
+    first: true,
+    tags: ['ng1', 'ng2', '平滑升级', 'es6', 'typescript'],
+    authors: ['王開寧'],
   }
 ];
 
 @Injectable()
 export class ArticleApi {
   private itemsLastestComesFirst: Article[] = items.concat().reverse();
+
   query(params = {}): Observable<Article> {
     return Observable.from(this.itemsLastestComesFirst).filter((item)=>!item.hidden);
   }
