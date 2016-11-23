@@ -22,7 +22,7 @@ package.json中，版本号如下：
 
 ### 符号`~`
 举栗子： "@angular/core": "~2.0.1" 
-什么鬼:  只能安装 `2.0.1`， `2.0.2`， ... `2.0.9` 但是, **2.1.0就不可以了**
+什么鬼:  只能安装 `2.0.1`， `2.0.2`， ... `2.0.xxx` 但是, **2.1.0不会安装**
 
 ### 符号 `>= <=`
 更有者，可以使用如下形式： >= ... <=
@@ -32,9 +32,9 @@ package.json中，版本号如下：
 ## 优雅升级常用npm命令
 上述仅是package.json涉及内容的几小点，更多内容，参考npmjs官方文档 [Specifics of npm's package.json handling](https://docs.npmjs.com/files/package.json)  和  [The semantic versioner for npm](https://docs.npmjs.com/misc/semver)
 接下来，开始我们的优雅之旅吧！以我自己的ng2入门项目[ng2-starter-webpack](https://github.com/tancolo/angular2/tree/master/ng2-starter-webpack)项目为例子说明，如何优雅升级ng2小版本。
-一句话总结升级步骤： ** 看版本，查依赖，修json，再重复。** 
+一句话总结升级步骤： **看版本，查依赖，修json，再重复** 
 
-**package.json 文件内容：**
+**package.json 文件内容:**
 ```
 "dependencies": {
     "@angular/common": "2.0.1",
@@ -147,9 +147,9 @@ zone.js                                   0.6.25         0.6.25      0.6.26  ng2
 $ npm view @angular/core@2.2.0 peerDependencies
 { rxjs: '5.0.0-beta.12', 'zone.js': '^0.6.21' }
 ```
-以查看 **@angular/core@2.2.0** 为例，它依赖 ** { rxjs: '5.0.0-beta.12', 'zone.js': '^0.6.21' } **,  也就是说升级**@angular/core** 到 ** 2.2.0 ** 没有必要升级rxjs, zone.js版本，即使他们有更新的版本。
+以查看 **@angular/core@2.2.0** 为例，它依赖 **{ rxjs: '5.0.0-beta.12', 'zone.js': '^0.6.21' }**,  也就是说升级**@angular/core** 到 **2.2.0** 没有必要升级`rxjs`, `zone.js`版本，即使他们有更新的版本。
 
-再看一个依赖包： ** angular-in-memory-web-api@0.1.1 **
+再看一个依赖包： **angular-in-memory-web-api@0.1.1**
 
 ```
 $ npm view angular-in-memory-web-api@0.1.1  peerDependencies
@@ -161,7 +161,7 @@ $ npm view angular-in-memory-web-api@0.1.1  peerDependencies
   'zone.js': '^0.6.25' }
 
 ```
-以上说明，当升级ng2相关库为 2.2.0的时候，可以不用升级  ** angular-in-memory-web-api@0.1.1 **
+以上说明，当升级ng2相关库为 2.2.0的时候，可以不用升级  **angular-in-memory-web-api@0.1.1**
 
 但是，修改完成 ng相关库为 2.2.0后，再次执行 npm install， 还是有错误
 ```
@@ -197,17 +197,17 @@ npm ERR! peer dep missing: @angular/platform-browser@2.0.1, required by @angular
 本次是angular/router的版本太低了，@3.0.1 要求ng相关库是2.0.1， 2.2.0无法使用，所以需要升级angular/router 为3.2.0
 
 ### 修改，重复
-上述的** 看版本，查依赖，修json ** 可能会重复多次，完成后，测试的工作也不能少，至少主流程要走一遍，确保升级不会导致出现运行问题。
+上述的**看版本，查依赖，修json** 可能会重复多次，完成后，测试的工作也不能少，至少主流程要走一遍，确保升级不会导致问题。
 
 ## 小结
-升级版本是个细致的活儿，需要科学的方法。否则容易出现问题，脑壳都会抓掉。再次总结下一般步骤吧！
-#### step 1 看版本
+升级版本是个细致的活儿，需要科学的方法。否则容易出现问题，脑壳都会抓掉。再次总结下基本步骤吧！
+### step 1 看版本
 npm list --depth 0
 npm outdated
 
-#### step 2 查看依赖
+### step 2 查看依赖
 npm view xxxpackage/xxx@x.x.x peerDependencies
 
-#### step 3 修json
-#### step 4 再重复
+### step 3 修json
+### step 4 再重复
 
