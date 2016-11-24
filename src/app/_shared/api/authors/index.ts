@@ -73,8 +73,8 @@ const items: Author[] = [
     id: '木丁糖',
     name: '木丁糖',
     bio: '爱好前端开发的Android白面猿',
-    description: require('./木丁糖.md'),
-    avatar: require('./_images/270.木丁糖.jpg'),
+    description: require('./270.木丁糖.md'),
+    avatar: require('./_images/木丁糖.jpg'),
     columnist: false,
     homepage: 'http://www.jianshu.com/users/d614825bc8a1/latest_articles'
   },
