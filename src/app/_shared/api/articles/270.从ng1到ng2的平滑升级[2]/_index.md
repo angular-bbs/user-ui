@@ -1,3 +1,5 @@
+# 从ng1到ng2的平滑升级[2]
+
 如果你已经看过了前一篇文章，相信你对升级的套路已经有了一定的认识，我们来一起简单总结一下吧：
 
 1. 拆分ng1框架代码和业务代码，并将框架代码集中至一个或几个文件中；
@@ -10,7 +12,7 @@
 
 下面我们一起来接受新的挑战吧。
 
-# 二、升级service/factory/provider
+## 二、升级service/factory/provider
 
 > 关于service、factory、provider：在ng1中，我们可以通过`angular.Module`的这三个方法，来创建自己的服务，并将这些组件注册在ng1环境中，今后通过依赖注入的方式在项目中使用。相信你在使用ng1的时候一定对这三个概念产生过困惑，网上也有很多相关文章讨论三者之间的差别和联系。但稍微深入研究一下就会知道，这三者本质相同，只是做了不同的语法糖包装。本文以service为例完成升级过程。
 
@@ -50,7 +52,7 @@ app.factory('UserService', ['$http', function ($http) {
       return res.data;
     });
   };
-  
+
   // 返回这个对象
   return service;
 
@@ -80,7 +82,7 @@ app.provider('UserService', ['$http', function ($http) {
 > 从代码中也可以看出来，除了创建服务的过程中使用的语法不同，但其核心业务代码并没有区别。
 > 一句话总结一下：factory是provider的$get属性，而service是生成factory所返回的对象的构造函数。
 
-## 1、分离框架代码和业务代码
+### 1. 分离框架代码和业务代码
 
 与controller的升级类似，我们先将业务代码剥离成一个单独的文件，并将所有注册service代码集中到一个文件中。
 
@@ -97,7 +99,7 @@ app.service('UserService', ['$http', userService])
 // user.service.js
 
 var userService = function ($http) {
-  
+
   this.listUser = function () {
     return $http.get('/user').then(function (res) {
       return res.data;
@@ -109,7 +111,7 @@ var userService = function ($http) {
 
 经过了前一篇文章的洗礼，这一步对你来说应该是易如反掌。
 
-## 2、根据最佳实践处理依赖
+### 2. 根据最佳实践处理依赖
 
 和controller不同的是，这个service中所依赖的`$http`并不像`$scope`一样可以通过某种语法（例如`as`语法），从function中完全解耦，有时候我们也必须面对这个事实，一些框架相关的API确实必须一定程度的参与到业务代码中。
 
@@ -136,7 +138,7 @@ var userService = function ($http, $log) {
       return res.data;
     });
   };
-  
+
 };
 
 // 这里使用$inject属性对service注入依赖
@@ -159,7 +161,7 @@ app.service('UserService', userService)
 
 > 结合上一篇中定义的controller，我们也可以使用相同的方式，在controller方法上定义一个`$inject`属性来声明依赖，这种声明方式可以用在包括ng1自有依赖和项目自定义service的各种依赖上。因此，理论上来说，在注册controller、service等各类组件时，均可以达到“仅注册，不声明依赖”的目的。
 
-## 3、向typescript进发
+### 3. 向typescript进发
 
 和之前一样，我们也需要将es3代码升级为typescript代码。
 
@@ -179,7 +181,7 @@ export default class UserService {
     // 将被typescript自动定义为同名类属性
     // 相当于执行了代码：this._http = _http;，因此不需要手动赋值
   }
-  
+
   listUser () : Promise<any[]> {
     // 使用this._http来调用依赖
     return this._http
@@ -204,7 +206,7 @@ app.service('UserService', userService)
    .service(...);
 ```
 
-## 4、升级为ng2
+### 4. 升级为ng2
 
 升级前的重构准备工作都做完了，升级至ng2就指日可待啦。
 
@@ -227,13 +229,13 @@ export default class UserService {
   // 不过即使保留这个静态属性，也不会对ng2的运行产生影响
   // 虽然保留下来并不是较好的习惯，但也在一定程度上减少升级工作量
   // static $inject : string[] = ['$http', '$log'];
-  
+
   // ng2中通过参数类型来判断依赖的服务
   // 这里省略$log依赖
   constructor (private _http : Http) {
-  
+
   }
-  
+
   // ng2中默认使用rxjs的方式调用http方法，
   // 如果不习惯，可以通过toPromise()方法将Observable转换为Promise
   // 虽然推荐使用rxjs，但是转换为Promise类型可以降低依赖该服务的其他组件的升级成本
@@ -242,11 +244,11 @@ export default class UserService {
                .get('/user')
                .map((res : Response) : User[] => res.json() as User[]);
   }
-  
+
 }
 ```
 
-## 5、关于value和constant
+### 5. 关于value和constant
 
 如果说service、factory、provider比较类似——至少都可以注入依赖并通过function（es3）或class（typescript）来完成定义，那么value和constant就有点不太一样，因为它们就只是一个值而已啊。
 
