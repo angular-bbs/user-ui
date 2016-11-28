@@ -201,7 +201,7 @@ const items: Article[] = [
     tags: [],
     authors: ['trotyl'],
   },
-   {
+  {
     id: 'TypeScript的新特性',
     title: 'TypeScript的新特性',
     summary: 'Angular 2把TypeScript作为首选语言，很多新人可能还不太熟悉，就我来把一些个人的理解分享给大家。小鲜肉的处女作，多谢捧场',
@@ -210,7 +210,7 @@ const items: Article[] = [
     tags: ['ts'],
     authors: ['wike'],
   },
-   {
+  {
     id: '杂谈：何不食肉糜？',
     title: '杂谈：何不食肉糜？',
     summary: '今天，我们不谈技术。来聊点八卦吧，雪狼的第一重身份其实是儒生，他为什么选择翻译官方文档？因为这源于儒者的信仰。请听我细说从头。',
@@ -219,7 +219,7 @@ const items: Article[] = [
     tags: ['过去'],
     authors: ['雪狼'],
   },
-   {
+  {
     id: '如何选择合适的框架',
     title: '如何选择合适的框架',
     summary: '无论是在社区还是在公司，我都不愿意公开比较两个框架，因为我无法容忍自己公开发表不够专业的意见。那么我在公开发表意见方面恪守着哪些原则呢？请看本文。',
@@ -265,6 +265,24 @@ const items: Article[] = [
     authors: ['钉子哥'],
   },
   {
+    id: '从ng1到ng2的平滑升级[1]',
+    title: '从ng1到ng2的平滑升级[1]',
+    summary: '系列文章：手把手教你将ng1项目平滑升级至ng2',
+    content: require('./260.从ng1到ng2的平滑升级[1]/_index.md'),
+    first: true,
+    tags: ['ng1', 'ng2', '平滑升级', 'es6', 'typescript'],
+    authors: ['王開寧'],
+  },
+  {
+    id: '一个依赖注入小框架的实现',
+    title: '一个依赖注入小框架的实现',
+    summary: '《依赖注入简介》介绍了下依赖注入的原理，本文尝试使用ES5代码来做一个依赖注入框架的实现。',
+    content: require('./250.一个依赖注入小框架的实现/_index.md'),
+    first: true,
+    tags: ['DI'],
+    authors: ['钉子哥']
+  },
+  {
     id: 'simple-javascript-event-loop-and-async',
     title: '白话Javascript的Event Loop和Async',
     summary: '以编程初学者的视角描述Javascript, Event Loop和Async的模样',
@@ -272,12 +290,58 @@ const items: Article[] = [
     first: true,
     tags: ['event loop', 'async'],
     authors: ['timliu'],
-  }
+  },
+  {
+    id: '构建流式应用—RxJS详解',
+    title: '构建流式应用—RxJS详解',
+    summary: '通过 RxJS 的实现原理、基础实现及实例来一步步分析，提供 RxJS 较为全面的指引，感受使用 RxJS 优雅编码体验。',
+    content: require('./270.构建流式应用—RxJS详解/_index.md'),
+    tags: ['RxJS'],
+    authors: ['joeyguo'],
+  },
+  {
+    id: 'simple-rxjs',
+    title: '白话RxJS',
+    summary: '本文将尝试用白话来解读RxJS。',
+    content: require('./simple-rxjs/_index.md'),
+    first: true,
+    tags: ['rxjs'],
+    authors: ['timliu'],
+  },
+  {
+    id: '应用RxJS模拟redux-第二集-Todo-App',
+    title: '应用RxJS模拟redux - 第二集 - Todo App',
+    summary: '以Redux的思维，借助RxJS，制作一个Todo App。',
+    content: require('./timliu/mock-redux-with-rxjs-episode-2-todo-app/_index.md'),
+    first: true,
+    tags: ['RxJS'],
+    authors: ['timliu']
+  },
+  {
+    id: '如何工程化开发大型angular2项目',
+    title: '如何工程化开发大型angular2项目',
+    summary: 'angular2刚出不久，很多技术主管在观望是否要把angular2投入生存环境，作为一名作死者，从今年3月就投入生存环境，8个月来挖坑经验告诉你，绝对没问题。已经百家大型客户投入使用！',
+    content: require('./230.如何工程化开发大型angular2项目/_index.md'),
+    first: true,
+    tags: ['现在'],
+    authors: ['大炮'],
+  },
+  {
+    id: '从ng1到ng2的平滑升级[2]',
+    title: '从ng1到ng2的平滑升级[2]',
+    summary: '系列文章：手把手教你将ng1项目平滑升级至ng2',
+    content: require('./270.从ng1到ng2的平滑升级[2]/_index.md'),
+    first: true,
+    tags: ['ng1', 'ng2', '平滑升级', 'es6', 'typescript'],
+    authors: ['王開寧'],
+  },
 ];
 
 @Injectable()
 export class ArticleApi {
+  private itemsLastestComesFirst: Article[] = items.concat().reverse();
+
   query(params = {}): Observable<Article> {
-    return Observable.from(items).filter((item)=>!item.hidden);
+    return Observable.from(this.itemsLastestComesFirst).filter((item)=>!item.hidden);
   }
 }
