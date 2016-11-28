@@ -335,6 +335,15 @@ const items: Article[] = [
     tags: ['ng1', 'ng2', '平滑升级', 'es6', 'typescript'],
     authors: ['王開寧'],
   },
+  {
+    id: 'simple-js-mutability',
+    title: '白话 JS 数值的可变与不可变',
+    summary: '简单介绍 JS 数值的可变与不可变的特点与影响。',
+    content: require('./timliu/simple-mutability/_index.md'),
+    first: true,
+    tags: ['mutability', 'immutable'],
+    authors: ['timliu']
+  },
 ];
 
 @Injectable()
