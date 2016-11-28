@@ -29,6 +29,18 @@ package.json中，版本号如下：
 - 举栗子： "@angular/core": ">=2.0.1<=3.0.0"
 - 什么鬼： 表示安装的版本是在 2.0.2到3.0.0之前的，上下边界也在内。
 
+### 符号`~`, `^`的由来
+看到上述符号`~`,`^`， 估计有小伙伴表示，这是什么鬼，npm为什么要使用这些符号。讲到这里，需要提及一个名词[语义化版本](http://semver.org/lang/zh-CN/)， 简单的说就是一个规范，让大家快乐的升级。详细的需要参考npm官方的文档。
+[Specifics of npm's package.json handling](https://docs.npmjs.com/files/package.json)  和  [The semantic versioner for npm](https://docs.npmjs.com/misc/semver)
+其中[tilde-ranges](https://docs.npmjs.com/misc/semver#tilde-ranges-123-12-1)以及[caret-ranges](https://docs.npmjs.com/misc/semver#caret-ranges-123-025-004)中给出了 `^`,`~`来由。
+引用如下： 
+> **Tilde Ranges ~1.2.3 ~1.2 ~1**  
+  Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not.
+
+> **Caret Ranges ^1.2.3 ^0.2.5 ^0.0.4**  
+  Allows changes that do not modify the left-most non-zero digit in the [major, minor, patch] tuple. In other words, this allows patch and minor updates for versions 1.0.0 and above, patch updates for versions 0.X >=0.1.0, and no updates for versions 0.0.X.
+
+
 ## 优雅升级常用npm命令
 上述仅是package.json涉及内容的几小点，更多内容，参考npmjs官方文档 [Specifics of npm's package.json handling](https://docs.npmjs.com/files/package.json)  和  [The semantic versioner for npm](https://docs.npmjs.com/misc/semver)
 接下来，开始我们的优雅之旅吧！以我自己的ng2入门项目[ng2-starter-webpack](https://github.com/tancolo/angular2/tree/master/ng2-starter-webpack)项目为例子说明，如何优雅升级ng2小版本。
