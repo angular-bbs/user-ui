@@ -70,6 +70,7 @@ const items: Author[] = [
     columnist: false,
     homepage: 'https://twincle.github.io'
   },
+<<<<<<< HEAD
 =======
     id: 'dapao',
     name: '大炮',
@@ -80,6 +81,17 @@ const items: Author[] = [
     homepage: 'https://github.com/btcioner/About-ME'
   }
 >>>>>>> cf31106b8905551d1cb97e4a7f34ee70c533aa8a
+=======
+  {
+    id: '木丁糖',
+    name: '木丁糖',
+    bio: '爱好前端开发的Android白面猿',
+    description: require('./270.木丁糖.md'),
+    avatar: require('./_images/木丁糖.jpg'),
+    columnist: false,
+    homepage: 'http://www.jianshu.com/users/d614825bc8a1/latest_articles'
+  },
+>>>>>>> 82dd924ff44cd78e4d370d0dc1d7bf975bd3f6e9
 ];
 @Injectable()
 export class AuthorApi {
