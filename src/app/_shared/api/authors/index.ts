@@ -52,7 +52,6 @@ const items: Author[] = [
     homepage: 'https://github.com/lhtin'
   },
   {
-<<<<<<< HEAD
     id: 'timliu',
     name: 'Tim刘',
     bio: '小白小白小白',
@@ -70,8 +69,7 @@ const items: Author[] = [
     columnist: false,
     homepage: 'https://twincle.github.io'
   },
-<<<<<<< HEAD
-=======
+    {
     id: 'dapao',
     name: '大炮',
     bio: '上天不要移開險峻，請賜予吾攀登之力',
@@ -79,9 +77,7 @@ const items: Author[] = [
     avatar: require(''),
     columnist: false,
     homepage: 'https://github.com/btcioner/About-ME'
-  }
->>>>>>> cf31106b8905551d1cb97e4a7f34ee70c533aa8a
-=======
+  },
   {
     id: '木丁糖',
     name: '木丁糖',
@@ -91,8 +87,8 @@ const items: Author[] = [
     columnist: false,
     homepage: 'http://www.jianshu.com/users/d614825bc8a1/latest_articles'
   },
->>>>>>> 82dd924ff44cd78e4d370d0dc1d7bf975bd3f6e9
 ];
+
 @Injectable()
 export class AuthorApi {
   // AuthorApi.query可以直接用来模拟从数据库里查找作者信息。
