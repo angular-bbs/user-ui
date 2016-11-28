@@ -335,6 +335,15 @@ const items: Article[] = [
     tags: ['ng1', 'ng2', '平滑升级', 'es6', 'typescript'],
     authors: ['王開寧'],
   },
+  {
+    id: '如何优雅升级ng2小版本',
+    title: '280.如何优雅升级ng2小版本',
+    summary: '使用npm命令，搞定ng2小版本升级',
+    content: require('./280.如何优雅升级ng2小版本/_index.md'),
+    first: true,
+    tags: ['ng2升级', 'npm 常用命令'],
+    authors: ['木丁糖'],
+  }
 ];
 
 @Injectable()
