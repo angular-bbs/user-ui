@@ -20,7 +20,7 @@
 
     上面这段摘自MDN的文档《[继承与原型链][]》（英文版文档比中文的多了一句，插播在这里，没有翻译）。这段里，形似 proto 的东西有三个（我统称它们为“proto 什么的”）：
     - someObject.[[Prototype]] 内部属性：大写的 Prototype 被“双重方括号”括起来，我在console里敲一个，SyntaxError？！
-    - someObject.\_\_proto__ 属性：proto 的左右两边各有两个下划线（跟markdown没关系），“现已弃用”？那学它干啥？！
+    - someObject.\_\_proto__ 属性：proto 的左右两边各有两个下划线（跟markdown没关系），“现已弃用”（这里是翻译不准确，后面说明）？那学它干啥？！
     - func.prototype 属性：func是啥？func.prototype又是啥？“not to be confused with ...”？我很 confuse ，好吗！？！
 
     真是够底层的，还是交给 Angular 们来对付这些“proto 什么的”吧，我要去做网站了。  
