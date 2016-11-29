@@ -44,7 +44,7 @@
 为什么需要继承？因为省（我）事（懒）、省（我）资（很）源（懒）。比如：我们有一个 “太阳” 代码（包含构成、尺寸等等），还要设计 “北京的太阳” 代码，我们可以让 “北京的太阳” 继承 “太阳”，就是说不必重新设计 “构成、尺寸等等”，只要加上一个 “若隐若现” 就可以了。  
 而 JS 是以原型链的方式实现继承的。本文主要内容如下：（看不明白没关系，后面的段落会一一解释，希望我能解释明白。）
 - someObject.[[Prototype]] 内部属性：我称它为“我没有找它指针”，这个指针是链式的，“我没有？找它；它也没有？找它的它...”。原型链由这个内部属性串起。
-- someObject.\_\_proto__ 属性：这个是 [[Prototype]] 的访问器，可以认为 \_\_proto__ 和 [[Prototype]] 等效。
+- someObject.\_\_proto__ 属性：这个是 [[Prototype]] 的访问器，可以认为 \_\_proto__ 和 [[Prototype]] 等效。（插播：MDN的中文文档《[继承与原型链][]》将“depreated”翻译成“已弃用”，这个说法有误导之嫌。\_\_proto__ 并非马上就不能用了，而是推荐大家使用 Object.getPrototypeOf 和 Object.setPrototypeOf。关于这两个方法，后面会简单介绍。）
 - func.prototype 属性：func是个构造函数，func的实例的 [[Prototype]] 指向这个 func.prototype，即 func.prototype 是 func 的实例的原型。
 - 原型链的尽头是null。
 - 关于性能：原型链不要太长；没必要的情况下不要改变一个对象的 [[Prototype]]。
@@ -182,8 +182,8 @@ Person.prototype 由 JS 自动配置，它又是什么样的呢？我们继续�
 
 ## 原生构造函数
 [JS的内建对象][]，有很多自身就是构造函数，比如Object, Function, Array, String, Number，Boolean，RegExp等等。怎么知道一个内建对象是不是构造函数呢？  
-比如，Object，在console里敲入`Object`，看到`function Object() { [native code] }`，那么，Object 就是一个构造函数。  
-比如，Math，在console里敲入`Math`，看不到`function`字样，那么，Math 就不是一个构造函数。  
+比如，Object，在console里敲入`new Object()`，没有报错，那么 Object 就是一个构造函数。  
+比如，Math，在console里敲入`new Math()`，报错了，好吧，Math 就不是构造函数。  
 那么多原生构造函数，具体都是做什么的？大家可以参看MDN的文档。这里简单提一下 Object 和 Function这两个构造函数。
 
 ===== 分隔线 =====  
@@ -252,8 +252,8 @@ Foo.prototype; // 回车，然后看到返回下面的一个 Object
 
 ## 几个相关方法、运算符
 （详情参考MDN文档）
-- Object.getPrototypeOf(someObject)：取代 \_\_proto__ 的 getter 功能（\_\_proto__ 已被弃用）。
-- Object.setPrototypeOf(someObject)：取代 \_\_proto__ 的 setter 功能（\_\_proto__ 已被弃用）。
+- Object.getPrototypeOf(someObject)：取代 \_\_proto__ 的 getter 功能（\_\_proto__ is deprecated）。
+- Object.setPrototypeOf(someObject)：取代 \_\_proto__ 的 setter 功能（\_\_proto__ is deprecated）。
 - Object.create()：`var targeObject = Object.create(sourceObject)`，这行相当于： `targetObject = {__proto__: sourceObject}`。  
     “例5”的原型（《[Object.prototype][]》的示例）使用了 Object.create()，而且还有一行： `Employee.prototype.constructor = Employee;`。大家有时间可以考略一下为什么要设置（其实是重新设置） Employee.prototype.constructor？   
 - SomeType.isPrototypeOf(someObject)：`Foo.prototype.isPrototypeOf(foo); // true`。
@@ -310,9 +310,9 @@ class Employee extends Person {
 - [Object.prototype][]
 - [JS的内建对象][]
 
-[继承与原型链]: https://developer.mozilla.org/zh-CN/docs/Web/JS/Inheritance_and_the_prototype_chain
-[Inheritance and the prototype chain]: https://developer.mozilla.org/en-US/docs/Web/JS/Inheritance_and_the_prototype_chain
+[继承与原型链]: https://developer.mozilla.org/zh-CN/docs/Web/javascript/Inheritance_and_the_prototype_chain
+[Inheritance and the prototype chain]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain
 [内部属性]: http://stackoverflow.com/questions/17174786/what-is-the-significance-of-the-double-brackets-for-the-prototype-property-i
-[Object.prototype.\_\_proto__]: https://developer.mozilla.org/en-US/docs/Web/JS/Reference/Global_Objects/Object/proto
-[Object.prototype]: https://developer.mozilla.org/en-US/docs/Web/JS/Reference/Global_Objects/Object/prototype
-[JS的内建对象]: https://developer.mozilla.org/en-US/docs/Web/JS/Reference/Global_Objects
+[Object.prototype.\_\_proto__]: https://developer.mozilla.org/en-US/docs/Web/javascript/Reference/Global_Objects/Object/proto
+[Object.prototype]: https://developer.mozilla.org/en-US/docs/Web/javascript/Reference/Global_Objects/Object/prototype
+[JS的内建对象]: https://developer.mozilla.org/en-US/docs/Web/javascript/Reference/Global_Objects
