@@ -44,7 +44,7 @@
 为什么需要继承？因为省（我）事（懒）、省（我）资（很）源（懒）。比如：我们有一个 “太阳” 代码（包含构成、尺寸等等），还要设计 “北京的太阳” 代码，我们可以让 “北京的太阳” 继承 “太阳”，就是说不必重新设计 “构成、尺寸等等”，只要加上一个 “若隐若现” 就可以了。  
 而 JS 是以原型链的方式实现继承的。本文主要内容如下：（看不明白没关系，后面的段落会一一解释，希望我能解释明白。）
 - someObject.[[Prototype]] 内部属性：我称它为“我没有找它指针”，这个指针是链式的，“我没有？找它；它也没有？找它的它...”。原型链由这个内部属性串起。
-- someObject.\_\_proto__ 属性：这个是 [[Prototype]] 的访问器，可以认为 \_\_proto__ 和 [[Prototype]] 等效。（插播：MDN的中文文档《[继承与原型链][]》将“depreated”翻译成“已弃用”，这个说法有误导之嫌。\_\_proto__ 并非马上就不能用了，而是推荐大家使用 Object.getPrototypeOf 和 Object.setPrototypeOf。关于这两个方法，后面会简单介绍。）
+- someObject.\_\_proto__ 属性：这个是 [[Prototype]] 的访问器，可以认为 \_\_proto__ 和 [[Prototype]] 等效。（插播：MDN的中文文档《[继承与原型链][]》将“depreated”翻译成“已弃用”，这个说法有误导之嫌。\_\_proto__ 并非不能用了，而是推荐大家使用 Object.getPrototypeOf 和 Object.setPrototypeOf。关于这两个方法，后面会简单介绍。另外，提醒一下，如果大家参考 MDN 的中文文档的话，一定要对照英文文档，因为 1) 翻译跟进不及时，2) 翻译可能有误。）
 - func.prototype 属性：func是个构造函数，func的实例的 [[Prototype]] 指向这个 func.prototype，即 func.prototype 是 func 的实例的原型。
 - 原型链的尽头是null。
 - 关于性能：原型链不要太长；没必要的情况下不要改变一个对象的 [[Prototype]]。
