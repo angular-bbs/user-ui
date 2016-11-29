@@ -77,7 +77,7 @@ export class ItemComponent {
   }
 }
 ```
-如果我们不设置 changeDetection 属性，默认使用 ChangeDetectionStrategy.default，那么 Angular 会在下列情况对 ItemComponent 进行变更检查，以决定是否重新渲染：
+如果我们不设置 changeDetection 属性，默认使用 ChangeDetectionStrategy.Default，那么 Angular 会在下列情况对 ItemComponent 进行变更检查，以决定是否重新渲染：
 - 任何注册了 listener 的 DOM 事件发生的时候；
 - 任何 timer 事件发生的时候；
 - 任何 Ajax 返回的时候；
@@ -93,10 +93,10 @@ export class ItemComponent {
 // in app-component.ts
 fakeObj: any = {firstName: 'John', lastName: 'Doe'};
 // in item-componet.ts
-changeDetection: ChangeDetectionStrategy.default
+changeDetection: ChangeDetectionStrategy.Default
 ```
 每次点按按钮，ItemComponent 上的 get inputContent 都会被调用，即使这个按钮是在 ItemComponent 之外。  
-那么，我们试试 ChangeDetectionStrategy.onPush 吧，onPush 的意思是只有在 inputObj 发生变化（或者 ItemComponent 自身有事件发生）的时候，才会检查 ItemComponent。我们可以这样：
+那么，我们试试 ChangeDetectionStrategy.OnPush 吧，OnPush 的意思是只有在 inputObj 发生变化（或者 ItemComponent 自身有事件发生）的时候，才会检查 ItemComponent。我们可以这样：
 ```html
 <!--in app-component.html-->
 <button (click)="fakeObj.firstName='Foo'">Click me</button>
@@ -104,7 +104,7 @@ changeDetection: ChangeDetectionStrategy.default
 ```
 ```ts
 // in item-componet.ts
-changeDetection: ChangeDetectionStrategy.onPush
+changeDetection: ChangeDetectionStrategy.OnPush
 ```
 
 在点按 AppComponent 上的按钮时 inputObj.firstName 改为 'Foo'，你会发现 ItemComponent 并没有更新。因为 Angular 判断一个 @Input 数值是否变化的方式就是“拷贝初值并与结果对比”，这个方式对 object 是无效的。踩到坑了，怎么办？
@@ -129,7 +129,7 @@ changeObj() {
 - 使用循环多级克隆原数据的内容（可能会影响性能）。
 - 借助第三方库，如 ImmutableJS（又有一堆新的 api，但为了 app performance，翻滚翻滚）。
 
-在 Angular 中使用“强制不可变”配合 ChangeDetectionStrategy.onPush 并不能完全杜绝无效检查，比如 inputObject 的内容没有变化，却创建了新的 inputObject，引用变了，就会检查一次。不过，这还是比 ChangeStrategy.default 强得多，可以大幅减少不必要的变更检查。所以就有了开篇提到的：“以不可变数值（immutable value）作为程序状态（app state）的载体，会提升程序的性能”。  
+在 Angular 中使用“强制不可变”配合 ChangeDetectionStrategy.OnPush 并不能完全杜绝无效检查，比如 inputObject 的内容没有变化，却创建了新的 inputObject，引用变了，就会检查一次。不过，这还是比 ChangeStrategy.Default 强得多，可以大幅减少不必要的变更检查。所以就有了开篇提到的：“以不可变数值（immutable value）作为程序状态（app state）的载体，会提升程序的性能”。  
 
 题外话：使用 immutable value 并不是改善变更检查效率的唯一途径，还可以使用 observables。参见[Change Detection in Angular 2][]。
 
