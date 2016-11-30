@@ -274,15 +274,6 @@ const items: Article[] = [
     authors: ['王開寧'],
   },
   {
-    id: '白话RxJS',
-    title: '白话RxJS',
-    summary: '尝试使用“白话”来介绍RxJS。',
-    content: require('./simple-rxjs/_index.md'),
-    first: true,
-    tags: ['RxJS'],
-    authors: ['timliu'],
-  },
-  {
     id: '一个依赖注入小框架的实现',
     title: '一个依赖注入小框架的实现',
     summary: '《依赖注入简介》介绍了下依赖注入的原理，本文尝试使用ES5代码来做一个依赖注入框架的实现。',
@@ -318,6 +309,51 @@ const items: Article[] = [
     authors: ['timliu'],
   },
   {
+    id: '应用RxJS模拟redux-第二集-Todo-App',
+    title: '应用RxJS模拟redux - 第二集 - Todo App',
+    summary: '以Redux的思维，借助RxJS，制作一个Todo App。',
+    content: require('./timliu/mock-redux-with-rxjs-episode-2-todo-app/_index.md'),
+    first: true,
+    tags: ['RxJS'],
+    authors: ['timliu']
+  },
+  {
+    id: '如何工程化开发大型angular2项目',
+    title: '如何工程化开发大型angular2项目',
+    summary: 'angular2刚出不久，很多技术主管在观望是否要把angular2投入生存环境，作为一名作死者，从今年3月就投入生存环境，8个月来挖坑经验告诉你，绝对没问题。已经百家大型客户投入使用！',
+    content: require('./230.如何工程化开发大型angular2项目/_index.md'),
+    first: true,
+    tags: ['现在'],
+    authors: ['大炮'],
+  },
+  {
+    id: '从ng1到ng2的平滑升级[2]',
+    title: '从ng1到ng2的平滑升级[2]',
+    summary: '系列文章：手把手教你将ng1项目平滑升级至ng2',
+    content: require('./270.从ng1到ng2的平滑升级[2]/_index.md'),
+    first: true,
+    tags: ['ng1', 'ng2', '平滑升级', 'es6', 'typescript'],
+    authors: ['王開寧'],
+  },
+  {
+    id: '如何优雅升级ng2小版本',
+    title: '280.如何优雅升级ng2小版本',
+    summary: '使用npm命令，搞定ng2小版本升级',
+    content: require('./280.如何优雅升级ng2小版本/_index.md'),
+    first: true,
+    tags: ['ng2升级', 'npm 常用命令'],
+    authors: ['木丁糖'],
+  },
+  {
+    id: '一个简单的RxJS Test Spec',
+    title: '一个简单的RxJS Test Spec',
+    summary: '简要介绍如何编写并运行RxJS Unit Test Spec',
+    content: require('./timliu/a-simple-rxjs-test-spec/_index.md'),
+    first: true,
+    tags: ['RxJS'],
+    authors: ['timliu'],
+  },
+  {
     id: 'Angular2中的通信方式',
     title: 'Angular2中的通信方式',
     summary: 'Angular 2 中，我们难免需要进行组件间的相互通信，但是这些通信方式你真的都知道吗？',
@@ -325,12 +361,13 @@ const items: Article[] = [
     first: true,
     tags: ['ng2'],
     authors: ['trotyl'],
-  }
+  },
 ];
 
 @Injectable()
 export class ArticleApi {
   private itemsLastestComesFirst: Article[] = items.concat().reverse();
+
   query(params = {}): Observable<Article> {
     return Observable.from(this.itemsLastestComesFirst).filter((item)=>!item.hidden);
   }
