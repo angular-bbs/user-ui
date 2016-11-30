@@ -1,6 +1,6 @@
 # Angular 2 中的通信方式
 
-软件工程中，随着应用规模的不断扩大，必然需要进行 Code Splitting。在 Web 开发中，组件化和模块化的观念已经被越来越多的人所熟知，从而编写出更高质量的代码。
+软件工程中，随着应用规模的不断扩大，必然需要进行 Logic Separation。在 Web 开发中，组件化和模块化的观念已经被越来越多的人所熟知，从而编写出更高质量的代码。
 
 同时，随着实体职责的分离，我们也就会不可避免地需要进行实体间的相互通信，因为我们的应用仍然需要作为一个整体存在。因此，在本文中，将对 Angular 2 中的实体间通信方式进行简要介绍，以帮助读者编写更易于维护的代码。
 
@@ -103,7 +103,6 @@ class Child implements OnInit, OnDestroy {
     }
     
     this.propOneSubscription = value.subscribe(/* Some Logic */)
-    // Or use AsyncPipe in template
   }
   
   private propOneSubscription: Subscription<number>
@@ -118,7 +117,17 @@ class Child implements OnInit, OnDestroy {
 
 当然，由于不像输出属性那样由 ng 自动管理，因此我们需要自行管理订阅，以免产生内存泄漏。
 
-这样，我们可以实现不需要对应数据的（父组件到子组件的）纯事件传递。
+不过，我们可以借助 [AsyncPipe](https://angular.io/docs/ts/latest/api/common/index/AsyncPipe-pipe.html)，其中已经封装好了对 Observable 生命周期的管理，只需要在模版中指定即可。
+
+```typescript
+@Component({
+  selector: 'child',
+  template: `<p>{{ propOne | async }}</p>`
+})
+class Child implements OnInit, OnDestroy {
+  @Input() propOne: Observable<number>
+}
+```
 
 相比于直接的数据输入而言，事件流输入更有利于对组件内部状态的控制。
 
@@ -356,7 +365,7 @@ class DirectiveTwo { }
 
 这样，通过某个共同的 Token，每个组件／指令都可以得到其他组件／指令给出的材料，而无需知晓其他组件／指令的具体存在。
 
-一个应用实例是 [FormControlName](https://angular.io/docs/ts/latest/api/forms/index/FormControlName-directive.html) 与 [Validator](https://angular.io/docs/ts/latest/api/forms/index/NG_VALIDATORS-let.html) 及 [AsyncValidator](https://angular.io/docs/ts/latest/api/forms/index/NG_ASYNC_VALIDATORS-let.html) 之间的交互，所有 Validator 指令都直接应用在 FromControl 所在的元素上，而 FormControl 无需知道每个 Validator 指令的具体形式（无论是内置的还是自定义的），只需要收集每个 Validator 指令所提供的验证函数即可。
+一个应用实例是 [FormControlName](https://angular.io/docs/ts/latest/api/forms/index/FormControlName-directive.html) 与 [Validator](https://angular.io/docs/ts/latest/api/forms/index/NG_VALIDATORS-let.html) 及 [AsyncValidator](https://angular.io/docs/ts/latest/api/forms/index/NG_ASYNC_VALIDATORS-let.html) 之间的交互，所有 Validator 指令都直接应用在 FormControl 所在的元素上，而 FormControl 无需知道每个 Validator 指令的具体形式（无论是内置的还是自定义的），只需要收集每个 Validator 指令所提供的验证函数即可。
 
 当然，这并不是 `multi: true` 的唯一作用，比如我们还能通过 [APP_BOOTSTRAP_LISTENER](https://angular.io/docs/ts/latest/api/core/index/APP_BOOTSTRAP_LISTENER-let.html) 来监听应用的启动等等。
 
