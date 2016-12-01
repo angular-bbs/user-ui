@@ -12,7 +12,7 @@ const routes: Routes = [
     path: '',
     canActivateChild: [ChangeTitle],
     children: [
-      {path: '', pathMatch: 'full', redirectTo: '/user'},
+      {path: '', pathMatch: 'full', redirectTo: '/library/article'},
       {
         path: 'about', data: {title: '关于我们'},
         loadChildren: './about/_about.module'
@@ -21,15 +21,17 @@ const routes: Routes = [
         path: 'bbs', data: {title: '微站论坛'},
         loadChildren: './bbs/_bbs.module'
       },
-      {
-        path: 'library', data: {title: '资料中心'},
-        loadChildren: './library/_library.module'
-      },
+      // {
+      //   path: 'library', data: {title: '资料中心'},
+      //   loadChildren: './library/_library.module'
+      // },
+      // imported LibraryModule in root AppModule
       {
         path: 'user', data: {title: '用户中心'},
         loadChildren: './user/_user.module'
       },
-      {path: '**', component: NotFoundComponent},
+      // {path: '**', component: NotFoundComponent}, 
+      // moved to separate module so that redirectTo can work properly
     ]
   },
 ];

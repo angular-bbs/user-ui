@@ -15,8 +15,9 @@ export class ChangeTitle implements CanActivateChild {
       routes.push(route);
       route = route.parent;
     }
+    // routes = routes.slice(0, routes.length-1);
     const title = routes
-      .filter(route => route.data && (<any>route.data).title)
+      .filter(route => route.data && (<any>route.data).title && route.url.length>0)
       .map(route => (<any>route.data).title)
       .join(' / ');
     this.title.setTitle(title);

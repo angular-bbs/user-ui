@@ -15,9 +15,9 @@ import {ResourceShowComponent} from './resource/show.component';
 import {NgModule} from '@angular/core';
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', component: LibraryHomeComponent},
+  {path: 'library', pathMatch: 'full', component: LibraryHomeComponent},
   {
-    path: 'article',
+    path: 'library/article',
     data: {title: '精品文章'},
     children: [
       {path: '', pathMatch: 'full', component: ArticleHomeComponent},
@@ -25,7 +25,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'author',
+    path: 'library/author',
     data: {title: '作者详情'},
     children: [
       {path: '', pathMatch: 'full', component: AuthorHomeComponent},
@@ -33,7 +33,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'column',
+    path: 'library/column',
     data: {title: '技术专栏'},
     children: [
       {path: '', pathMatch: 'full', component: ColumnHomeComponent},
@@ -41,7 +41,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'news',
+    path: 'library/news',
     data: {title: '前沿观察'},
     children: [
       {path: '', pathMatch: 'full', component: NewsHomeComponent},
@@ -49,7 +49,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'partner',
+    path: 'library/partner',
     data: {title: '友情链接'},
     children: [
       {path: '', pathMatch: 'full', component: PartnerHomeComponent},
@@ -57,7 +57,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'resource',
+    path: 'library/resource',
     data: {title: '资源雷达'},
     children: [
       {path: '', pathMatch: 'full', component: ResourceHomeComponent},
