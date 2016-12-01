@@ -74,7 +74,7 @@ const items: Author[] = [
     name: '大炮',
     bio: '上天不要移開險峻，請賜予吾攀登之力',
     description: require('./67.大炮.md'),
-    avatar: require(''),
+    avatar: require('./_images/Tim刘.png'),
     columnist: false,
     homepage: 'https://github.com/btcioner/About-ME'
   },
