@@ -273,6 +273,15 @@ const items: Article[] = [
     tags: ['ng1', 'ng2', '平滑升级', 'es6', 'typescript'],
     authors: ['王開寧'],
   },
+  {
+    id: '单例模式与Angular',
+    title: '单例模式与Angular',
+    summary: '简单介绍单例模式的概念和作用，并结合Angular的依赖注入了解Angular中的单例模式用法。',
+    content: require('./300.单例模式与Angular/_index.md'),
+    first: true,
+    tags: ['单例模式', 'Angular', '设计模式'],
+    authors: ['王開寧'],
+  },
 ];
 
 @Injectable()
