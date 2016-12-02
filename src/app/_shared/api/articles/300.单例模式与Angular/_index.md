@@ -132,7 +132,7 @@ export default class AppModule {
 
 然而，`providers`属性不仅在`@NgModule`装饰器中存在，在`@Component`装饰器、`@Directive`装饰器中都有，我们该如何使用这些`providers`属性呢？
 
-## Angular中`prividers`的使用
+## Angular中`providers`的使用
 
 在单例模式的概念中，我们反复强调过，单例模式是在**一定范围**内生效的，通常情况下，我们所谓的**一定范围**指的就是全局范围，但某些应用中我们需要在一个非全局范围的小范围内使用单例模式，超出这个范围的实例则使用新实例，而不是范围内已存在的单例。
 
@@ -150,9 +150,13 @@ Angular为我们提供了非常方便的限定单例模式适用范围的使用�
 
 因此，除非你很确定某个service必须仅限于某个组件中使用，否则建议直接将该service放置在module的`providers`属性中。
 
+除此之外，Angular中还有一些较为复杂的注入单例的情况：嵌套注入、懒加载注入、外部模块导入注入等，由于这些情况下的注入单例规则较为复杂，各位可查看这篇[专门讲述这些情况的文章](http://mp.weixin.qq.com/s/hDQsllMQwkJjBh5Mhuyt3A)。
+
 ## 总结
 
-说到这里，单例模式和Angular之间的关系已经说得差不多了，如果我们不了解单例模式和Angular之间的关系，则可能在某些情况下出现奇怪的错误。
+说到这里，单例模式和Angular之间的关系已经说得差不多了，本文对单例模式及其在Angular中的应用做了简单的探讨，希望能够抛砖引玉。
+
+如果我们不了解单例模式和Angular之间的关系，则可能在某些情况下出现奇怪的错误。
 
 例如我们在两个无关组件的`@Component`装饰器中提供了相同的全局变量service，则其中一个组件修改了全局变量，另一个组件则无法感知到，导致无法在页面中正常更新相关显示内容。
 
@@ -195,7 +199,8 @@ export default class User {
   // 则创建一个唯一的新实例
   // 否则返回已存在的唯一实例
   static getInstance () : User {
-    if (User.instance === undefined) {
+    if (typeof User.instance === 'undefined') {
+      // 如果不存在已有的instance，则初始化一个新的instance
       User.instance = new User('User Instance', 18);
     }
     
