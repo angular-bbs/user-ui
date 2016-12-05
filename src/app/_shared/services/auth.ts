@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import * as uuid from 'node-uuid';
+import * as uuid from 'uuid';
 
 @Injectable()
 export class Auth {
