@@ -362,6 +362,15 @@ const items: Article[] = [
     tags: ['ng2'],
     authors: ['trotyl'],
   },
+  {
+    id: 'Angular2中的StructuralDirective',
+    title: 'Angular 2 中的 Sturctural Directive',
+    summary: 'Angular 2 中，*NgFor 这种神奇的写法及其功能是如何实现的呢？本文将深入探寻 Structural Directive 的本质',
+    content: require('./290.Angular 2 中的 Structural Directive/_index.md'),
+    first: false,
+    tags: ['ng2', 'Structural Directive'],
+    authors: ['trotyl'],
+  },
 ];
 
 @Injectable()
