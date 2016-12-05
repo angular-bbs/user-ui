@@ -1,6 +1,6 @@
 # Angular 2 中的 Structural Directive（结构型指令）
 
-原文发布于：https://zhuanlan.zhihu.com/p/22404947
+原文发布于：[https://zhuanlan.zhihu.com/p/22404947](https://zhuanlan.zhihu.com/p/22404947)
 
 友情提示：
 
