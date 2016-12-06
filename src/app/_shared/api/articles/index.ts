@@ -344,15 +344,6 @@ const items: Article[] = [
     tags: ['ng2升级', 'npm 常用命令'],
     authors: ['木丁糖'],
   },
-  // {
-  //   id: '一个简单的RxJS Test Spec',
-  //   title: '一个简单的RxJS Test Spec',
-  //   summary: '简要介绍如何编写并运行RxJS Unit Test Spec',
-  //   content: require('./timliu/a-simple-rxjs-test-spec/_index.md'),
-  //   first: true,
-  //   tags: ['RxJS'],
-  //   authors: ['timliu'],
-  // },
   {
     id: 'Angular2中的通信方式',
     title: 'Angular2中的通信方式',
@@ -361,6 +352,15 @@ const items: Article[] = [
     first: true,
     tags: ['ng2'],
     authors: ['trotyl'],
+  },
+  {
+    id: '一个简单的RxJS Test Spec',
+    title: '一个简单的RxJS Test Spec',
+    summary: '简要介绍如何编写并运行RxJS Unit Test Spec',
+    content: require('./timliu/a-simple-rxjs-test-spec/_index.md'),
+    first: true,
+    tags: ['RxJS'],
+    authors: ['timliu'],
   },
 ];
 
