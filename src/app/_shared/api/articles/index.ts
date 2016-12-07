@@ -4,6 +4,15 @@ import {Observable} from 'rxjs/Observable';
 
 const items: Article[] = [
   {
+    id: 'ng2-webstorage的使用方法',
+    title: 'ng2-webstorage的使用方法',
+    summary: 'ng2-webstorage的使用方法',
+    content: require('./ng2-webstorage的使用/_index.md'),
+    first: true,
+    tags: ['现在'],
+    authors: ['db9914']
+  },
+  {
     id: '开篇寄语：Angular —— 王者归来',
     title: '开篇寄语：Angular —— 王者归来',
     summary: 'Angular 2即将正式发布，昔日王者强势归来！',

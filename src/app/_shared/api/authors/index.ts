@@ -7,6 +7,15 @@ let age = new Date().getFullYear() - 2009;
 
 const items: Author[] = [
   {
+    id: 'db9914',
+    name: 'db9914',
+    bio: '',
+    description: require('./db9914.md')/*,
+    avatar: require(''),
+    columnist: true,
+    homepage: ''*/
+  },
+  {
     id: '雪狼',
     name: '雪狼',
     bio: '好为人师，好为人师',
