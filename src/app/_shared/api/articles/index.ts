@@ -4,6 +4,16 @@ import {Observable} from 'rxjs/Observable';
 
 const items: Article[] = [
   {
+    id: 'Angular2中的StructuralDirective',
+    title: 'Angular 2 中的 Sturctural Directive',
+    summary: 'Angular 2 中，*NgFor 这种神奇的写法及其功能是如何实现的呢？本文将深入探寻 Structural Directive 的本质',
+    content: require('./290.Angular 2 中的 Structural Directive/_index.md'),
+    first: false,
+    column: 'trotyl',
+    tags: ['ng2', 'Structural Directive'],
+    authors: ['trotyl'],
+  },
+  {
     id: '单例模式与Angular',
     title: '单例模式与Angular',
     summary: '简单介绍单例模式的概念和作用，并结合Angular的依赖注入了解Angular中的单例模式用法。',
@@ -357,7 +367,7 @@ const items: Article[] = [
     title: '我为什么选择Angular 2？',
     summary: '晚期选择恐惧症患者可怎么活啊……本文告诉你答案！',
     content: require('./10.我为什么选择Angular 2/_index.md'),
-    forward: false,
+    first: true,
     column: '雪狼湖',
     tags: ['现在'],
     authors: ['雪狼']
@@ -368,6 +378,7 @@ const items: Article[] = [
     summary: 'Angular 2即将正式发布，昔日王者强势归来！',
     content: require('./00.开篇寄语：Angular —— 王者归来/_index.md'),
     first: true,
+    column: '雪狼湖',
     tags: ['现在'],
     authors: ['雪狼']
   }
