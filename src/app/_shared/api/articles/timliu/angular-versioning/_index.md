@@ -81,9 +81,9 @@ MAJOR 版本更新时怎么办？这方面大家也不必担心，Angular Team �
 - [Supported Public API Surface of Angular][]
 - [如何优雅升级ng2小版本][]
 
-[semver]: (http://semver.org/lang/zh-CN/)
-[Angular, version 2: proprioception-reinforcement]: (angularjs.blogspot.com/2016/09/angular2-final.html)
-[Versioning and Releasing Angular]: (http://angularjs.blogspot.com/2016/10/versioning-and-releasing-angular.html)
-[Ok... let me explain: it's going to be Angular 4.0, or just Angular]: (http://angularjs.blogspot.com/2016/12/ok-let-me-explain-its-going-to-be.html)
-[Supported Public API Surface of Angular]: (https://github.com/angular/angular/blob/master/docs/PUBLIC_API.md)
-[如何优雅升级ng2小版本]: (https://wx.angular.cn/library/article/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%8D%87%E7%BA%A7ng2%E5%B0%8F%E7%89%88%E6%9C%AC)
+[semver]: http://semver.org/lang/zh-CN/
+[Angular, version 2: proprioception-reinforcement]: http://angularjs.blogspot.com/2016/09/angular2-final.html
+[Versioning and Releasing Angular]: http://angularjs.blogspot.com/2016/10/versioning-and-releasing-angular.html
+[Ok... let me explain: it's going to be Angular 4.0, or just Angular]: http://angularjs.blogspot.com/2016/12/ok-let-me-explain-its-going-to-be.html
+[Supported Public API Surface of Angular]: https://github.com/angular/angular/blob/master/docs/PUBLIC_API.md
+[如何优雅升级ng2小版本]: https://wx.angular.cn/library/article/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%8D%87%E7%BA%A7ng2%E5%B0%8F%E7%89%88%E6%9C%AC
