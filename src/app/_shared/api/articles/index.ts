@@ -4,9 +4,9 @@ import {Observable} from 'rxjs/Observable';
 
 const items: Article[] = [
   {
-    id: '使用 Angular 2、RxJS 制作简单的 Accordion 组件',
-    title: '使用 Angular 2、RxJS 制作简单的 Accordion 组件',
-    summary: '在 ng-bootstrap/accordion 的启发下，使用 NG2、RxJS 制作一个 Accordion 组件 。',
+    id: '使用 Angular 2 制作简单的 Accordion 组件 - Template Driven',
+    title: '使用 Angular 2 制作简单的 Accordion 组件 - Template Driven',
+    summary: '在 ng-bootstrap/accordion 的启发下，使用 Angular 2，以 template driven 的思路制作一个 Accordion 组件 。',
     content: require('./timliu/simple-accordion/_index.md'),
     first: true,
     tags: ['Angular', 'RxJS'],
