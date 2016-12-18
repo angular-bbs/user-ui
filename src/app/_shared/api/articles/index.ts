@@ -6,7 +6,7 @@ const items: Article[] = [
   {
     id: '使用 Angular 2、RxJS 制作简单的 Accordion 组件',
     title: '使用 Angular 2、RxJS 制作简单的 Accordion 组件',
-    summary: '受 ng-bootstrap/accordion 启发，制作一个 Accordion 组件 。',
+    summary: '在 ng-bootstrap/accordion 的启发下，使用 NG2、RxJS 制作一个 Accordion 组件 。',
     content: require('./timliu/simple-accordion/_index.md'),
     first: true,
     tags: ['Angular', 'RxJS'],
