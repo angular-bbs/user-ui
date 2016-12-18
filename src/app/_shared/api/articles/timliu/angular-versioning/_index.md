@@ -9,14 +9,14 @@
 听说 Angular 要出 version 4 了。  
 如果你一直关注 Angular 的官方博客，一定知道 Angular 从 v2.0.0 开始已经在使用 semver 了，所以不会觉得出个 MAJOR version 有什么值得大惊小怪的。可是，version 3 哪去了？
 如果你最近很忙，9月份开始就没看过 Angular 的博客，而且你正在将自己的 Angular 1 项目迁移到 Angular 2，深知迁移过程是一个...额...过程，当你听到 Angular 要出 version 4 的时候，笑 cry 吧。  
-其实，大家大可不必担心 Angular 版本跟新过快。要了解 Angular 的 version 4 是怎么来的，你可以翻阅 Angular 的博客（相关文章列表在文末参考列表），或者继续阅读本文。  
+其实，大家大可不必担心 Angular 版本更新过快。要了解 Angular 的 version 4 是怎么来的，你可以翻阅 Angular 的博客（相关文章列表在文末参考列表），或者继续阅读本文。  
 本文主要是摘译 Angular 官方博客中关于 Angular 使用 semver 以及发布计划的内容。
 
 ## Angular 发布计划
 先来看两个表：  
 表1，Angular 发布计划 weekly：  
 ![angular4-tentativeschedule](./angular4-tentativeschedule.png)   
-大概意思就是：在2016年12月14日，我们可以拿到 v2.3.1 以及 v4.0.0-beta0。
+大概意思就是：在2016年12月14日，会发布 v2.3.1 以及 v4.0.0-beta0。
 用 `npm show` 来验证一下：
 ```
 > npm show @angular/core time
@@ -81,9 +81,9 @@ MAJOR 版本更新时怎么办？这方面大家也不必担心，Angular Team �
 - [Supported Public API Surface of Angular][]
 - [如何优雅升级ng2小版本][]
 
-[semver]: (http://semver.org/lang/zh-CN/)
-[Angular, version 2: proprioception-reinforcement]: (angularjs.blogspot.com/2016/09/angular2-final.html)
-[Versioning and Releasing Angular]: (http://angularjs.blogspot.com/2016/10/versioning-and-releasing-angular.html)
-[Ok... let me explain: it's going to be Angular 4.0, or just Angular]: (http://angularjs.blogspot.com/2016/12/ok-let-me-explain-its-going-to-be.html)
-[Supported Public API Surface of Angular]: (https://github.com/angular/angular/blob/master/docs/PUBLIC_API.md)
-[如何优雅升级ng2小版本]: (https://wx.angular.cn/library/article/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%8D%87%E7%BA%A7ng2%E5%B0%8F%E7%89%88%E6%9C%AC)
+[semver]: http://semver.org/lang/zh-CN/
+[Angular, version 2: proprioception-reinforcement]: http://angularjs.blogspot.com/2016/09/angular2-final.html
+[Versioning and Releasing Angular]: http://angularjs.blogspot.com/2016/10/versioning-and-releasing-angular.html
+[Ok... let me explain: it's going to be Angular 4.0, or just Angular]: http://angularjs.blogspot.com/2016/12/ok-let-me-explain-its-going-to-be.html
+[Supported Public API Surface of Angular]: https://github.com/angular/angular/blob/master/docs/PUBLIC_API.md
+[如何优雅升级ng2小版本]: https://wx.angular.cn/library/article/%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E5%8D%87%E7%BA%A7ng2%E5%B0%8F%E7%89%88%E6%9C%AC
