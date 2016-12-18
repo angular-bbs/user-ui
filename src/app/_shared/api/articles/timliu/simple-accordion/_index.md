@@ -44,7 +44,7 @@
 几点不那么重要的旁注：
 - tl 是前缀，前缀可以是随便什么。
 - expandedOneOnly 和 expanded 这两个属性写在 template 里是用来初始化的，后面具体说明其功能。
-- title 和 content 可以是 html 代码，比如 `<div>...</div>`。
+- title0 和 content0 可以是 html 代码，比如 `<div>...</div>`。
 - 这里不讨论上面的这样的组件结构是否是最优的、是否应该是用“结构 directive”等等，只以实现这组标签的写法为努力方向。   
 
 我们希望这组标签呈现的效果是：  
@@ -184,18 +184,18 @@ export class TlAccordionComponent {
 - `@ContentChildren(TlAccordionPanelComponent) private panels: QueryList<TlAccordionPanelComponent>`：在 app.component.html 里，我们看到，每个 panel 都是 accordion 的 contentChild，所以这里用 ContentChildren 来获取所有 panel 实例，得到一个 QueryList，这个 QueryList 有与 Array 类似的方法，如 filter、map等等。
 - `private lastExpandedAtPanel: TlAccordionPanelComponent`：这个记录上一个展开着的 panel 实例。
 - `ngAfterContentInit`：因为我们使用 Subject 向 accordion 传送数据，subscribe 之后不用做其他操作，所以只要在 ngAfterContentInit 运行一次就可以了。
-- `this.lastExpandedAtPanel = ...`：我们获取初始化 template 中的 expanded panel。（如果同时设置多于一个 `[expanded]="true"`，需要额外处理）
-- 我们有一个 panel 的 QueryList（类似 Array），map 到panel.stateRxx，就是 `[panel0, panel1] => [panel0.stateRxx, panel1.stateRxx]`。
-- 然后将所有 stateRxx 用 Observable.merge 合并。
+- `this.lastExpandedAtPanel = ...`：我们获取初始化 template 中的 expanded panel。（如果在 template 中同时设置多于一个 `[expanded]="true"`，需要额外处理，比如发送 warning）
+- 我们有一个包含了所有 panel 的 QueryList（类似 Array），将其 map 到panel.stateRxx，就是 `[panel0, panel1] => [panel0.stateRxx, panel1.stateRxx]`。
+- 然后将所有 stateRxx 用 Observable.merge 合并，即 `Observable.merge(...panelStateRxxArr)`。这里用到了 ES6 的[展开运算符]。
 - 每次点击 `.card-header`（即title），都会推送一个 PanelState，我们只关心那些包含 `expanded === true`的 PanelState。使用 `Observable.prototype.filter` 来过滤。
 - 如果收到的 PanelState 中包含的 panel 与 this.lastExpandedAtPanel 中记录的不一致，将 this.lastExpandedAtPanel.expanded 设置为 false，并设置新的 this.lastExpandedAtPanel。
-- 另外，我们需要记录 subscription，并在 ngOnDestroy 是 unsubscribe 所有相关的 subscription（代码部分略去）。
+- 另外，我们需要记录 subscription，并在 ngOnDestroy 时 unsubscribe 所有相关的 subscription（代码部分略去）。
 
 ### 实现 panel 的 disabled 属性（ panel 内部解决）
-如果一个 panel 的 template 上有了 `[disabled]=true`，那么这个 panel 点不开，title 灰色，而且 mouse hover 的时候显示 tooltip。有兴趣的同学可以自己试试看。
+如果一个 panel 的 template 上有了 `[disabled]=true`，那么这个 panel 点不开，title 灰色，而且 mouse hover title 的时候显示 tooltip。有兴趣的同学可以自己试试看。
 
 ### 实现全局配置 app 内所有 accordion
-比如我们需要配置 app 内所有的 accordion 都是 expandOneOnly，这里需要一个 AccordionConfig，作为 TlAccordionModule 的 provider，在 app 启动时注册这个 provider，然后在每个 TlAccordionComponent 的 constructor 里注入这个依赖，当 template 了没有注明 expandOneOnly 时，使用全局配置。大家可以参看 [ng-bootstrap/accordion src][]。
+比如我们需要配置 app 内所有的 accordion 都是 expandOneOnly，这里需要一个 TlAccordionConfig，作为 TlAccordionModule 的 provider，在 app 启动时注册这个 provider，然后在每个 TlAccordionComponent 的 constructor 里注入这个依赖，当 template 了没有注明 expandOneOnly 时，使用全局配置。大家可以参看 [ng-bootstrap/accordion src][]。
 
 ### 添加 Amination
 ```html
@@ -203,7 +203,16 @@ export class TlAccordionComponent {
 ...
 <div role="tablpanel" class="card-block" [@contentState]="expanded ? 'expanded' : 'collapsed'">...</div>
 ```
-Oh, Angular ...
+
+```ts
+// tl-accordion-panel.component.ts
+@Component({
+  ...,
+  animations: [trigger('contentState', [...])]
+})
+export class TlAccordionPanelComponent {...}
+```
+有需要的同学可以参考 [angular.cn 里的文档](https://angular.cn/docs/ts/latest/guide/animations.html)来实现动画效果。
 
 ## 总结
 - panel 内的问题很好解决，panel 之间的问题就要 parent （即 accordion）出面了。
