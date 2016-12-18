@@ -80,7 +80,7 @@ Angular 的文档翻了一遍又一遍，还是记不住，边用边学效果会
 ### 实现 title 组件显示 title，content 组件显示 content
 要显示 `<tl-accordion-panel-title>This is a title.</tl-accordion-panel-title>` 里的 'This is a title.'，我们只需要在 title component 的 template 里写一行：`<ng-content></ng-content>`。content component 同理。完。
 
-### 实现 pannel 里显示 title 和 content
+### 实现 pannel 组件显示 title 和 content
 我们在 app.component.html 里写道：  
 
 ```html
@@ -129,7 +129,7 @@ export class TlAccordionPanelComponent {
 <div role="tablpanel" class="card-block" [style.display]="expanded ? 'inherit' : 'none'">...</div>
 ```
 
-### 实现 expandOneOnly（ panel 传递给 accordion 统一解决）
+### 实现 expandOneOnly（ panel 推送状态信息给 accordion 统一解决）
 其实在完成上一步之后，这个 accordion component 已经可以用了。只是，如果我们希望 accordion 下面的 panel，在某一时间只有一个是 expanded，点开另外一个 panel 的同时，关闭之前展开的 panel，这个该如何实现呢？  
 我们需要 accordion component 来统一安排 panel 的显示状态：
 - 首先，accordion component 记录了点击之前展开着的 panel 的 id，
@@ -203,7 +203,7 @@ export class TlAccordionComponent {
 如果一个 panel 的 template 上有了 `[disabled]=true`，那么这个 panel 点不开，title 灰色，而且 mouse over title 的时候显示 tooltip。有兴趣的同学可以自己试试看。
 
 ### 实现全局配置 app 内所有 accordion
-比如我们需要配置 app 内所有的 accordion 都是 expandOneOnly，这里需要一个 TlAccordionConfig，作为 TlAccordionModule 的 provider，在 app 启动时注册这个 provider，然后在每个 TlAccordionComponent 的 constructor 里注入这个依赖，当 template 了没有注明 expandOneOnly 时，使用全局配置。大家可以参看 [ng-bootstrap/accordion src][]。
+比如我们需要配置 app 内所有的 accordion 都是 expandOneOnly，这里需要一个 TlAccordionConfig，作为 TlAccordionModule 的 provider，在 app 启动时注册这个 provider（或者使用 useValue 替换成别的配置），然后在每个 TlAccordionComponent 的 constructor 里注入这个依赖，当 template 里没有注明 expandOneOnly 时，使用全局配置。大家可以参看 [ng-bootstrap/accordion src][]。
 
 ### 添加 Amination
 ```html
