@@ -1,0 +1,216 @@
+# 使用 Angular 2、RxJS 制作简单的 Accordion 组件
+
+## 写作原因
+练习使用 Angular 2、RxJS 制作一个简单的 Accordion 组件。
+
+## 读者指引
+- 本文内容很大程度上受到下列的文章、代码的启发，有兴趣的同学可以先翻阅一下：
+    - [Angular 2 Transclusion using ng-content][]（NG1 的 Transclusion 在 NG2 里改名为 content projection）
+    - [ng-bootstrap/accordion api][]、[源码][ng-bootstrap/accordion src]
+
+- 本文涉及到的知识点（没有链接的项目大家可以在相应的官方文档里找到）：
+    - NG2 - 内容投影（content projection）：使用 ng-content 标签，配合 select 属性（参看上面那个 《...using ng-content》）。
+    - NG2 - 生命周期钩子（lifecycle hooks）：ngAfterContentInit、ngOnDestroy。
+    - NG2 - ContentChildren 装饰器。
+    - ES6 - [展开运算符（spread operator）][展开运算符]。
+    - RxJS - Subject
+    - RxJS - Observable.merge
+    - RxJS - Observable.prototpye.filter
+
+- 文章使用 angular-cli 的 [generate 指令][]（简写为 `ng g`）来生成基础代码。
+
+- 相应代码可以在[这个 Repo](https://github.com/rxjs-space/try-out-u/tree/master/src/app/tl-ui/tl-accordion) 找到。
+
+## 小目标
+我们希望有一个 accordion component，可以在 template 里这样使用：  
+
+```html
+<!-- app.component.html -->
+<tl-accordion [expandOneOnly]="true">
+
+  <tl-accordion-panel [expanded]="true">
+    <tl-accordion-panel-title>title0</tl-accordion-panel-title>
+    <tl-accordion-panel-content>content0</tl-accordion-panel-content>
+  </tl-accordion-panel>
+
+  <tl-accordion-panel>
+    <tl-accordion-panel-title>title1</tl-accordion-panel-title>
+    <tl-accordion-panel-content>content1</tl-accordion-panel-content>
+  </tl-accordion-panel>
+
+</tl-accordion>
+```
+即 accordion 下面有若干 panel，每个 panel 有一个 title 和一个 content。  
+几点不那么重要的旁注：
+- tl 是前缀，前缀可以是随便什么。
+- expandedOneOnly 和 expanded 这两个属性写在 template 里是用来初始化的，后面具体说明其功能。
+- title 和 content 可以是 html 代码，比如 `<div>...</div>`。
+- 这里不讨论上面的这样的组件结构是否是最优的、是否应该是用“结构 directive”等等，只以实现这组标签的写法为努力方向。   
+
+我们希望这组标签呈现的效果是：  
+![页面显示](./screen-shot.png)  
+初始显示 title0、content0、title1；点击 title1，显示 content1，隐藏 content0；点击 title0，显示 content0，隐藏 content1。
+
+## 代码编写
+
+### 脚手架搭建（生成基础代码）
+我们需要的 component 包括：accordion、panel、panel-title、panel-content，另外还需要一个 interface 文件。
+```
+> ng g module tl-accordion
+... (生成 TlAccordionModule 以及 TlAccordionComponent)
+> ng g component tl-accordion/tl-accordion-panel
+... (生成 TlAccordionPanelComponent)
+> ng g component tl-accordion/tl-accordion-panel-title
+... (生成 TlAccordionPanelTitleComponent)
+> ng g component tl-accordion/tl-accordion-panel-content
+... (生成 TlAccordionPanelContentComponent)
+> （假设当前目录为 app）touch tl-accordion/tl-accordion.interface.ts
+```
+我们需要 accordion component，但用的指令是 ng g module，即生成了 accordion module 和 accordion component。这样做的目的是预留 provider 位置（在 module 里），方便以后配置全局变量，比如要求 app 里所有的 accordion 都是怎么怎么样的（仿照 ng-bootstrap的做法）。  
+注：因为像 TlAccordionPanelContentComponent 这样的名字太长，后文会用最后两个词（即 content component）代替。
+
+### 实现 title 组件显示 title，content 组件显示 content
+要显示 `<tl-accordion-panel-title>This is a title.</tl-accordion-panel-title>` 里的 'This is a title.'，我们只需要在 title component 的 template 里写一行：`<ng-content></ng-content>`。content component 同理。完。
+
+### 实现 pannel 里显示 title 和 content
+我们在 app.component.html 里写道：  
+
+```html
+<!-- app.component.html -->
+<tl-accordion-panel>
+  <tl-accordion-panel-title>title</tl-accordion-panel-title>
+  <tl-accordion-panel-content>content</tl-accordion-panel-content>
+</tl-accordion-panel>
+```
+要将 tl-accordion-panel-title 和 tl-accordion-panel-content 的内容在 tl-accordion-panel 里面显示出来，我们需要两个 ng-content，分别放置 title 和 content。在 panel component 的 template 里写：  
+
+```html
+<!-- tl-accordion-panel.component.html -->
+<div role="tab" class="card-header">
+  <ng-content select="tl-accordion-panel-title"></ng-content>
+</div>
+<div role="tablpanel" class="card-block">
+  <ng-content select="tl-accordion-panel-content"></ng-content>
+</div>
+```
+role 和 class 是抄来的（配合 bootstrap 使用），重点是 ng-content 的 select 属性 -- select 里面是选择器，`select="tl-accordion-panel-title"` 的意思是：选择 tag 为 tl-accordion-panel-title 的元素，并将其内容放置到这个 ng-content 里面。tl-accordion-panel-content 同理。
+
+### 实现 click on title => toggle content （ panel 内部解决）
+承接上面的 `tl-accordion-panel.component.html`，我们需要实现能够初始化是否显示 `.card-block`，而且在点击 `.card-header` 时，切换 `.card-block` 的显示。可以这样： 
+
+```typescript
+// tl-accordion-panel.component.ts
+export class TlAccordionPanelComponent {
+  @Input() expanded: boolean = false;
+}
+```
+初始化就是：
+
+```html
+<!-- app.component.html -->
+<tl-accordion-panel [expanded]="true">
+  ...
+</tl-accordion-panel>
+```
+
+点击切换就是：  
+
+```html
+<!-- tl-accordion-panel.component.html -->
+<div role="tab" class="card-header" (click)="expanded = !expanded">...</div>
+<div role="tablpanel" class="card-block" [style.display]="expanded ? 'inherit' : 'none'">...</div>
+```
+
+### 实现 expandOneOnly（ panel 传递给 accordion 统一解决）
+其实在完成上一步之后，这个 accordion component 已经可以用了。只是，如果我们希望 accordion 下面的 panel，在某一时间只有一个是 expanded，点开另外一个 panel 的同时，关闭之前展开的 panel，这个该如何实现呢？  
+我们需要 accordion component 来统一安排 panel 的显示状态：
+- 首先，accordion component 记录了点击之前展开着的 panel 的 id，
+- 在点击某个 title 以后，被点击的 panel 展开，并向 accordion component 发送状态数据，数据中包含 panel 的 id，
+- accordion component 对比 id，如果 id 不同，accordion component 指示之前展开的 panel 收起，并记录新的展开着的 panel 的 id。  
+这个 id 是什么呢？在 template 里没有设置啊？我们可以用 panel 实例来作为 panel 实例的 id。看代码：  
+
+```typescript
+// tl-accordion.interface.ts
+export interface PanelState {
+  panel: TlAccordionPanelComponent;  // 我为自己带盐
+  expanded: boolean;
+}
+export type PanelStateRxx = Subject<PanelState>; // 这个会在 tl-accordion.component.ts 里面用到
+
+// tl-accordion-panel.component.ts
+export class TlAccordionPanelComponent {
+  ...
+  stateRxx: Subject<PanelState> = new Subject();
+}
+```
+
+```html
+<!-- tl-accordion-panel.component.html -->
+<div role="tab" class="card-header" (click)="expanded = !expanded; stateRxx.next({panel: this, expanded: expanded})">...</div>
+...
+```
+上面这个 `{panel: this, ...}` 里的这个 this，就是 panel 实例自身。每次点击，stateRxx 都会把这个 data 发送出去。接下来看 accordion component 的代码：  
+
+
+```ts
+// tl-accordion.component.ts
+export class TlAccordionComponent {
+  @Input() public expandOneOnly: boolean = false;
+  @ContentChildren(TlAccordionPanelComponent) private panels: QueryList<TlAccordionPanelComponent>;
+  private lastExpandedAtPanel: TlAccordionPanelComponent = null;
+
+  ngAfterContentInit() {
+    if (this.expandOneOnly) {
+      // initialize this.lastExpandedAtPanel
+      this.lastExpandedAtPanel = this.panels.filter(panel => panel.expanded === true)[0];
+
+      // subscribe to mergedPanelStatesRx
+      const panelStateRxxArr: PanelStateRxx[] = this.panels.map(panel => panel.stateRxx);
+      const mergedPanelStatesRx: Observable<PanelState> = Observable.merge(...panelStateRxxArr);
+      const subscription = mergedPanelStatesRx
+        .filter(panelState => panelState.expanded === true && this.lastExpandedAtPanel !== panelState.panel)
+        .do(panelState => {
+          this.lastExpandedAtPanel.expanded = false;
+          this.lastExpandedAtPanel = panelState.panel;
+        })
+        .subscribe();
+    }
+  }
+}
+
+```
+说明如下：
+- `@Input() public expandOneOnly: boolean`：这个就是用来控制是否只展开一个 panel 的开关，在 app.component.html 里就是 `<tl-accordion [expandOneOnly]="true">`。
+- `@ContentChildren(TlAccordionPanelComponent) private panels: QueryList<TlAccordionPanelComponent>`：在 app.component.html 里，我们看到，每个 panel 都是 accordion 的 contentChild，所以这里用 ContentChildren 来获取所有 panel 实例，得到一个 QueryList，这个 QueryList 有与 Array 类似的方法，如 filter、map等等。
+- `private lastExpandedAtPanel: TlAccordionPanelComponent`：这个记录上一个展开着的 panel 实例。
+- `ngAfterContentInit`：因为我们使用 Subject 向 accordion 传送数据，subscribe 之后不用做其他操作，所以只要在 ngAfterContentInit 运行一次就可以了。
+- `this.lastExpandedAtPanel = ...`：我们获取初始化 template 中的 expanded panel。（如果同时设置多于一个 `[expanded]="true"`，需要额外处理）
+- 我们有一个 panel 的 QueryList（类似 Array），map 到panel.stateRxx，就是 `[panel0, panel1] => [panel0.stateRxx, panel1.stateRxx]`。
+- 然后将所有 stateRxx 用 Observable.merge 合并。
+- 每次点击 `.card-header`（即title），都会推送一个 PanelState，我们只关心那些包含 `expanded === true`的 PanelState。使用 `Observable.prototype.filter` 来过滤。
+- 如果收到的 PanelState 中包含的 panel 与 this.lastExpandedAtPanel 中记录的不一致，将 this.lastExpandedAtPanel.expanded 设置为 false，并设置新的 this.lastExpandedAtPanel。
+- 另外，我们需要记录 subscription，并在 ngOnDestroy 是 unsubscribe 所有相关的 subscription（代码部分略去）。
+
+### 实现 panel 的 disabled 属性（ panel 内部解决）
+如果一个 panel 的 template 上有了 `[disabled]=true`，那么这个 panel 点不开，title 灰色，而且 mouse hover 的时候显示 tooltip。有兴趣的同学可以自己试试看。
+
+### 实现全局配置 app 内所有 accordion
+比如我们需要配置 app 内所有的 accordion 都是 expandOneOnly，这里需要一个 AccordionConfig，作为 TlAccordionModule 的 provider，在 app 启动时注册这个 provider，然后在每个 TlAccordionComponent 的 constructor 里注入这个依赖，当 template 了没有注明 expandOneOnly 时，使用全局配置。大家可以参看 [ng-bootstrap/accordion src][]。
+
+## 总结
+- panel 内的问题很好解决，panel 之间的问题就要 parent （即 accordion）出面了。
+- panel 向 parent 传递信息，借助 RxJS/Subject，并以 panel 实例作为自己的 id （为自己带盐）。
+
+最后顺便提一句：ng-bootstrap/accordion 的实现大量使用了 templateRef 和 ngTemplateOutlet，检查 panel 状态用的是 ngAfterContentChecked 这个钩子，没有用到 RxJS。
+
+## 参考
+- [Angular 2 Transclusion using ng-content][]
+- [ng-bootstrap/accordion api][]
+- [ng-bootstrap/accordion src][]
+
+[ng-bootstrap/accordion api]: https://ng-bootstrap.github.io/#/components/accordion
+[ng-bootstrap/accordion src]: https://github.com/ng-bootstrap/ng-bootstrap/tree/master/src/accordion
+[Angular 2 Transclusion using ng-content]: https://scotch.io/tutorials/angular-2-transclusion-using-ng-content
+[展开运算符]: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_operator
+[generate 指令]: https://github.com/angular/angular-cli#generating-components-directives-pipes-and-services
+

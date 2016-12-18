@@ -4,6 +4,15 @@ import {Observable} from 'rxjs/Observable';
 
 const items: Article[] = [
   {
+    id: '使用 Angular 2、RxJS 制作简单的 Accordion 组件',
+    title: '使用 Angular 2、RxJS 制作简单的 Accordion 组件',
+    summary: '受 ng-bootstrap/accordion 启发，制作一个 Accordion 组件 。',
+    content: require('./timliu/simple-accordion/_index.md'),
+    first: true,
+    tags: ['Angular', 'RxJS'],
+    authors: ['timliu'],
+  },
+  {
     id: 'Angular 的版本号与发布周期',
     title: 'Angular 的版本号与发布周期',
     summary: '本文摘译了 Angular 官方博客中关于版本号与发布周期的内容。',
