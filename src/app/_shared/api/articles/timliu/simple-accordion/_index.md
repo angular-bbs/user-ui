@@ -197,6 +197,14 @@ export class TlAccordionComponent {
 ### 实现全局配置 app 内所有 accordion
 比如我们需要配置 app 内所有的 accordion 都是 expandOneOnly，这里需要一个 AccordionConfig，作为 TlAccordionModule 的 provider，在 app 启动时注册这个 provider，然后在每个 TlAccordionComponent 的 constructor 里注入这个依赖，当 template 了没有注明 expandOneOnly 时，使用全局配置。大家可以参看 [ng-bootstrap/accordion src][]。
 
+### 添加 Amination
+```html
+<!-- tl-accordion-panel.component.html -->
+...
+<div role="tablpanel" class="card-block" [@contentState]="expanded ? 'expanded' : 'collapsed'">...</div>
+```
+Oh, Angular ...
+
 ## 总结
 - panel 内的问题很好解决，panel 之间的问题就要 parent （即 accordion）出面了。
 - panel 向 parent 传递信息，借助 RxJS/Subject，并以 panel 实例作为自己的 id （为自己带盐）。
