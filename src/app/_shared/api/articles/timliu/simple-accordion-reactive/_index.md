@@ -185,8 +185,7 @@ imports: [TlAccordionrModule.forRoot()]
 @Component({..., animations: [trigger('contentState', [...])] })
 export class TlAccordionrPanelComponent {...}
 ```
-有需要的同学可以参考 [angular.cn 里 animation 的文档](https://angular.cn/docs/ts/latest/guide/animations.html)来实现动画效果。
-
+有需要的同学可以参考 [angular.cn 里 animation 的文档](https://angular.cn/docs/ts/latest/guide/animations.html)来实现动画效果。  
 
 ### 测试
 
@@ -219,6 +218,16 @@ export class TlAccordionrPanelComponent {...}
   });
   ```
 
+- 测试 amination 过后的 dom element 状态，可能会用到 fakeAsyc、tick。比如：
+  ```ts
+  it('should has style.display as ... after animation', fakeAsync(() => {
+    ...
+    titleElArr[1].triggerEventHandler('click', {}); // click on [1]
+    fixtureHost.detectChanges();
+    ...
+    tick(500); // 假装我们等他 0.5 秒
+    // expect * 1000 }));
+  ```
 
 ## 总结
 按照 model driven 的思路制作组件，组件内部逻辑清晰，容易写，方便看，测试也简单。  
