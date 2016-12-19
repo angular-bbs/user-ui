@@ -6,8 +6,8 @@ Angular 的文档翻了一遍又一遍，还是记不住，边用边学效果会
 - [template driven form](https://scotch.io/tutorials/using-angular-2s-template-driven-forms)，几乎可以把所有的数据和逻辑（比如 validation）都放在 template 里；
 - [model driven form](https://scotch.io/tutorials/using-angular-2s-model-driven-forms-with-formgroup-and-formcontrol)（或者叫 reactive form），template 很简单，数据和逻辑放在 model 里。
 
-组件的制作也可以参照这两种不同的思路。本篇是一个系列的下集，即按照 model driven 思路，应用 Angular 2 制作一个 Accordionr 组件。而上集应用了 template driven 思路。
-
+组件的制作也可以参照这两种不同的思路。本篇是一个系列的下集，即按照 model driven 思路，应用 Angular 2 制作一个 Accordionr 组件。而上集应用了 template driven 思路。  
+（Accordion 后面跟一个 r，这个 r 是 reactive 的意思，reactive 是 model driven 的意思，大家别误会。）
 ## 读者指引
 - 笔者的偏见：model driven 大法好。仅与上集比较'代码长度'这一项，大家就可以得出结论了。
 
@@ -35,7 +35,7 @@ Angular 的文档翻了一遍又一遍，还是记不住，边用边学效果会
 ## 小目标
 我们希望呈现的效果是：  
 ![页面显示](./screen-shot-r.png)  
-（这个 R 是 Reactive 的意思，Reactive 是 model driven 的意思，大家别误会。） 初始显示 content0；点击 title1，展开 content1，收起 content0；点击 title2，什么也不做，因为 panel2 是 disabled。
+初始显示 content0；点击 title1，展开 content1，收起 content0；点击 title2，什么也不做，因为 panel2 是 disabled。
 
 这背后是一个 accordionr （最后有个 r) component，另外需要 app.component 提供数据，`Panel` interface 在 accordionr 组件目录里设定。
 ```html
@@ -201,7 +201,7 @@ export class TlAccordionrPanelComponent {...}
     expect(accordionComponent['panels']).toEqual(componentHost.panels);
     expect(accordionComponent['lastExpandedPanel']).toEqual(componentHost.panels[0]);  });
   ```
-  
+
 - 测试点击某个 panel 的 title 之后，是否可以 toggle 这个 panel，并设置其他 panel：
   ```ts
   it('should act as expected when click on title', () => {
