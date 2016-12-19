@@ -4,16 +4,6 @@ import {Observable} from 'rxjs/Observable';
 
 const items: Article[] = [
   {
-    id: 'Angular 的版本号与发布周期',
-    title: 'Angular 的版本号与发布周期',
-    summary: '本文摘译了 Angular 官方博客中关于版本号与发布周期的内容。',
-    content: require('./timliu/angular-versioning/_index.md'),
-    first: true,
-    translation: true,
-    tags: ['Angular', 'semver'],
-    authors: ['timliu'],
-  },
-  {
     id: 'Angular2中的StructuralDirective',
     title: 'Angular 2 中的 Sturctural Directive',
     summary: 'Angular 2 中，*NgFor 这种神奇的写法及其功能是如何实现的呢？本文将深入探寻 Structural Directive 的本质',
@@ -22,6 +12,16 @@ const items: Article[] = [
     column: 'trotyl',
     tags: ['ng2', 'Structural Directive'],
     authors: ['trotyl'],
+  },
+  {
+    id: 'Angular 的版本号与发布周期',
+    title: 'Angular 的版本号与发布周期',
+    summary: '本文摘译了 Angular 官方博客中关于版本号与发布周期的内容。',
+    content: require('./timliu/angular-versioning/_index.md'),
+    first: true,
+    translation: true,
+    tags: ['Angular', 'semver'],
+    authors: ['timliu'],
   },
   {
     id: '单例模式与Angular',
