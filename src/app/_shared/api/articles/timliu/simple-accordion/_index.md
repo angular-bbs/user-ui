@@ -198,20 +198,20 @@ export class TlAccordionComponent {
     - `panels`：在 app.component.html 里，我们看到，每个 panel 都是 accordion 的 ContentChild，所以这里用 ContentChildren 来获取所有 panel 实例，得到一个 QueryList，这个 QueryList 有与 Array 类似的方法，如 filter、map等等。
     - `lastExpandedPanel`：这个指向 '上一个展开着的 panel'。
 - accordion component 的方法：
-    - `ngAfterContentInit`：因为我们使用 Subject 向 accordion 推送数据，subscribe 之后不用做其他操作，所以只要在 ngAfterContentInit 运行一次就可以了。
-        lx01：我们获取初始化 template 中的 expanded panel。（如果在 template 中同时设置多于一个 `[expanded]="true"`，需要额外处理，比如发送 warning）  
-        lx02：将 panels 'map 成' panel.stateRxx，即 `[panel0, panel1] => [panel0.stateRxx, panel1.stateRxx]`。  
-        lx03：然后将所有 stateRxx 合并，即 `Observable.merge(...panelStateRxxArr)`。这里用到了 ES6 的[展开运算符][]。   
-        lx04：每次点击 `.card-header`（即title），都会推送一个 PanelState，我们只关心那些包含 `expanded === true` 的 PanelState。使用 `Observable.prototype.filter` 来过滤。  
-        lx04 + lx05 + lx06：如果收到的 PanelState 中包含的 panel 与 '上一个展开着的 panel' 不一致，闭合 '上一个展开着的 panel'，并重置 '上一个展开着的 panel' 。  
-        lx07：使用 `Observable.prototype.subscribe` 方法启动 Observable 运行。  
-    - `ngOnDestroy`：另外，我们需要记录 subscription，并在 component destroy 时 unsubscribe 所有相关的 subscription（代码部分略去）。
+    - `ngAfterContentInit`：因为我们使用 Subject 向 accordion 推送数据，subscribe 之后不用做其他操作，所以只要在 ngAfterContentInit 运行一次就可以了。  
+        lx01行：我们获取初始化 template 中的 expanded panel。（如果在 template 中同时设置多于一个 `[expanded]="true"`，需要额外处理，比如发送 warning）  
+        lx02行：将 panels 'map 成' panel.stateRxx，即 `[panel0, panel1] => [panel0.stateRxx, panel1.stateRxx]`。  
+        lx03行：然后将所有 stateRxx 合并，即 `Observable.merge(...panelStateRxxArr)`。这里用到了 ES6 的[展开运算符][]。   
+        lx04行：每次点击 `.card-header`（即title），都会推送一个 PanelState，我们只关心那些包含 `expanded === true` 的 PanelState。使用 `Observable.prototype.filter` 来过滤。  
+        lx04 + lx05 + lx06行：如果收到的 PanelState 中包含的 panel 与 '上一个展开着的 panel' 不一致，收起 '上一个展开着的 panel'，并重置 '上一个展开着的 panel' 。  
+        lx07行：使用 `Observable.prototype.subscribe` 方法启动 Observable 运行。  
+    - `ngOnDestroy`：另外，我们需要记录 subscriptions 列表，并在 component destroy 时 unsubscribe 所有相关的 subscriptions。（代码部分略去）
 
 ### 实现 panel 的 disabled 属性（ panel 内部解决）
-如果有 `<tl-accordion-panel [disabled]="true">...</tl-accordion-panel>`，那么这个 panel 点不开，title 灰色，而且 mouse over title 的时候显示 tooltip。有兴趣的同学可以自己试试看。
+如果有 `<tl-accordion-panel [disabled]="true">...</tl-accordion-panel>`，那么这个 panel 点不开，title 灰色，而且 mouse over title 的时候显示 tooltip。（代码部分略去）
 
 ### 实现全局配置 app 内所有 accordion
-比如我们需要配置 app 内所有的 accordion 都是 expandOneOnly，这里需要一个 TlAccordionConfig，作为 TlAccordionModule 的 provider，在 app 启动时注册这个 provider（或者使用 useValue 替换成别的配置），然后在每个 TlAccordionComponent 的 constructor 里注入这个依赖，当 template 里没有注明 expandOneOnly 时，使用全局配置。大家可以参看 [ng-bootstrap/accordion src][]。
+比如我们需要配置 app 内所有的 accordion 都是 expandOneOnly，这里需要一个 TlAccordionConfig，作为 TlAccordionModule 的 provider，在 app 启动时注册这个 provider（或者使用 useValue 替换成别的配置），然后在每个 TlAccordionComponent 的 constructor 里注入这个依赖，当 template 里没有注明 expandOneOnly 时，使用全局配置。大家可以参看 [ng-bootstrap/accordion src][]。（代码部分略去）
 
 ### 添加 Amination
 ```html
@@ -230,9 +230,9 @@ export class TlAccordionPanelComponent {...}
 
 ## 总结
 - panel 内的问题很好解决，panel 之间的问题就要 parent （即 accordion）出面了。
-- panel 向 parent 传递信息，借助 RxJS/Subject，并以 panel 实例作为自己的 id。
+- panel 向 parent 推送信息，借助 RxJS/Subject，并以 panel 实例作为自己的 id。
 
-最后顺便提一句：ng-bootstrap/accordion 的实现大量使用了 templateRef 和 ngTemplateOutlet，检查 panel 状态用的是 ngAfterContentChecked 这个钩子，没有用到 RxJS。
+顺便提一句：ng-bootstrap/accordion 大量使用了 templateRef 和 ngTemplateOutlet，检查 panel 状态用的是 ngAfterContentChecked 这个钩子，没有用到 RxJS。
 
 ## 参考
 - [Angular 2 Transclusion using ng-content][]
