@@ -136,7 +136,9 @@ export class TlAccordionPanelComponent {
 我们需要 accordion component 来统一安排 panel 的显示状态：
 - 需求一：accordion component 记录了点击之前展开着的 panel 的 id，
 - 需求二：在点击某个 title 以后，被点击的 panel 展开，并向 accordion component 发送状态数据，数据中包含 panel 的 id，
-- 需求三：accordion component 对比 id，如果 id 不同，accordion component 指示之前展开的 panel 收起，并记录新的展开着的 panel 的 id。这个 id 是什么呢？我们可以用 panel 实例来作为 panel 实例的 id。看代码：  
+- 需求三：accordion component 对比 id，如果 id 不同，accordion component 指示之前展开的 panel 收起，并记录新的展开着的 panel 的 id。  
+
+这个 id 是什么呢？我们可以用 panel 实例来作为 panel 实例的 id。看代码：  
 
 ```typescript
 // tl-accordion.interface.ts
