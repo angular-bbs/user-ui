@@ -218,7 +218,7 @@ export class TlAccordionrPanelComponent {...}
   });
   ```
 
-- 测试 amination 过后的 dom element 状态，可能会用到 fakeAsyc、tick。比如：
+- 测试 amination 过后的 dom element 状态，可能会用到 [fakeAsyc、tick](https://angular.io/docs/ts/latest/api/core/testing/index/fakeAsync-function.html)。比如：
   ```ts
   it('should has style.display as ... after animation', fakeAsync(() => {
     ...
