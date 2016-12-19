@@ -61,7 +61,7 @@ export class AppComponent {
 - tl 是前缀，前缀可以是随便什么。
 - expandedOneOnly 是用来初始化的，后面具体说明其功能。
 - title 和 content 可以是 html 代码，比如 `AppComponent.panels[0].title`。
-- 这里不讨论上面的这样的组件结构是否是最优的、是否应该使用“结构 directive”等等，只以实现这个写法为努力方向。   
+- 这里不讨论上面的这样的组件结构是否是最优的、是否应该使用 attribute directive 等等，只以实现这个写法为努力方向。   
 
 ## 代码编写
 
