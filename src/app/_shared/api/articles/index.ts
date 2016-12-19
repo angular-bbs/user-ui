@@ -4,6 +4,15 @@ import {Observable} from 'rxjs/Observable';
 
 const items: Article[] = [
   {
+    id: '使用 Angular 2 制作简单的 Accordionr 组件 - Model Driven',
+    title: '使用 Angular 2 制作简单的 Accordionr 组件 - Model Driven',
+    summary: 'Accordion 后面加一个 r 是几个意思？',
+    content: require('./timliu/simple-accordion-reactive/_index.md'),
+    first: true,
+    tags: ['Angular'],
+    authors: ['timliu'],
+  },
+  {
     id: 'Angular2中的StructuralDirective',
     title: 'Angular 2 中的 Sturctural Directive',
     summary: 'Angular 2 中，*NgFor 这种神奇的写法及其功能是如何实现的呢？本文将深入探寻 Structural Directive 的本质',
