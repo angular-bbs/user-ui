@@ -20,13 +20,14 @@
 ├── protractor.conf.js
 ├── README.md
 ├── src   // 项目主入口
+├── e2e
+├── test
 ├── .stylelintrc
 ├── tools // 共用工具类，里面主要管理gulp不同任务脚本，以及依赖的一些第三方库管理，还包括自己写一些.d.ts声明文件
 ├── tsconfig.json
 ├── tslint.json
 ├── yarn.lock
-├── 代码规范V2
-└── 测试修改方法.MD
+├── 代码规范V2.MD
 
 ```
 看完上面罗列的只是一级目录（ps：大家可以自己用tree -L 1等命令，查看自己的项目目录结构），其中一些大家都是可以通用的。
@@ -65,4 +66,36 @@
 │  
 
 ```
-app.component作为组件树，首当其冲放在应用根目录下。项目里默认在app.component放置路由插座，也包括一些
+app.component作为组件树顶级，首当其冲放在应用根目录下。项目里默认在app.component放置路由插座，也包括一些共用的sidebar和toolbar或者tabbar。大概构成整个web app的骨架。main目录则是我们应用主入口。对于shared资源共享目录，特地把共用的组件、服务工厂、pipe全部封装到SharedModule里。
+利用Angular模块的特性，我想用你把你这个模块import进来就行。不用额外去找我想要的组件或者服务工厂一一导入进来。当然SharedModule会面临一个越来越臃肿的问题，随着项目变大，我们可以把这个再进行下一拆分成多个小的Module，职能划分更加清楚。
+对于单个功能如何如何去命名规范，其实Angular官方已经有很好的风格指南===》[传送门](https://www.angular.cn/docs/ts/latest/guide/style-guide.html)，对于单一功能主要有Module，Router，Component，Service，Model组成，一个大的功能也是由这些小的模块组成。其实module隔离性确实不错，有时担心某一模块的css会不会影响其他模块，其实不必担心。当然如果是*{}全局就另当别论了。
+```bash
+.
+├── index.ts
+├── pay.module.ts
+├── pay-router.component.ts
+├── pay.routes.ts
+├── qrcode
+│   ├── index.ts
+│   ├── qrcode-show.component.html
+│   ├── qrcode-show.component.scss
+│   └── qrcode-show.component.ts
+├── shared
+│   ├── index.ts
+│   ├── product.model.ts
+│   └── wx-pay.service.ts
+```
+为了让其他功能引用多个该目录指定函数， 对象或者基础类型，为了代码看上去更加清爽,如下面
+```typescript
+import { a, b, c, d } from '../shared/index';
+```
+在每个目录定义一个index.ts,导出该目录下的函数， 对象或者基础类型
+```typescript
+export * from './a.model';
+```
+
+## Web安全
+先上图：
+
+![事例](./pic.png)
+对于运营商的劫持注入，大家应该都见过。这种方法最快的解决方案是把网站升级为https，还是http的朋友建议尽快升级为https，chrome对http默认视为不安全网站
