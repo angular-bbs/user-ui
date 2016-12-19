@@ -161,7 +161,7 @@ export class TlAccordionPanelComponent {
 <div role="tab" class="card-header" (click)="expanded = !expanded; stateRxx.next({panel: this, expanded: expanded})">...</div>
 ...
 ```
- `{panel: this, ...}` 里的这个 this，就是 panel 实例自身（我为自己带盐）。每次点击，stateRxx 都会把这个 data 发送出去。  
+ `{panel: this, ...}` 里的这个 this，就是 panel 实例自身（我为自己带盐）。每次点击，stateRxx 都会把这个 PanelState 发送出去。  
  
  接下来看 accordion component 的代码：  
 
@@ -193,19 +193,19 @@ export class TlAccordionComponent {
 ```
 说明如下： 
 
-1. accordion component 的属性：
+- accordion component 的属性：
     - `expandOneOnly`：这个就是用来控制是否只展开一个 panel 的开关，在 app.component.html 里就是 `<tl-accordion [expandOneOnly]="true">`。
     - `panels`：在 app.component.html 里，我们看到，每个 panel 都是 accordion 的 ContentChild，所以这里用 ContentChildren 来获取所有 panel 实例，得到一个 QueryList，这个 QueryList 有与 Array 类似的方法，如 filter、map等等。
     - `lastExpandedPanel`：这个指向 '上一个展开着的 panel'。
-2. accordion component 的方法：
-    - `ngAfterContentInit`：因为我们使用 Subject 向 accordion 传送数据，subscribe 之后不用做其他操作，所以只要在 ngAfterContentInit 运行一次就可以了。
-        - lx01：我们获取初始化 template 中的 expanded panel。（如果在 template 中同时设置多于一个 `[expanded]="true"`，需要额外处理，比如发送 warning）
-        - lx02：将 panels 'map 成' panel.stateRxx，即 `[panel0, panel1] => [panel0.stateRxx, panel1.stateRxx]`。
-        - lx03：然后将所有 stateRxx 合并，即 `Observable.merge(...panelStateRxxArr)`。这里用到了 ES6 的[展开运算符][]。
-        - lx04：每次点击 `.card-header`（即title），都会推送一个 PanelState，我们只关心那些包含 `expanded === true` 的 PanelState。使用 `Observable.prototype.filter` 来过滤。
-        - lx04 + lx05 + lx06：如果收到的 PanelState 中包含的 panel 与 '上一个展开着的 panel' 不一致，闭合 '上一个展开着的 panel'，并重置 '上一个展开着的 panel' 。
-        - lx07：使用 `Observable.prototype.subscribe` 方法启动 Observable 运行。
-        - 另外，我们需要记录 subscription，并在 ngOnDestroy 时 unsubscribe 所有相关的 subscription（代码部分略去）。
+- accordion component 的方法：
+    - `ngAfterContentInit`：因为我们使用 Subject 向 accordion 推送数据，subscribe 之后不用做其他操作，所以只要在 ngAfterContentInit 运行一次就可以了。
+        lx01：我们获取初始化 template 中的 expanded panel。（如果在 template 中同时设置多于一个 `[expanded]="true"`，需要额外处理，比如发送 warning）  
+        lx02：将 panels 'map 成' panel.stateRxx，即 `[panel0, panel1] => [panel0.stateRxx, panel1.stateRxx]`。  
+        lx03：然后将所有 stateRxx 合并，即 `Observable.merge(...panelStateRxxArr)`。这里用到了 ES6 的[展开运算符][]。   
+        lx04：每次点击 `.card-header`（即title），都会推送一个 PanelState，我们只关心那些包含 `expanded === true` 的 PanelState。使用 `Observable.prototype.filter` 来过滤。  
+        lx04 + lx05 + lx06：如果收到的 PanelState 中包含的 panel 与 '上一个展开着的 panel' 不一致，闭合 '上一个展开着的 panel'，并重置 '上一个展开着的 panel' 。  
+        lx07：使用 `Observable.prototype.subscribe` 方法启动 Observable 运行。  
+    - `ngOnDestroy`：另外，我们需要记录 subscription，并在 component destroy 时 unsubscribe 所有相关的 subscription（代码部分略去）。
 
 ### 实现 panel 的 disabled 属性（ panel 内部解决）
 如果有 `<tl-accordion-panel [disabled]="true">...</tl-accordion-panel>`，那么这个 panel 点不开，title 灰色，而且 mouse over title 的时候显示 tooltip。有兴趣的同学可以自己试试看。
