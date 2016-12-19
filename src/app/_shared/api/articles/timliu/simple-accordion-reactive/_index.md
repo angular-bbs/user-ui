@@ -183,7 +183,9 @@ export class TlAccordionrPanelComponent {...}
 ```
 有需要的同学可以参考 [angular.cn 里 animation 的文档](https://angular.cn/docs/ts/latest/guide/animations.html)来实现动画效果。
 
+
 ### 测试
+
 - 配置 TestHostComponent：
   ```ts
   @Component({template: `
@@ -191,6 +193,7 @@ export class TlAccordionrPanelComponent {...}
   class TestHostComponent {
     panels = [ ... ]; }
   ```
+
 - 测试是否可以按照 TestHostComponent 配置来初始化：
   ```ts
   it('should initialize with TestHost setup', () => {
@@ -198,6 +201,7 @@ export class TlAccordionrPanelComponent {...}
     expect(accordionComponent['panels']).toEqual(componentHost.panels);
     expect(accordionComponent['lastExpandedPanel']).toEqual(componentHost.panels[0]);  });
   ```
+  
 - 测试点击某个 panel 的 title 之后，是否可以 toggle 这个 panel，并设置其他 panel：
   ```ts
   it('should act as expected when click on title', () => {
@@ -210,6 +214,8 @@ export class TlAccordionrPanelComponent {...}
     // ... expect * 20
   });
   ```
+
+
 ## 总结
 按照 model driven 的思路制作组件，组件内部逻辑清晰，容易写，方便看，测试也简单。  
 
