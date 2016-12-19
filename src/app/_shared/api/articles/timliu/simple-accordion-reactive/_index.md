@@ -225,7 +225,7 @@ export class TlAccordionrPanelComponent {...}
     titleElArr[1].triggerEventHandler('click', {}); // click on [1]
     fixtureHost.detectChanges();
     ...
-    tick(500); // 假装我们等他 0.5 秒
+    tick(500); // 假设我们的 animation 0.5 秒演完，假装我们等他 0.5 秒
     // expect * 1000 }));
   ```
 
