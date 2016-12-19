@@ -25,7 +25,7 @@ Angular 的文档翻了一遍又一遍，还是记不住，边用边学效果会
 
 - 文章使用 angular-cli 的 [generate 指令][]（简写为 `ng g`）来生成基础代码。
 
-- Suject 变量以 Rxx 结尾（比如 stateRxx），Observable 变量以 Rx 结尾（比如 mergedPanelStatesRx）。
+- 变量命名：Suject 变量以 Rxx 结尾（比如 stateRxx），Observable 变量以 Rx 结尾（比如 mergedPanelStatesRx）。
 
 - 相应代码可以在[这个 Repo](https://github.com/rxjs-space/try-out-u/tree/master/src/app/tl-ui/tl-accordion) 找到。
 
