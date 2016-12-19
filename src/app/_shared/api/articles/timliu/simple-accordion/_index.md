@@ -9,7 +9,7 @@ Angular 的文档翻了一遍又一遍，还是记不住，边用边学效果会
 组件的制作也可以参照这两种不同的思路。本篇是一个系列的上集，即按照 template driven 思路，应用 Angular 2 制作一个 Accordion 组件。下集将切换至 model driven/reactive 思路。
 
 ## 读者指引
-- 首先剧透笔者的一个偏见：model driven 大法好。template driven 的组件除了标签一目了然以外，我个人觉得都是缺点：写起来麻烦，读起来费劲，css匹配奇怪，测试起来...（这个 spec 我还没写过）。所以，即使你对制作组件如果有兴趣，我也只建议大概看一下本文，了解“子组件向父组件推送、子组件之间的互动由父组件来协调”即可。
+- 首先剧透笔者的一个偏见：model driven 大法好。template driven 的组件除了标签一目了然以外，我个人觉得都是缺点：写起来麻烦，读起来费劲，css匹配奇怪，测试起来...（这个 spec 我还没写过）。所以，即使你对制作组件有兴趣，我也只建议大概看一下本文，了解“子组件向父组件推送、子组件之间的互动由父组件来协调”即可。
 - 本文内容很大程度上受到下列的文章、代码的启发，有兴趣的同学可以先翻阅一下：
     - [Angular 2 Transclusion using ng-content][]（NG1 的 Transclusion 在 NG2 里改名为 content projection）
     - [ng-bootstrap/accordion api][]、[源码][ng-bootstrap/accordion src]
