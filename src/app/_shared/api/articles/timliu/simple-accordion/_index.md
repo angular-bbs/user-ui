@@ -2,7 +2,11 @@
 
 ## 写作原因
 Angular 的文档翻了一遍又一遍，还是记不住，边用边学效果会不会好一些？设个小目标吧 -- 比如，制作一个 Accordion 组件。  
-我们知道，Angular 的 form 有两种：template driven form 和 model drive form（或者叫 reactive form）。组件的制作也可以参照这两种不同的思路。本篇是一个系列的上集，即使用 template driven 思路，应用 Angular 2 制作一个 Accordion 组件。下集将切换至 model driven/reactive 思路。
+我们知道，Angular 的 form 有两种：
+- [template driven form](https://scotch.io/tutorials/using-angular-2s-template-driven-forms)，几乎可以把所有的数据和逻辑（比如 validation）都放在 template 里；
+- [model driven form](https://scotch.io/tutorials/using-angular-2s-model-driven-forms-with-formgroup-and-formcontrol)（或者叫 reactive form），template 很简单，数据和逻辑放在 model 里。
+
+组件的制作也可以参照这两种不同的思路。本篇是一个系列的上集，即使用 template driven 思路，应用 Angular 2 制作一个 Accordion 组件。下集将切换至 model driven/reactive 思路。
 
 ## 读者指引
 - 首先剧透笔者的一个偏见：model driven 大法好。template driven 的组件除了标签一目了然以外，我个人觉得都是缺点：写起来麻烦，读起来费劲，css匹配奇怪，测试起来...（这个 spec 我还没写过）。所以，即使你对制作组件如果有兴趣，我也只建议大概看一下本文，了解“子组件向父组件推送、子组件之间的互动由父组件来协调”即可。
