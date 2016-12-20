@@ -186,7 +186,7 @@ providers: [{provide: TlAccordionrConfigService, useValue: TlAccordionrConfigSer
 
 // 需求十，大家试试看（提示： 在 accordionr component 的 constructor 里使用 @Optional() ...）
 ```
-如果要
+
 ### 添加 Amination
 ```html
 <!-- tl-accordionr.component.html -->
