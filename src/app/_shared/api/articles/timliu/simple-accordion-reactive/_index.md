@@ -10,11 +10,11 @@ Angular 的文档翻了一遍又一遍，还是记不住，边用边学效果会
 （Accordion 后面跟一个 r，这个 r 是 reactive 的意思，reactive 是 model driven 的意思，大家别误会。）  
 
 ## 读者指引
-- 笔者的偏见：model driven 大法好。仅与上集比较'代码长度'这一项，大家就可以得出结论了。
+- 笔者的偏见：model driven 大法好。大家可以对比上集的代码长度和知识点列表长度，就很容易得出结论了。
 
 - 本文涉及到的知识点：
     - NG2 - 了解 [模板语法](https://angular.cn/docs/ts/latest/guide/template-syntax.html)。
-    - NG2 - ngFor 的展开写法（模板语法的一小部分）（参见 trotyl 的《[Angular 2 中的 Sturctural Directive](https://wx.angular.cn/library/article/Angular2%E4%B8%AD%E7%9A%84StructuralDirective)》）：  
+    - NG2 - 了解 ngFor 的展开写法（模板语法的一小部分）（参见 trotyl 的《[Angular 2 中的 Sturctural Directive](https://wx.angular.cn/library/article/Angular2%E4%B8%AD%E7%9A%84StructuralDirective)》）：  
         一般我们都是写 `<div *ngFor="let panel of panels">...</div>`，展开后是
 
         ```html
