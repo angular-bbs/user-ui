@@ -13,7 +13,7 @@ Angular 的文档翻了一遍又一遍，还是记不住，边用边学效果会
 - 笔者的偏见：model driven 大法好。仅与上集比较'代码长度'这一项，大家就可以得出结论了。
 
 - 本文涉及到的知识点：
-    - NG2 - [模板语法](https://angular.cn/docs/ts/latest/guide/template-syntax.html)。
+    - NG2 - 了解 [模板语法](https://angular.cn/docs/ts/latest/guide/template-syntax.html)。
     - NG2 - ngFor 的展开写法（模板语法的一小部分）（参见 trotyl 的《[Angular 2 中的 Sturctural Directive](https://wx.angular.cn/library/article/Angular2%E4%B8%AD%E7%9A%84StructuralDirective)》）：  
         一般我们都是写 `<div *ngFor="let panel of panels">...</div>`，展开后是
 
@@ -30,7 +30,9 @@ Angular 的文档翻了一遍又一遍，还是记不住，边用边学效果会
           <div class="card-header">...</div>
           <div class="card-block">...</div>
         </template>
-        ```  
+        ```
+    - NG2 - 大概知道 [Angular Animation](https://angular.cn/docs/ts/latest/guide/animations.html)。
+    - NG2 - 大概知道 [Angular Testing](https://angular.cn/docs/ts/latest/guide/testing.html)。
 
 - 文章使用 angular-cli 的 [generate 指令](https://github.com/angular/angular-cli#generating-components-directives-pipes-and-services)（简写为 `ng g`）来生成基础代码。
 
@@ -228,6 +230,13 @@ export class TlAccordionrPanelComponent {...}
     tick(500); // 假设我们的 animation 0.5 秒演完，假装我们等他 0.5 秒
     // expect * 1000 }));
   ```
+
+### 发布到 NPM
+tl-accordionr module 写好了，请别人来试试吧。你可以： 
+- zip 一下发个邮件，然后告诉朋友 upzip 之后怎么怎么样 ...
+- 或者发布到 NPM，然后告诉朋友 `npm i tl-accordionr` ...
+
+后续文章会简单介绍如何将使用 angular-cli 做好的 module 发布到 NPM 上。
 
 ## 总结
 按照 model driven 的思路制作组件，组件内部逻辑清晰，容易写，方便看，测试也简单。  
