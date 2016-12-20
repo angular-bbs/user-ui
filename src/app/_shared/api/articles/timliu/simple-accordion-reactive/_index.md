@@ -146,20 +146,26 @@ export class TlAccordionrComponent implements OnInit {
 ```
 
 ### 实现全局配置 app 内所有 accordionr
+- 需求六：我们需要一个 config service。
+- 需求七：将 config service 添加到 accordionr module 的 providers 列表里。
+- 需求八：在 accordionr component 里注入这个 config service。
+- 需求九：可以在 app.module 里替换这个 config service。
+- 需求十：可以不提供 config service。
+
 ```ts
-// tl-accordionr-config.service.ts
+// tl-accordionr-config.service.ts 需求六
 @Injectable()
 export class TlAccordionrConfigService {
   expandOneOnly = false; }
 
-// tl-accordionr.module.ts
+// tl-accordionr.module.ts 需求七
 export class TlAccordionrModule {
-  static forRoot(): ModuleWithProviders {
+  static withProviders(): ModuleWithProviders {
     return {
       ngModule: TlAccordionrModule,
       providers: [TlAccordionrConfigService] }}}
 
-// tl-accordionr.component.ts
+// tl-accordionr.component.ts 需求八
 export class TlAccordionrComponent implements OnInit {
   @Input() private expandOneOnly: boolean; // 不再默认为 false
   ...
@@ -171,9 +177,16 @@ export class TlAccordionrComponent implements OnInit {
       this.expandOneOnly = this.config.expandOneOnly;
     } ...}...}
 
-// app.module.ts
-imports: [TlAccordionrModule.forRoot()]
+// app.module.ts 使用默认 config service
+imports: [TlAccordionrModule.withProviders()]
+
+// app.module.ts 替换默认 config service 需求九
+imports: [TlAccordionrModule.withProviders()]
+providers: [{provide: TlAccordionrConfigService, useValue: TlAccordionrConfigServiceAlternative}]
+
+// 需求十，大家试试看（提示： 在 accordionr component 的 constructor 里使用 @Optional() ...）
 ```
+如果要
 ### 添加 Amination
 ```html
 <!-- tl-accordionr.component.html -->
