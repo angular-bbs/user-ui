@@ -166,7 +166,7 @@ export class TlAccordionrComponent implements OnInit {
   constructor(private config: TlAccordionrConfigService) { } // 注入 config service
   ...
   ngOnInit() {
-    // init expandOneOnly，如果 app.component.html 里没人有设定，用 config service
+    // init expandOneOnly，如果 app.component.html 里没有设定，用 config service
     if (typeof this.expandOneOnly === 'undefined') {
       this.expandOneOnly = this.config.expandOneOnly;
     } ...}...}
@@ -185,9 +185,11 @@ imports: [TlAccordionrModule.forRoot()]
 ```ts
 // tl-accordionr-panel.component.ts
 @Component({..., animations: [trigger('contentState', [...])] })
-export class TlAccordionrPanelComponent {...}
+export class TlAccordionrPanelComponent {
+  @Input() private animation: boolean = false;
+}
 ```
-有需要的同学可以参考 [angular.cn 里 animation 的文档](https://angular.cn/docs/ts/latest/guide/animations.html)来实现动画效果。  
+有需要的同学可以参考 [angular.cn 里 animation 的文档](https://angular.cn/docs/ts/latest/guide/animations.html)来实现动画效果。另外，可以给 accordionr component 添加一个 `@Input() animation: boolean` 开关（config.service 里也要添加），用户可以控制是否显示动画。
 
 ### 测试
 
