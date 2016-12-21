@@ -4,6 +4,16 @@ import {Observable} from 'rxjs/Observable';
 
 const items: Article[] = [
   {
+    id: 'ng-container introduction',
+    title: 'ng-container 简介',
+    summary: 'Angular 2 的模版中，有一系列特殊的存在，ng-container 就是其中之一，在本文中将会进行简要介绍',
+    content: require('./310.ng-container introduction/_index.md'),
+    first: true,
+    column: 'trotyl',
+    tags: ['ng2'],
+    authors: ['trotyl'],
+  },
+  {
     id: 'Angular2中的StructuralDirective',
     title: 'Angular 2 中的 Sturctural Directive',
     summary: 'Angular 2 中，*NgFor 这种神奇的写法及其功能是如何实现的呢？本文将深入探寻 Structural Directive 的本质',
