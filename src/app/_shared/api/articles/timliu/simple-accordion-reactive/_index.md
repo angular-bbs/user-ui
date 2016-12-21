@@ -70,6 +70,8 @@ export class AppComponent {
 ### 脚手架搭建（生成基础代码）
 我们需要的组成部分包括：accordionr component、config service，还有一个 interface 文件。
 ```
+> ng new my-awesomer-package --style=scss
+> cd my-awesomer-package
 > ng g module tl-accordionr
 ... (生成 TlAccordionrModule 以及 TlAccordionrComponent)
 > ng g service tl-accordionr/tl-accordionr-config
@@ -77,6 +79,11 @@ export class AppComponent {
 ```
 然后在 TlAccordionrModule 里，加上 `exports: [TlAccordionrComponent]`，在 app.module 里加上 `imports: [TlAccordionrModule]`，就可以开始在 app.component.html 里面使用 tl-accordionr 标签了。  
 生成 TlAccordionrModule 这个 ngModule 的目的是：预留 provider 位置，方便以后配置全局变量，比如要求 app 里所有的 accordionr 都是怎么怎么样的。
+
+### 引入 bootstrap.scss
+本文参考 ng-bootstrap，使用 bootstrap 4 的样式。
+- 敲指令：`npm install bootstrap@4.0.0-alpha.5 -S`；
+- 在 `my-awesome-package\src\styles.scss` 中添加 `@import '~bootstrap/scss/bootstrap.scss';`。
 
 ### 实现 accordionr 组件显示 panels
 ```ts
