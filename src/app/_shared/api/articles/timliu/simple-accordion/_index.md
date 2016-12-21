@@ -65,6 +65,8 @@ Angular 的文档翻了一遍又一遍，还是记不住，边用边学效果会
 ### 脚手架搭建（生成基础代码）
 我们需要的 component 包括：accordion、panel、panel-title、panel-content，另外还需要一个 interface 文件。
 ```
+> ng new my-awesome-package --style=scss
+> cd my-awesome-package
 > ng g module tl-accordion
 ... (生成 TlAccordionModule 以及 TlAccordionComponent)
 > ng g component tl-accordion/tl-accordion-panel
@@ -80,6 +82,11 @@ Angular 的文档翻了一遍又一遍，还是记不住，边用边学效果会
 我们需要 accordion component，但用的指令是 ng g module，即同时生成了 accordion module 和 accordion component。这样做的目的是预留 provider 位置（在 module 里），方便以后配置全局变量，比如要求 app 里所有的 accordion 都是怎么怎么样的（仿照 ng-bootstrap的做法）。  
 
 注：因为像 TlAccordionPanelContentComponent 这样的名字太长，后文会用最后两个词（即 content component）代替。
+
+### 引入 bootstrap.scss
+本文参考 ng-bootstrap，使用 bootstrap 4 的样式。
+- 敲指令：`npm install bootstrap@4.0.0-alpha.5 -S`；
+- 在 `my-awesome-package\src\styles.scss` 中添加 `@import '~bootstrap/scss/bootstrap.scss';`。
 
 ### 实现 title 组件显示 title，content 组件显示 content
 要显示 `<tl-accordion-panel-title>This is a title.</tl-accordion-panel-title>` 里的 'This is a title.'，我们只需要在 title component 的 template 里写一行：`<ng-content></ng-content>`。content component 同理。完。
