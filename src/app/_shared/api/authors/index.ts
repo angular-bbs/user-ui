@@ -87,6 +87,15 @@ const items: Author[] = [
     columnist: false,
     homepage: 'http://www.jianshu.com/users/d614825bc8a1/latest_articles'
   },
+  {
+    id: '易sense',
+    name: '易sense',
+    bio: '一生中可以喜欢很多人，但心疼的只有一个',
+    description: require('./280.易sense.md'),
+    avatar: require('./_images/易sense.jpg'),
+    columnist: false,
+    homepage: 'http://www.jianshu.com/users/d0244c5326c5/latest_articles'
+  }
 ];
 
 @Injectable()
