@@ -14,23 +14,15 @@ Angular 的文档翻了一遍又一遍，还是记不住，边用边学效果会
 
 - 本文涉及到的知识点：
     - NG2 - 了解 [模板语法](https://angular.cn/docs/ts/latest/guide/template-syntax.html)。
-    - NG2 - 了解 ngFor 的展开写法（模板语法的一小部分）（参见 trotyl 的《[Angular 2 中的 Sturctural Directive](https://wx.angular.cn/library/article/Angular2%E4%B8%AD%E7%9A%84StructuralDirective)》）：  
-        一般我们都是写 `<div *ngFor="let panel of panels">...</div>`，展开后是
-
-        ```html
-        <template ngFor let-panel [ngForOf]="panels">
-          <div class="card">...</div>
-        </template>
-        ```
-
-        上面的代码会将 `.card` 按 panel 循环。这里只有 `.card` 一个元素。如果我们需要同时循环多于一个元素的时候，`*ngFor` 这样含有星号的写法就行不通了，只能使用展开写法，即
+    - NG2 - 了解 [`<ng-container>`](https://github.com/angular/angular/pull/9197)：在使用 ngFor 的时候一般我们都是写 `<div *ngFor="let panel of panels" class="card-header">...</div>`，`.card-header` 元素会按 panel 循环。这里只有 `.card-header` 一个元素。如果还有一个姊妹元素 `.card-block`，我们希望 `.card-header` 和 `.card-block` 一起循环，又不想额外添加 `<div>`，该怎么办呢？可以这样：  
         
         ```html
-        <template ngFor let-panel [ngForOf]="panels">
+        <ng-container *ngFor="let panel of panels">
           <div class="card-header">...</div>
           <div class="card-block">...</div>
-        </template>
+        </ng-container>
         ```
+        （写作本文之前，我还不知道有个 `<ng-container>`，多亏 trotyl 提醒。这里对 trotyl 表示感谢。）
     - NG2 - 大概知道 [Angular Animation](https://angular.cn/docs/ts/latest/guide/animations.html)。
     - NG2 - 大概知道 [Angular Testing](https://angular.cn/docs/ts/latest/guide/testing.html)。
 
@@ -95,10 +87,10 @@ export class TlAccordionrComponent {
 ```html
 <!-- tl-accordionr.component.html -->
 <div class="card">
-  <template ngFor let-panel [ngForOf]="panels">
+  <ng-container *ngFor="let panel of panels">
     <div role="tab" class="card-header" [innerHTML]="panel.title"></div>
     <div role="tablpanel" class="card-block" [innerHTML]="panel.content"></div>
-  </template>
+  </ng-container>
 </div>
 ```
 （role 和 class 配合 bootstrap 使用）这样，在 app.component.ts 里定义的 panels 就都显示出来了，一视同仁，不论 expanded、disabled。
