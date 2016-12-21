@@ -5,7 +5,7 @@
 本文将用试错的方式来制作一个 `tl-ui` package（里面有一个 `tl-ui` module），然后发布到 NPM。（`tl-ui` 只是个随意起的名字。）
 
 ## 读者指引
-- 本文所述方法是笔者通过试错摸索出来的，过程中大量参考了 [ng-bootstrap][]。
+- 本文所述方法是笔者通过试错摸索出来的，过程中大量参考了 [@ng-bootstrap/ng-bootstrap][]。
 - 试错固然啰嗦，需要干货的同学请移步“总结”部分。
 - 本文在测试安装本地 package 的过程中，没有使用 `npm link` -- 笔者试验多次均以 Error 告终。
 - 阅读本文，需要读者简单了解一下知识点：
@@ -67,7 +67,7 @@ imports: [TlUiModule]
 ```ts
 // `another-project\src\app\app.module.ts
 import { TlUiModule } from 'tl-ui/src/app/tl-ui/tl-ui.module';
-@ngModule({imports: [TlUiModule]})
+@NgModule({imports: [TlUiModule]})
 ```
 还真能找到 `TlUiModule`。注意 `from 'tl-ui/src/app/tl-ui/tl-ui.module'`，这里最前面的 `tl-ui`不再是目录名，而是 package 的名字，对应 `tl-ui\package.json` 里的 name。  
 
@@ -76,10 +76,10 @@ import { TlUiModule } from 'tl-ui/src/app/tl-ui/tl-ui.module';
 > (at another-project) npm start （就是 ng serve）
 ```
 然而，报错了：`Cannot find module 'tl-ui/src/app/tl-ui/tl-ui.module'`。
-这是几个意思？搜索搜索，也没弄明白。这时我们可以去参考其他 angular 的第三方 package，比如 [ng-bootstrap][]。
+这是几个意思？搜索搜索，也没弄明白。这时我们可以去参考其他 angular 的第三方 package，比如 [@ng-bootstrap/ng-bootstrap][]。
 
 ### 创建根 index，并编译 ts 文件
-如果我们安装了第三方库 ng-bootstrap，在 `another-project\node_modules\@ng-bootstrap\ng-bootstrap` 下，是怎样一番景象呢？
+如果我们安装了第三方库 @ng-bootstrap/ng-bootstrap，在 `another-project\node_modules\@ng-bootstrap\ng-bootstrap` 下，是怎样一番景象呢？
 - 有 index.js，这样我们在 import 时，就不用写一长串的路径了；
 - 每个 js 文件配备一个 d.ts 文件，这些是 js 文件对应的类型声明（declaration）文件。
 
@@ -173,7 +173,7 @@ serve 起来看一下。（见证奇迹的时刻又到了...）
 这个就不说了。
 
 ## 这才只是个开始
-拿 `tl-ui\package.json` 跟 [ng-bootstrap][] 的比较一下，就知道，这才只是个开始，做成一个 npm package ... 的路还很长。翻滚翻滚...
+拿 `tl-ui\package.json` 跟 [@ng-bootstrap/ng-bootstrap][] 的比较一下，就知道，这才只是个开始，做成一个 npm package ... 的路还很长。翻滚翻滚...
 
 ## 总结
 要把 Angular-CLI 做好的 module 发到 NPM 上，需要（步骤很多，但都很简单）：
@@ -195,7 +195,7 @@ serve 起来看一下。（见证奇迹的时刻又到了...）
 - 不是最后的最后，按照 npm docs 的说法，我们还需要：Brag about it. Send emails, write blogs, blab in IRC. Tell the world how easy it is to install your program!
 
 ## 参考
-- [ng-bootstrap][]
+- [@ng-bootstrap/ng-bootstrap][]
 - [NPM Developer Guide](https://docs.npmjs.com/misc/developers)
 
-[ng-bootstrap]: https://github.com/ng-bootstrap/ng-bootstrap
+[@ng-bootstrap/ng-bootstrap]: https://github.com/ng-bootstrap/ng-bootstrap
