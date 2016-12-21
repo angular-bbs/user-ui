@@ -14,15 +14,19 @@ Angular 的文档翻了一遍又一遍，还是记不住，边用边学效果会
 
 - 本文涉及到的知识点：
     - NG2 - 了解 [模板语法](https://angular.cn/docs/ts/latest/guide/template-syntax.html)。
-    - NG2 - 了解 [`<ng-container>`](https://github.com/angular/angular/pull/9197)：在使用 ngFor 的时候一般我们都是写 `<div *ngFor="let panel of panels" class="card-header">...</div>`，`.card-header` 元素会按 panel 循环。这里只有 `.card-header` 一个元素。如果还有一个姊妹元素 `.card-block`，我们希望 `.card-header` 和 `.card-block` 一起循环，又不想额外添加 `<div>`，该怎么办呢？可以这样：  
+    - NG2 - 了解 [`<ng-container>`](https://github.com/angular/angular/pull/9197)：在使用 ngFor 的时候一般我们都是写：
+      ```html
+      <div *ngFor="let panel of panels" class="card-header">...</div>
+      ```
+      `.card-header` 元素会按 panel 循环。这里只有 `.card-header` 一个元素。如果还有一个姊妹元素 `.card-block`，我们希望 `.card-header` 和 `.card-block` 一起循环，又不想额外添加 `<div>`，该怎么办呢？可以这样：  
         
-        ```html
-        <ng-container *ngFor="let panel of panels">
-          <div class="card-header">...</div>
-          <div class="card-block">...</div>
-        </ng-container>
-        ```
-        （写作本文之前，我还不知道有个 `<ng-container>`，多亏 trotyl 提醒。这里对 trotyl 表示感谢。）
+      ```html
+      <ng-container *ngFor="let panel of panels">
+        <div class="card-header">...</div>
+        <div class="card-block">...</div>
+      </ng-container>
+      ```
+      这个 `<ng-container>` 是不会被 render 出来的。（写作本文之前，我还不知道有个 `<ng-container>`，多亏 trotyl 提醒。这里对 trotyl 表示感谢。）
     - NG2 - 大概知道 [Angular Animation](https://angular.cn/docs/ts/latest/guide/animations.html)。
     - NG2 - 大概知道 [Angular Testing](https://angular.cn/docs/ts/latest/guide/testing.html)。
 
