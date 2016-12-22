@@ -8,7 +8,7 @@
 - 本文所述方法是笔者通过试错摸索出来的，过程中大量参考了 [@ng-bootstrap/ng-bootstrap][]。
 - 试错固然啰嗦，需要干货的同学请移步“总结”部分。
 - 本文在测试安装本地 package 的过程中，没有使用 `npm link` -- 笔者试验多次均以 Error 告终。
-- 阅读本文，需要读者简单了解一下知识点：
+- 阅读本文，需要读者简单了解以下知识点：
   - [`tsconfig.json` 的配置](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
   - [Angular-CLI 指令](https://github.com/angular/angular-cli)
   - [npm 指令](https://docs.npmjs.com/)
@@ -181,7 +181,7 @@ serve 起来看一下。（见证奇迹的时刻又到了...）
 - `ng g module awesome-module`
 - 为了标签前缀，稍微修改 `angular-cli.json` 和 `tslint.json`
 - 完成 awesome-module 的开发（template 和 styles 直接写在 component 里）
-- 根目录新建 `index.ts`，并 re-export `awesoe-module`
+- 根目录新建 `index.ts`，并 re-export `awesome-module`
 - 根目录新建 `tsconfig.json`，设置 declaration 为 true
 - 在 `package.json` 里：
   - 转移 dependencies 至 devDependencies （也许要保留一些在 dependencies，也许要添加 peerDependencies）
