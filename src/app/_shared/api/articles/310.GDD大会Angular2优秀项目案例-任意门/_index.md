@@ -107,4 +107,4 @@ VR(即虚拟现实科技)打造的360度全景视效，是一种全新的视觉�
 
 [http://www.ostay.cn](http://www.ostay.cn "任意门")
 
-![唯幻科技官方微信](http://upload-images.jianshu.io/upload_images/2433010-b01bde508595a06c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![唯幻科技官方微信](./chat.jpg)
