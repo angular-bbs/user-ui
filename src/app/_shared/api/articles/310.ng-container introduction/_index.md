@@ -77,7 +77,7 @@
 
 而在 Angular 2+ 中，我们直接使用 selector 来指定 Directive 的宿主，而 selector 是没有进行区域选择的功能的，于是不能使用类似于 AngularJS 1.x 的方式来实现这个操作。
 
-不过，选择我们有一个好消息，我们有一个永远都不会真实存在的 tag，也就是 `ng-container`，我们可以利用这一点来实现我们的需求：
+不过，现在我们有一个好消息，我们有一个永远都不会真实存在的 tag，也就是 `ng-container`，我们可以利用这一点来实现我们的需求：
 
 ```html
 <ul class="book-list">
