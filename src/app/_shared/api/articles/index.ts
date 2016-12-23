@@ -14,6 +14,15 @@ const items: Article[] = [
     authors: ['trotyl'],
   },
   {
+    id: 'GDD大会Angular2优秀项目案例-任意门',
+    title: 'GDD大会Angular2优秀项目案例-任意门',
+    summary: '本文主要介绍了GDD大会上angular2优秀案例-任意门，其中包含了任意门开发中遇到的一些重难点。',
+    content: require('./310.GDD大会Angular2优秀项目案例-任意门/_index.md'),
+    first: true,
+    tags: ['Angular2','项目实例'],
+    authors: ['易sense'],
+  },
+  {
     id: 'Angular2中的StructuralDirective',
     title: 'Angular 2 中的 Sturctural Directive',
     summary: 'Angular 2 中，*NgFor 这种神奇的写法及其功能是如何实现的呢？本文将深入探寻 Structural Directive 的本质',
