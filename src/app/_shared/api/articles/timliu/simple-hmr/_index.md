@@ -116,8 +116,8 @@ if (environment.hmr) {
 > npm run hmr
 ```
 浏览器 console 里看到：`[HMR] Waiting for update signal from WDS...`、`[WDS] Hot Module Replacement enabled.`。   
-修改 app 代码，比如在 `app.component.html` 里改个字符，保存。几秒过后，浏览器里看到页面变化（网页标签尚没有出现“载入中”，即 “without a page reload”），同时 console 说：`[HMR] Updated modules: ...`。  
-注意这里的 `updated modules`有7、8个，我们不是只改了一个 hmtl 吗？如果只更新一个 module 是不是会更快？该怎么做呢？再看看 [wiki][Webpack wiki]。  
+修改 app 代码，比如在 `app.component.html` 里改个字符，保存。几秒过后，浏览器里看到页面变化（网页标签上没有出现“载入中”，即 “without a page reload”），同时 console 说：`[HMR] Updated modules: ...`。  
+在 `updated modules`下面列出了7、8个项目，我们不是只改了一个 hmtl 吗？如果只 reload 一个 module 是不是会更快？该怎么做呢？再看看 [wiki][Webpack wiki]。  
 
 
 ## 总结
