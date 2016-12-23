@@ -101,7 +101,7 @@
 </div>
 ```
 
-虽然从实现上而言这种做法是完全不必要的，但是由于书写上的简便性仍然受到大量使用。
+虽然从实现上而言这种做法是完全不必要的，但是由于书写上的简便性仍然被大量使用。
 
 而在 Angular 2+ 中，正如我们在 [Structural Directive](https://wx.angular.cn/library/article/Angular2%E4%B8%AD%E7%9A%84StructuralDirective) 中所介绍的那样，从翻译规则上就可以确定一个元素上绝不可能同时使用多个星号语法糖。
 
