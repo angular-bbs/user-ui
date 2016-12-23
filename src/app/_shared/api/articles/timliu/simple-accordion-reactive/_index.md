@@ -201,11 +201,9 @@ providers: [{provide: TlAccordionrConfigService, useValue: TlAccordionrConfigSer
 ```ts
 // tl-accordionr-panel.component.ts
 @Component({..., animations: [trigger('contentState', [...])] })
-export class TlAccordionrPanelComponent {
-  @Input() private animation: boolean = false;
-}
+export class TlAccordionrPanelComponent {}
 ```
-有需要的同学可以参考 [angular.cn 里 animation 的文档](https://angular.cn/docs/ts/latest/guide/animations.html)来实现动画效果。另外，可以给 accordionr component 添加一个 `@Input() animation: boolean` 开关（config.service 里也要添加），用户可以控制是否显示动画。
+有需要的同学可以参考 [angular.cn 里 animation 的文档](https://angular.cn/docs/ts/latest/guide/animations.html)来实现动画效果。
 
 ### 测试
 
@@ -246,10 +244,13 @@ export class TlAccordionrPanelComponent {
     fixtureHost.detectChanges();
     ...
     tick(500); // 假设我们的 animation 0.5 秒演完，假装我们等他 0.5 秒
-    // expect * 1000 }));
+    // expect * 1000 
+  }));
   ```
 
+
 ### 发布到 NPM
+
 tl-accordionr module 写好了，请别人来试试吧。你可以： 
 - zip 一下发个邮件，然后告诉朋友 upzip 之后怎么怎么样 ...
 - 或者发布到 NPM，然后告诉朋友 `npm i tl-accordionr` ...
