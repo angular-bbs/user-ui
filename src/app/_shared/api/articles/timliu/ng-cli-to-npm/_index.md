@@ -59,9 +59,9 @@ imports: [TlUiModule]
 我们要在 `another-project` 下面使用 `tl-ui` module，真的需要安装 `tl-ui\package.json` 里面 denpendencies 吗？
 先看一下 `tl-ui.module.ts` 和 `tl-ui.component.ts`，我们用到的只有 `@angular/core` 和 `@angular/common`。
 但凡是个 angular 2 project，就会有这两个依赖，所以，我们可以先这样：将 `tl-ui\package.json` 里的 dependencies 下的内容，全部转移到 devDependencies 下面。
-然后再在 `another-project` 目录下 `npm i ../tl-ui`。  
+然后再安装。  
 
-现在可以 `npm i ../tl-ui`了。10秒钟左右就安装好了。我们可以通过查看 `another-project\node_modules\tl-ui` 来验证。
+在 `another-project` 目录下运行 `npm i ../tl-ui`了。10秒钟左右就安装好了。我们可以通过查看 `another-project\node_modules\tl-ui` 来验证。
 至于能不能用，通过 import 来试试看吧。
 
 ```ts
@@ -84,7 +84,7 @@ import { TlUiModule } from 'tl-ui/src/app/tl-ui/tl-ui.module';
 - 每个 js 文件配备一个 d.ts 文件，这些是 js 文件对应的类型声明（declaration）文件。
 
 为什么要 js + d.ts？这个我没深究，估计是 webpack 在使用 node_modules 时需要 js 文件，typescript 又需要对应的 d.ts 文件。
-不管这些，我们来照葫芦画个瓢：
+不管这些，我们来照葫芦画个瓢（创建 index.ts，并编译 ts 文件至 js + d.ts）：
 - 在 `tl-ui` package 根目录下，新建 `index.ts`，添加一行：
   ```ts
   export { TlUiModule } from './src/app/tl-ui/tl-ui.module';
