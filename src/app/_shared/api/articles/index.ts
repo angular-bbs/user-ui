@@ -4,6 +4,15 @@ import {Observable} from 'rxjs/Observable';
 
 const items: Article[] = [
   {
+    id: '在 Angular-CLI 中启用 HMR',
+    title: '在 Angular-CLI 中启用 HMR',
+    summary: '本文简单介绍如何在 Angular-CLI 搭建的 app 里启用 HMR。',
+    content: require('./timliu/simple-hmr/_index.md'),
+    first: true,
+    tags: ['Angular', 'HMR'],
+    authors: ['timliu'],
+  },
+  {
     id: 'GDD大会Angular2优秀项目案例-任意门',
     title: 'GDD大会Angular2优秀项目案例-任意门',
     summary: '本文主要介绍了GDD大会上angular2优秀案例-任意门，其中包含了任意门开发中遇到的一些重难点。',
