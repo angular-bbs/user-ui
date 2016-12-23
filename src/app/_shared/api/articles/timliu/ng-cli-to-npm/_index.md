@@ -169,7 +169,7 @@ serve 起来看一下。（见证奇迹的时刻又到了...）
 `npm start`，`tl-ui works!!!`。
 
 ## 给我们的 package 在 github 上安个家
-将 `tl-ui` package **push** 到 github 上。另外，考虑在 package 里加上 examples，告诉别人如何使用 `tl-ui` module（我们的 app.module 其实就是 examples）。
+将 `tl-ui` package **push** 到 github 上。另外，考虑在 package 里加上 examples（README.md 不够生动），告诉别人如何使用 `tl-ui` module（我们的 app.module 其实就是 examples）。
 然后运行 `ng github-pages:deploy`，之后就可以通过 `https://user.github.io/package-name` 来访问 examples了。
 
 ## 这才只是个开始
@@ -192,8 +192,9 @@ serve 起来看一下。（见证奇迹的时刻又到了...）
 - 通过本地测试以后，运行 `npm adduser`，`npm publish`
 - 别忘了 `git commit`、`git push`
 - 现在可以 `npm i awesome-package`了，然后 `import { awsome-module } from 'awesome-package'`。
-- 制作 examples，然后 `ng github-pages:deploy`。
-- 不是最后的最后，按照 npm docs 的说法，我们还需要：Brag about it. Send emails, write blogs, blab in IRC. Tell the world how easy it is to install your program!
+- 制作 examples，然后 `ng github-pages:deploy`，让大家看看 awesome package 的使用效果。
+- 不是最后的最后，按照 npm docs 的说法，我们还需要：Brag about it. Send emails, write blogs, blab in IRC. Tell the world how easy it is to install your program! 比如这样：
+  > [tl-ui](https://rxjs-space.github.io/tl-ui/) -- UI components made easy.
 
 ## 参考
 - [@ng-bootstrap/ng-bootstrap][]
