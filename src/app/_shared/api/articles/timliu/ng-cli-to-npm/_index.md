@@ -189,9 +189,8 @@ serve 起来看一下。（见证奇迹的时刻又到了...）
   - 添加 script: `"prepublish": "tsc -p tsconfig.json"`
   - 设定版本号
 - 在本地测试安装，先运行 `npm run prepublish`（就是 tsc），再移步其他 project ，以相对路径来安装
-- 通过本地测试以后，运行 `npm adduser`，`npm publish`
-- 别忘了 `git commit`、`git push`
-- 现在可以 `npm i awesome-package`了，然后 `import { awsome-module } from 'awesome-package'`。
+- 通过本地测试以后，运行 `npm adduser`，`npm publish`；现在可以 `npm i awesome-package`了，然后 `import { awsome-module } from 'awesome-package'`。
+- `git commit`、`git push`。
 - 制作 examples，然后 `ng github-pages:deploy`，让大家看看 awesome package 的使用效果。
 - 不是最后的最后，按照 npm docs 的说法，我们还需要：Brag about it. Send emails, write blogs, blab in IRC. Tell the world how easy it is to install your program! 比如这样：
   > [tl-ui](https://rxjs-space.github.io/tl-ui/) -- UI components made easy.
