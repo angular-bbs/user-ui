@@ -58,10 +58,9 @@ imports: [TlUiModule]
 在安装一个 package 的时候，npm 会根据 package.json 来获取相关依赖（dependencies 项目下的内容）。
 我们要在 `another-project` 下面使用 `tl-ui` module，真的需要安装 `tl-ui\package.json` 里面 denpendencies 吗？
 先看一下 `tl-ui.module.ts` 和 `tl-ui.component.ts`，我们用到的只有 `@angular/core` 和 `@angular/common`。
-但凡是个 angular 2 project，就会有这两个依赖，所以，我们可以先这样：将 `tl-ui\package.json` 里的 dependencies 下的内容，全部转移到 devDependencies 下面。
-然后再安装。  
+但凡是个 angular 2 project，就会有这两个依赖，所以，我们可以先这样：将 `tl-ui\package.json` 里的 dependencies 下的内容，全部转移到 devDependencies 下面，然后再安装。  
 
-在 `another-project` 目录下运行 `npm i ../tl-ui`了。10秒钟左右就安装好了。我们可以通过查看 `another-project\node_modules\tl-ui` 来验证。
+在 `another-project` 目录下运行 `npm i ../tl-ui`，10秒钟左右就安装好了。我们可以通过查看 `another-project\node_modules\tl-ui` 来验证。
 至于能不能用，通过 import 来试试看吧。
 
 ```ts
@@ -170,7 +169,8 @@ serve 起来看一下。（见证奇迹的时刻又到了...）
 `npm start`，`tl-ui works!!!`。
 
 ## 给我们的 package 在 github 上安个家
-这个就不说了。
+将 `tl-ui` package **push** 到 github 上。另外，考虑在 package 里加上 examples，告诉别人如何使用 `tl-ui` module（我们的 app.module 其实就是 examples）。
+然后运行 `ng github-pages:deploy`，之后就可以通过 `https://user.github.io/package-name` 来访问 examples了。
 
 ## 这才只是个开始
 拿 `tl-ui\package.json` 跟 [@ng-bootstrap/ng-bootstrap][] 的比较一下，就知道，这才只是个开始，做成一个 npm package ... 的路还很长。翻滚翻滚...
@@ -192,6 +192,7 @@ serve 起来看一下。（见证奇迹的时刻又到了...）
 - 通过本地测试以后，运行 `npm adduser`，`npm publish`
 - 别忘了 `git commit`、`git push`
 - 现在可以 `npm i awesome-package`了，然后 `import { awsome-module } from 'awesome-package'`。
+- 制作 examples，然后 `ng github-pages:deploy`。
 - 不是最后的最后，按照 npm docs 的说法，我们还需要：Brag about it. Send emails, write blogs, blab in IRC. Tell the world how easy it is to install your program!
 
 ## 参考
