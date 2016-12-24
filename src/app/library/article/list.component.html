@@ -3,6 +3,6 @@
     没有找到符合条件的文章
   </div>
   <a [routerLink]="['./', item.id]" class="list-group-item" *ngFor="let item of items">
-    {{item.title}}
+    {{item.title}}   <span style="color:slategrey">[{{item.authors}}]</span>
   </a>
 </div>
