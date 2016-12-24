@@ -4,6 +4,15 @@ import {Observable} from 'rxjs/Observable';
 
 const items: Article[] = [
   {
+    id: 'simple-prototype-chain',
+    title: '白话 JS 的原型链',
+    summary: '本文记录笔者学习 JS 原型链的过程中的一些心得。',
+    content: require('./timliu/simple-prototype-chain/_index.md'),
+    first: true,
+    tags: ['JavaScript', 'prototype', 'prototype chain'],
+    authors: ['timliu']
+  },
+  {
     id: 'GDD大会Angular2优秀项目案例-任意门',
     title: 'GDD大会Angular2优秀项目案例-任意门',
     summary: '本文主要介绍了GDD大会上angular2优秀案例-任意门，其中包含了任意门开发中遇到的一些重难点。',
@@ -401,6 +410,7 @@ const items: Article[] = [
     tags: ['现在'],
     authors: ['雪狼']
   }
+
 ];
 
 @Injectable()
