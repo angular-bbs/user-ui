@@ -260,3 +260,6 @@ tl-accordionr module 写好了，请别人来试试吧。你可以：
 ## 总结
 按照 model driven 的思路制作组件，组件内部逻辑清晰，容易写，方便看，测试也简单。  
 
+## 后续文章
+下一个 component 是 modal。在 `app.component.html` 里这样用 `<tl-modal [modalModel]="modalModel"></tl-modal>` ...
+
