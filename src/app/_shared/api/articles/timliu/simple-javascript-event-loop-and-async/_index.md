@@ -60,13 +60,34 @@ Event loop包括`call stack + task queue + looper`（task queue和looper不是�
 - 而sync操作就是在call stack里逐步的运行任务。  
 
 常见的async api包括：timer（setTimeout, setInterval等等）, eventListener（onreadystatechange、onclick等等）。  
-另外，Promise和Observable可以是sync也可以是async，主要看Promise.resolve和observer.next是谁触发的。  
 
+<错误>  
+另外，Promise和Observable可以是sync也可以是async，主要看Promise.resolve和observer.next是谁触发的。  
+</错误>  
+
+<更正>  
+Observable 在创建的时候，不会自动运行，需要使用 subscribe 方法启动。而 Observable 的运行，可以是 sync 也可以是 async，主要看 observer.callback 是谁触发的。比如：
 ```js
-var p1 = new Promise(function(resolve, reject){resolve(1)}); // 这个Promise是sync操作
-var o$ = Observable.create((observer) => {observer.next(1)}); 
-var o_ = o$.subscribe(console.log) // 这个Observable和Subscription都是sync操作
+var o$ = Rx.Observable.create((observer) => {observer.next('o$ is sending out something')});
+o$.subscribe(console.log); // subscribe 以后，同步触发 observer.next 
+console.log('after o$.subscribe');
 ```
+在 console 里看到：先有 'o$ is sending out something'，再有 'after o$.subscribe'。
+
+Promise 在创建的时候，立即运行，运行的过程可以是 sync 也可以是 async，主要看 resolve 或 reject 是谁触发的。  
+- （重点在这里）在Promise.prototype.then上注册的 callback 一定是被 async 执行的。比如：
+```js
+var p = new Promise((resolve, reject) => {
+  console.log('begin');
+  resolve('p is sending out something'); // 这个 resolve 是 sync 的
+});
+// 在 console 上立即看到 'begin'
+p.then(console.log); // 这个 console.log 会被添加到 task queue，而不是直接进入到 call stack
+console.log('after p.then');
+```
+在 console 里看到：先有 'after p.then'，再有 'p is sending out something'。  
+</更正>
+
 
 ## 总结 
 Async什么样？call stack里面看不到。  
