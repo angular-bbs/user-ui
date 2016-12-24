@@ -133,3 +133,7 @@ Angular2温馨提示，尽可能少用原生的dom api，利用自带的模板�
 
 现在前端业务逻辑日益复杂，对于大型的Saas项目，一切细节都要考虑清楚。避免某一天收到一封邮件：
 >我们在你的网站上发现xxx漏洞，请速往比特币账户：xxxxxxxxxxxxxxxxxxxxxx，打入3比特
+
+[更多了解](https://www.angular.cn/docs/ts/latest/guide/security.html)
+
+[往期文章：如何工程化开发大型angular2项目（上篇）](http://mp.weixin.qq.com/s/a00Kean4Lj3o7UAA1C7iGg)
