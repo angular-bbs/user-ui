@@ -93,9 +93,43 @@ import { a, b, c, d } from '../shared/index';
 ```typescript
 export * from './a.model';
 ```
-
+这其实就是所谓的封装桶[barrel](https://www.angular.cn/docs/ts/latest/guide/glossary.html),封装桶是把多个模块的导出结果汇总到单一的 ES2015 模块的一种方式。 封装桶本身是一个 ES2015 模块文件，它重新导出选中的导出，这些导入来自其它 ES2015 模块。
 ## Web安全
 先上图：
 
 ![事例](./pic.png)
-对于运营商的劫持注入，大家应该都见过。这种方法最快的解决方案是把网站升级为https，还是http的朋友建议尽快升级为https，chrome对http默认视为不安全网站
+对于运营商的劫持注入，大家应该都见过。这种方法最快的解决方案是把网站升级为https，还是http的朋友建议尽快升级为https，chrome对http默认视为不安全网站。
+运营商的劫持，无非放放广告，插入一些莫名其妙的广告，恶心你的用户。把网站升级为https基本解决问题了。
+
+但是最可怕的是那些掌握你网站脚本漏洞的黑客，往你网站插入恶意代码，你却浑然不知。尤其是那些涉及金融的网站如比特币交易网站或者支付金融相关的。最为著名的莫过于前段时间的“抢月饼”事件，其实算不上恶意代码注入，只不过是利用脚本做了自动化的事情。但在web安全上，轰动整个圈子。
+
+防范跨站脚本(XSS)攻击
+>XSS攻击
+       XSS攻击类似于SQL注入攻击，攻击之前，我们先找到一个存在XSS漏洞的网站，XSS漏洞分为两种，一种是DOM Based XSS漏洞，另一种是Stored XSS漏洞。理论上，所有可输入的地方没有对输入数据进行处理的话，都会存在XSS漏洞，漏洞的危害取决于攻击代码的威力，攻击代码也不局限于script。
+       -- [引用](http://blog.csdn.net/ghsau/article/details/17027893)
+
+
+如果你想知道如何利用xss攻击，你可以看看这篇文章简单了解下[xss的原理分析与解剖](http://www.freebuf.com/articles/web/40520.html)。
+
+其实xss攻击就是想方设法在你的dom里执行我想要的脚本，如下面的实现
+```html
+<img scr=1 onerror=alert('xss')>当找不到图片名为1的文件时，执行alert('xss')
+<a href=javascrip:alert('xss')>s</a> 点击s时运行alert('xss')
+<iframe src=javascript:alert('xss');height=0 width=0 /><iframe>利用iframe的scr来弹窗
+<img src="1" onerror=eval("\x61\x6c\x65\x72\x74\x28\x27\x78\x73\x73\x27\x29")></img>过滤了alert来执行弹窗
+```
+看完上面的你还觉得你的网站还是百分百的安全吗？凡是技术都有漏洞，但我们一定要想法设法去填补漏洞。
+现在前端火热，把注意力放在web安全上估计很少，要不然哪有这么多闲扯的。
+那么问题来了，有什么好的解决方案，让我马上去做一些基础的漏洞补救呢？
+其实Angular2自带一个微型'杀毒器',他认为所有DOM都是不安全的，都是处于裸奔状态。如果你想在你的img里加一个不是同源的链接或者脚本，Angular2会告诉你：“同志，请麻烦你出示你的证件的原价和复印件。”
+注入DomSanitizer服务，然后调用下面的方法之一，你就可以把一个值标记为可信任的。
+
+* bypassSecurityTrustScript
+* bypassSecurityTrustUrl
+* bypassSecurityTrustResourceUrl
+
+如果你不进行标记，会被强制标记为不安全不予显示。
+Angular2温馨提示，尽可能少用原生的dom api，利用自带的模板机制，把一切处于掌控之中。
+
+现在前端业务逻辑日益复杂，对于大型的Saas项目，一切细节都要考虑清楚。避免某一天收到一封邮件：
+>我们在你的网站上发现xxx漏洞，请速往比特币账户：xxxxxxxxxxxxxxxxxxxxxx，打入3比特
