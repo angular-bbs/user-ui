@@ -3,6 +3,15 @@ import {Article} from '../../models/article';
 import {Observable} from 'rxjs/Observable';
 
 const items: Article[] = [
+    {
+    id: '如何工程化开发大型angular2项目',
+    title: '如何工程化开发大型angular2项目',
+    summary: 'angular2刚出不久，很多技术主管在观望是否要把angular2投入生存环境，作为一名作死者，从今年3月就投入生存环境，8个月来挖坑经验告诉你，绝对没问题。已经百家大型客户投入使用！',
+    content: require('./231.如何工程化开发大型angular2项目（上篇续）/_index.md'),
+    first: true,
+    tags: ['现在'],
+    authors: ['大炮'],
+  },
   {
     id: 'Angular2中的StructuralDirective',
     title: 'Angular 2 中的 Sturctural Directive',
