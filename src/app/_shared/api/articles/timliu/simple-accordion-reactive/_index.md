@@ -68,13 +68,14 @@ export class AppComponent {
 ```
 > ng new my-awesomer-package --style=scss
 > cd my-awesomer-package
-> ng g module tl-accordionr
+> ng g module tl-accordionr --routing // 注1
 ... (生成 TlAccordionrModule 以及 TlAccordionrComponent)
 > ng g service tl-accordionr/tl-accordionr-config
 > （假设当前目录为 app）touch tl-accordionr/tl-accordionr.interface.ts
 ```
 然后在 TlAccordionrModule 里，加上 `exports: [TlAccordionrComponent]`，在 app.module 里加上 `imports: [TlAccordionrModule]`，就可以开始在 app.component.html 里面使用 tl-accordionr 标签了。  
-生成 TlAccordionrModule 这个 ngModule 的目的是：预留 provider 位置，方便以后配置全局变量，比如要求 app 里所有的 accordionr 都是怎么怎么样的。
+生成 TlAccordionrModule 这个 ngModule 的目的是：预留 provider 位置，方便以后配置全局变量，比如要求 app 里所有的 accordionr 都是怎么怎么样的。  
+（注1：从Angular-CLI 1.0.0-beta.23 (2016-12-15) 开始，`ng g module` 不再自动生成同名 component，可以手动生成，或添加 `--routing` flag。参考[链接](https://github.com/angular/angular-cli/commit/2fb2d13)。）
 
 ### 引入 bootstrap.scss
 本文参考 ng-bootstrap，使用 bootstrap 4 的样式。
