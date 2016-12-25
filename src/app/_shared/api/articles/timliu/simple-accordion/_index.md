@@ -79,7 +79,8 @@ Angular 的文档翻了一遍又一遍，还是记不住，边用边学效果会
 ```
 然后在 TlAccordionModule 里，加上 `exports: [TlAccordionComponent]`，在 app.module 里加上 `imports: [TlAccordionModule]`，就可以开始在 app.component.html 里面使用 tl-accordion 等标签了。  
 
-我们需要 accordion component，但用的指令是 ng g module，即同时生成了 accordion module 和 accordion component。这样做的目的是预留 provider 位置（在 module 里），方便以后配置全局变量，比如要求 app 里所有的 accordion 都是怎么怎么样的（仿照 ng-bootstrap的做法）。  
+我们需要 accordion component，但用的指令是 `ng g module`，即同时生成了 accordion module 和 accordion component。这样做的目的是预留 provider 位置（在 module 里），方便以后配置全局变量，比如要求 app 里所有的 accordion 都是怎么怎么样的（仿照 ng-bootstrap的做法）。  
+（注：从Angular-CLI 1.0.0-beta.23 (2016-12-15) 开始，`ng g module` 不再自动生成同名 component，可以手动生成，或添加 `--routing` flag。参考[链接](https://github.com/angular/angular-cli/commit/2fb2d13)。）
 
 注：因为像 TlAccordionPanelContentComponent 这样的名字太长，后文会用最后两个词（即 content component）代替。
 
