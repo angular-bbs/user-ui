@@ -4,6 +4,15 @@ import {Observable} from 'rxjs/Observable';
 
 const items: Article[] = [
   {
+    id: 'compiler angular2 aot',
+    title: 'Angular 2 中的编译器与预编译（AoT）优化',
+    summary: '介绍编译器和预编译优化在Angular中具体的工作和原理',
+    content: require('./320.Angular 2 中的编译器与预编译（AoT）优化/_index.md'),
+    first: true,
+    tags: ['aot,compiler,angular'],
+    authors: ['VTHINKXIE'],
+  },
+  {
     id: 'ng-container introduction',
     title: 'ng-container 简介',
     summary: 'Angular 2 的模版中，有一系列特殊的存在，ng-container 就是其中之一，在本文中将会进行简要介绍',
