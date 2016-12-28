@@ -13,6 +13,25 @@ const items: Article[] = [
     authors: ['timliu'],
   },
   {
+    id: 'ng-container introduction',
+    title: 'ng-container 简介',
+    summary: 'Angular 2 的模版中，有一系列特殊的存在，ng-container 就是其中之一，在本文中将会进行简要介绍',
+    content: require('./310.ng-container introduction/_index.md'),
+    first: true,
+    column: 'trotyl',
+    tags: ['ng2'],
+    authors: ['trotyl'],
+  },
+  {
+    id: 'simple-prototype-chain',
+    title: '白话 JS 的原型链',
+    summary: '本文记录笔者学习 JS 原型链的过程中的一些心得。',
+    content: require('./timliu/simple-prototype-chain/_index.md'),
+    first: true,
+    tags: ['JavaScript', 'prototype', 'prototype chain'],
+    authors: ['timliu']
+  },
+  {
     id: 'GDD大会Angular2优秀项目案例-任意门',
     title: 'GDD大会Angular2优秀项目案例-任意门',
     summary: '本文主要介绍了GDD大会上angular2优秀案例-任意门，其中包含了任意门开发中遇到的一些重难点。',
@@ -108,7 +127,7 @@ const items: Article[] = [
     id: 'simple-rxjs',
     title: '白话RxJS',
     summary: '本文将尝试用白话来解读RxJS。',
-    content: require('./simple-rxjs/_index.md'),
+    content: require('./timliu/simple-rxjs/_index.md'),
     first: true,
     tags: ['rxjs'],
     authors: ['timliu'],
@@ -161,7 +180,7 @@ const items: Article[] = [
     id: '应用RxJS模拟redux',
     title: '应用RxJS模拟redux',
     summary: '参照RxJS Doc中的state store示例，加入Subject，模拟redux。',
-    content: require('./mock-redux-with-rxjs/_index.md'),
+    content: require('./timliu/mock-redux-with-rxjs/_index.md'),
     first: true,
     tags: ['RxJS'],
     authors: ['timliu'],
@@ -410,6 +429,7 @@ const items: Article[] = [
     tags: ['现在'],
     authors: ['雪狼']
   }
+
 ];
 
 @Injectable()
