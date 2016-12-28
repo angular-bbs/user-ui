@@ -1,14 +1,16 @@
-### Compilation in Angular
+# Compilation in Angular
 
-从`源代码`到`浏览器中可运行的程序`之间的过程都可以被认为是Compile过程，在Angular程序中，源代码中可能包含@Directive、@Component、@NgModule、@Pipe等各种内容，无论是TypeScript的Annotation还是Template中的double binding，这些最后都会变成可被浏览器解析的语言运行起来。
+从`源代码`到`浏览器中可运行的程序`之间的过程都可以被认为是Compile过程，在Angular程序中，源代码中可能包含@Directive、@Component、@NgModule、@Pipe等各种内容，无论是TypeScript的Decorator还是Template中的Two-way data binding，这些最后都会变成可被浏览器解析的语言运行起来。
 
 我们可以将整个compile过程简化为：
 
-`Inputs(源代码)-----Parser(解析器)----->Instantiate(实例化)`
+`Inputs(源代码)------Parser(解析器)----->Instantiate(实例化)`
 
 在后面的文章中我们逐步来介绍这三部分在Angular中具体的工作和原理
 
-#### Inputs(源代码)
+**注意，按照Tobias Bosch的介绍，以下的代码应该是早期Angular 2实现的代码思想，不顾这并不妨碍我们理解整个Compiler工作的原理**
+
+## Inputs(源代码)
 
 由于篇幅有限，我们以Component和Directive的组合为例来进行介绍
 
@@ -32,7 +34,7 @@ hello_comp.html
 </form>
 ```
 
-首先在HelloComp中定义了user的初始化值，并在template中渲染出来，在template中还包含了ngModel绑定的input。
+首先在HelloComp中定义了user的初始化值，并在template中渲染出来，在template中还包含了`ngModel`绑定的input。
 
 我们将Directive代码也添加进来，Directive的selector支持css选择器，当在template代码中发现符合css选择器中的element时，就会实例化相应Directive。
 
@@ -46,11 +48,11 @@ class NgModel{
 }
 ```
 
-以上的简化代码也很容易理解，form和[ngModel]的selector分别在`<form>`标签和带有`ngModel`的attribute标签中生成了对应的Directive实例。值得一提的是在NgModel的directive中依赖了NgForm，这意味着NgModel的实例将在template的父元素中查找form依赖，直到命中为止。
+以上的简化代码也很容易理解，form和`[ngModel]`的selector分别在`<form>`标签和带有`ngModel`的attribute标签中生成了对应的Directive实例。值得一提的是在NgModel的directive中依赖了NgForm，这意味着NgModel的实例将在template的父元素中查找form依赖。
 
 以上我们已经明确了原始代码的所有功能，这些被定义Component和Directive正是我们compiler的Inputs，下面就来介绍Compiler对代码的Parse过程
 
-#### Parser(解析器)
+## Parser(解析器)
 
 再关注一下之前的hello_comp.html
 
@@ -114,7 +116,7 @@ Uncaught TypeError: Cannot read property 'name' of undefined
 
 以上我们已经将所有的代码parse成了对compiler友好的AST格式，下一步就是将parse得到的数据进行实例化，让App可以真正运行起来。
 
-#### Instantiate(实例化)
+## Instantiate(实例化)
 
 首先介绍NgElement的数据结构，NgElement是Angular 2中很重要的一部分，负责将AST转化回DOM结构，并完成相应的binding和Directive等内容的实例化。
 
@@ -189,7 +191,7 @@ class View{
 
 通过以上的步骤，我们可以将Parser生成的AST转化为可以运行的App，然而Compiler的功能不仅仅是将源代码转换AST再转换为可运行程序，在compile的过程中对性能进行优化也是很重要的一步。
 
-### Compiler性能优化
+## Compiler性能优化
 
 在NgElement对Directive处理的代码中，我们看到其中directives的类型是Map，如果我们将所有的directives都列举出来，将代码转换为
 
@@ -289,7 +291,7 @@ AoT Compile
 
 
 
-#### 支持AoT
+## 支持AoT
 
 AoT优化虽然带来了相当大的性能提升，但是由于AoT的特性，部分在JIT模式下可用的方法在AoT下是不可行或者官方不建议的，在github上的[webpack2-starter](https://github.com/qdouble/angular-webpack2-starter/)总结了会导致AoT编译失败的情况：
 
@@ -302,8 +304,7 @@ AoT优化虽然带来了相当大的性能提升，但是由于AoT的特性，�
 
 
 
-
-### It's just "Angular"
+## It's just "Angular"
 
 尾巴
 
