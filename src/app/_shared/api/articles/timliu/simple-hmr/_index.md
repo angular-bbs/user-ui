@@ -125,12 +125,13 @@ if (environment.hmr) {
 - 按照“搬运过程”来修改文件，文件所在路径是 `packages/angular-cli/blueprints/ng2/files/__path__/`，比如 `main.ts` 在 `packages/angular-cli/blueprints/ng2/files/__path__/main.ts`。
 - 然后 `npm link`，参考 [Development Hints for hacking on angular-cli](https://github.com/angular/angular-cli#development-hints-for-hacking-on-angular-cli)。
 - `npm link` 之后，就可以 `ng new xyz` 了，生成的 xyz 自带 hmr。
-- 如果需要跟随 angular-cli 更新，还要做（参考[《如何工程化开发大型angular2项目》](https://wx.angular.cn/library/article/%E5%A6%82%E4%BD%95%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%BC%80%E5%8F%91%E5%A4%A7%E5%9E%8Bangular2%E9%A1%B9%E7%9B%AE)）：
+- 如果需要跟随 angular-cli 更新，还要做（参考[《如何工程化开发大型angular2项目》](https://wx.angular.cn/library/article/%E5%A6%82%E4%BD%95%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%BC%80%E5%8F%91%E5%A4%A7%E5%9E%8Bangular2%E9%A1%B9%E7%9B%AE)）：  
   ```bash
   git remote add upstream https://github.com/angular/angular-cli
   git fetch upstream
   git merge upstream/master
   ```
+
 如果你懒得去改 blueprint，你可以 clone 我改好的：https://github.com/rxjs-space/angular-cli。当然也需要通过 `npm link` 来使用。
 
 
