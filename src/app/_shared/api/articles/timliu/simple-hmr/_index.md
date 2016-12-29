@@ -119,9 +119,20 @@ if (environment.hmr) {
 修改 app 代码，比如在 `app.component.html` 里改个字符，保存。几秒过后，浏览器里看到页面变化（网页标签上没有出现“载入中”，即 “without a page reload”），同时 console 说：`[HMR] Updated modules: ...`。  
 在 `updated modules`下面列出了7、8个项目，我们不是只改了一个 hmtl 吗？如果只 reload 一个 module 是不是会更快？该怎么做呢？再看看 [wiki][Webpack wiki]。  
 
+### 修改 angular-cli blueprint
+如果你不想每次 `ng new` 之后重复上面的工作，那么你需要修改 angular-cli 的 blueprint。具体步骤如下：  
+- Fork [angular-cli](https://github.com/angular/angular-cli), 然后 clone 到本地。
+- 按照“搬运过程”来修改文件，文件所在路径是 `packages/angular-cli/blueprints/ng2/files/__path__/`，比如 `main.ts` 在 `packages/angular-cli/blueprints/ng2/files/__path__/main.ts`。
+- 然后 `npm link`，参考 [Development Hints for hacking on angular-cli](https://github.com/angular/angular-cli#development-hints-for-hacking-on-angular-cli)。
+- `npm link` 之后，就可以 `ng new xyz` 了，生成的 xyz 自带 hmr。
+- 如果需要跟随 angular-cli 更新，还要做（参考[《如何工程化开发大型angular2项目》](https://wx.angular.cn/library/article/%E5%A6%82%E4%BD%95%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%BC%80%E5%8F%91%E5%A4%A7%E5%9E%8Bangular2%E9%A1%B9%E7%9B%AE)）：
+  ```bash
+  git remote add upstream https://github.com/angular/angular-cli
+  git fetch upstream
+  git merge upstream/master
+  ```
+如果你懒得去改 blueprint，你可以 clone 我改好的：https://github.com/rxjs-space/angular-cli。当然也需要通过 `npm link` 来使用。
 
-## 总结
-估计在不久的将来，我们可以 `ng new xyz --hmr` 来完成以上操作，或者 `ng new` 默认 hmr。
 
 **Happy coding!**
 
