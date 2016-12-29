@@ -108,12 +108,12 @@ if (environment.hmr) {
 
 ```json
 "scripts": {
-  "hmr": "ng serve --hmr -e=dev-hmr"
+  "dev:hmr": "ng serve --hmr -e=dev-hmr"
 ```
 
 ### serve 起来
 ```
-> npm run hmr
+> npm run dev:hmr
 ```
 浏览器 console 里看到：`[HMR] Waiting for update signal from WDS...`、`[WDS] Hot Module Replacement enabled.`。   
 修改 app 代码，比如在 `app.component.html` 里改个字符，保存。几秒过后，浏览器里看到页面变化（网页标签上没有出现“载入中”，即 “without a page reload”），同时 console 说：`[HMR] Updated modules: ...`。  
