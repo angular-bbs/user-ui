@@ -50,6 +50,15 @@ const items: Article[] = [
     authors: ['易sense'],
   },
   {
+    id: '从 Angluar-CLI 到 NPM',
+    title: '从 Angluar-CLI 到 NPM',
+    summary: '使用 Angular-CLI 开发的 module 要如何发布到 NPM 上呢？',
+    content: require('./timliu/ng-cli-to-npm/_index.md'),
+    first: true,
+    tags: ['Angular', 'npm'],
+    authors: ['timliu'],
+  },
+  {
     id: 'Angular2中的StructuralDirective',
     title: 'Angular 2 中的 Sturctural Directive',
     summary: 'Angular 2 中，*NgFor 这种神奇的写法及其功能是如何实现的呢？本文将深入探寻 Structural Directive 的本质',
