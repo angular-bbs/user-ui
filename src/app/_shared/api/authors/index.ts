@@ -52,7 +52,6 @@ const items: Author[] = [
     homepage: 'https://github.com/lhtin'
   },
   {
-<<<<<<< HEAD
     id: 'timliu',
     name: 'Tim刘',
     bio: '小白小白小白',
@@ -70,17 +69,44 @@ const items: Author[] = [
     columnist: false,
     homepage: 'https://twincle.github.io'
   },
-=======
+    {
     id: 'dapao',
     name: '大炮',
     bio: '上天不要移開險峻，請賜予吾攀登之力',
     description: require('./67.大炮.md'),
-    avatar: require(''),
+    avatar: require('./_images/Tim刘.png'),
     columnist: false,
     homepage: 'https://github.com/btcioner/About-ME'
+  },
+  {
+    id: '木丁糖',
+    name: '木丁糖',
+    bio: '爱好前端开发的Android白面猿',
+    description: require('./270.木丁糖.md'),
+    avatar: require('./_images/木丁糖.jpg'),
+    columnist: false,
+    homepage: 'http://www.jianshu.com/users/d614825bc8a1/latest_articles'
+  },
+  {
+    id: '易sense',
+    name: '易sense',
+    bio: '一生中可以喜欢很多人，但心疼的只有一个',
+    description: require('./280.易sense.md'),
+    avatar: require('./_images/易sense.jpg'),
+    columnist: false,
+    homepage: 'http://www.jianshu.com/users/d0244c5326c5/latest_articles'
+  },
+  {
+    id: 'VTHINKXIE',
+    name: 'VTHINKXIE',
+    bio: 'VTHINKXIE',
+    description: require('./VTHINKXIE.md'),
+    avatar: require('./_images/VTHINKXIE.jpg'),
+    columnist: false,
+    homepage: 'http://weibo.com/vthinkxie/'
   }
->>>>>>> cf31106b8905551d1cb97e4a7f34ee70c533aa8a
 ];
+
 @Injectable()
 export class AuthorApi {
   // AuthorApi.query可以直接用来模拟从数据库里查找作者信息。
@@ -102,6 +128,20 @@ export class AuthorApi {
       if (items[i].id === params.id) {
         index = i  // 找到了，index改成i，找不到，index还是null
         break; // 找到了，不用接着找了。
+      }
+    }
+
+    // \user-ui\src\app\_shared\api\articles\index.ts
+    // 这个文章列表里，authors 一栏指向作者的 id，不是作者的 name
+    // 如果在 authors 里填写 name，使用上面的 for loop by id 是找不到的，在文章页面点击作者名字就会 404，
+    // 所以还要 for loop by name 再找一遍
+    // 这样 `library/author/id` 和 `library/author/name` 都能找到作者页面
+    if (index === null) {
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].name === params.id) {
+          index = i;  // 找到了，index改成i，找不到，index还是null
+          break;
+        }
       }
     }
 
