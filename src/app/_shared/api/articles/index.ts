@@ -427,6 +427,7 @@ const items: Article[] = [
     tags: ['现在'],
     authors: ['雪狼']
   },
+  {
     id: '我为什么选择Angular 2',
     title: '我为什么选择Angular 2？',
     summary: '晚期选择恐惧症患者可怎么活啊……本文告诉你答案！',
