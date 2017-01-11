@@ -4,6 +4,15 @@ import {Observable} from 'rxjs/Observable';
 
 const items: Article[] = [
   {
+    id: '在 Angular-CLI 中启用 HMR',
+    title: '在 Angular-CLI 中启用 HMR',
+    summary: '本文简单介绍如何在 Angular-CLI 搭建的 app 里启用 HMR。',
+    content: require('./timliu/simple-hmr/_index.md'),
+    first: true,
+    tags: ['Angular', 'HMR'],
+    authors: ['timliu'],
+  },
+  {
     id: 'simple-js-mutability',
     title: '白话 JS 数值的可变与不可变',
     summary: '简单介绍 JS 数值的可变与不可变的特点与影响。',
