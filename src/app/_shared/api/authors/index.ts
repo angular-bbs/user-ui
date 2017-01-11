@@ -95,6 +95,15 @@ const items: Author[] = [
     avatar: require('./_images/易sense.jpg'),
     columnist: false,
     homepage: 'http://www.jianshu.com/users/d0244c5326c5/latest_articles'
+  },
+  {
+    id: 'VTHINKXIE',
+    name: 'VTHINKXIE',
+    bio: 'VTHINKXIE',
+    description: require('./VTHINKXIE.md'),
+    avatar: require('./_images/VTHINKXIE.jpg'),
+    columnist: false,
+    homepage: 'http://weibo.com/vthinkxie/'
   }
 ];
 
