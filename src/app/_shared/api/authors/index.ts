@@ -87,6 +87,24 @@ const items: Author[] = [
     columnist: false,
     homepage: 'http://www.jianshu.com/users/d614825bc8a1/latest_articles'
   },
+  {
+    id: '易sense',
+    name: '易sense',
+    bio: '一生中可以喜欢很多人，但心疼的只有一个',
+    description: require('./280.易sense.md'),
+    avatar: require('./_images/易sense.jpg'),
+    columnist: false,
+    homepage: 'http://www.jianshu.com/users/d0244c5326c5/latest_articles'
+  },
+  {
+    id: 'VTHINKXIE',
+    name: 'VTHINKXIE',
+    bio: 'VTHINKXIE',
+    description: require('./VTHINKXIE.md'),
+    avatar: require('./_images/VTHINKXIE.jpg'),
+    columnist: false,
+    homepage: 'http://weibo.com/vthinkxie/'
+  }
 ];
 
 @Injectable()
@@ -110,6 +128,20 @@ export class AuthorApi {
       if (items[i].id === params.id) {
         index = i  // 找到了，index改成i，找不到，index还是null
         break; // 找到了，不用接着找了。
+      }
+    }
+
+    // \user-ui\src\app\_shared\api\articles\index.ts
+    // 这个文章列表里，authors 一栏指向作者的 id，不是作者的 name
+    // 如果在 authors 里填写 name，使用上面的 for loop by id 是找不到的，在文章页面点击作者名字就会 404，
+    // 所以还要 for loop by name 再找一遍
+    // 这样 `library/author/id` 和 `library/author/name` 都能找到作者页面
+    if (index === null) {
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].name === params.id) {
+          index = i;  // 找到了，index改成i，找不到，index还是null
+          break;
+        }
       }
     }
 
