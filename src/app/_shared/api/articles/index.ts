@@ -4,12 +4,12 @@ import {Observable} from 'rxjs/Observable';
 
 const items: Article[] = [
   {
-    id: '在 Angular-CLI 中启用 HMR',
-    title: '在 Angular-CLI 中启用 HMR',
-    summary: '本文简单介绍如何在 Angular-CLI 搭建的 app 里启用 HMR。',
-    content: require('./timliu/simple-hmr/_index.md'),
+    id: '使用 Angular 2 制作简单的 Accordion 组件 - Template Driven',
+    title: '使用 Angular 2 制作简单的 Accordion 组件 - Template Driven',
+    summary: '在 ng-bootstrap/accordion 的启发下，使用 Angular 2，以 template driven 的思路制作一个 Accordion 组件 。',
+    content: require('./timliu/simple-accordion/_index.md'),
     first: true,
-    tags: ['Angular', 'HMR'],
+    tags: ['Angular', 'RxJS'],
     authors: ['timliu'],
   },
   {
