@@ -4,6 +4,16 @@ import {Observable} from 'rxjs/Observable';
 
 const items: Article[] = [
   {
+    id: 'way-to-provide-metadata',
+    title: 'Metadata 的提供途径',
+    summary: 'Angular 的配置离不开 Metadata 的使用，那么 Metadata 究竟要如何使用呢？',
+    content: require('./trotyl/way-to-provide-metadata/_index.md'),
+    first: true,
+    column: 'trotyl',
+    tags: ['ng2', 'typescript'],
+    authors: ['trotyl'],
+  },
+  {
     id: '使用 Angular 2 制作简单的 Accordion 组件 - Template Driven',
     title: '使用 Angular 2 制作简单的 Accordion 组件 - Template Driven',
     summary: '在 ng-bootstrap/accordion 的启发下，使用 Angular 2，以 template driven 的思路制作一个 Accordion 组件 。',
