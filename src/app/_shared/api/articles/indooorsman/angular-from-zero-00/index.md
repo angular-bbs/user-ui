@@ -3,6 +3,7 @@
 本系列将会从零开始构建一个完整的Angular应用，不依赖任何seed或starter，也不使用Angular cli，这样做的目的是让自己对Angular应用开发的每一个环节都有一定的了解。
 
 最终的示例会包含以下特性：
+
 - 采用webpack进行构建、编译、模块打包
 - 模板采用pug编写
 - 样式采用less编写
@@ -16,6 +17,7 @@
 ## 序章
 
 ### 基础知识
+
 - NPM <https://www.npmjs.com>
 - ES6 <http://es6.ruanyifeng.com>
 - Webpack <https://webpack.js.org>
@@ -44,6 +46,7 @@ npm init #可按照提示填写项目基本信息，或直接一路回车
 ```
 
 - 安装依赖：
+
 ```bash
 # Angular
 npm install @angular/common @angular/compiler @angular/compiler-cli @angular/core @angular/forms @angular/http @angular/platform-browser @angular/platform-browser-dynamic @angular/platform-server @angular/router rxjs zone.js --save
@@ -54,6 +57,7 @@ npm install webpack --save-dev
 # Typescript
 npm install typescript --save-dev
 ```
+
 注意这些并不是最终全部的依赖，随着开发的进展，后面会陆续添加其他依赖
 
 (未完待续...)
