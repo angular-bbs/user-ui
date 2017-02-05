@@ -14,5 +14,5 @@
 
 时间轴、校对：程路、章小飞
 
-[移动应用 —— 听我的（Jeff Cross）](http://v.qq.com/x/page/a0335lokxm8.html)
+[移动开发？听我的（Jeff Cross）](http://v.qq.com/x/page/h0336m6rbez.html)
 

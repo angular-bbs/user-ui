@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {ThreadApi, Thread, BasePageComponent, matchById} from '../../_shared';
-import {ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
+import { Component } from '@angular/core';
+import { ThreadApi, Thread, BasePageComponent, matchById } from '../../_shared';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'thread-show',
@@ -18,10 +18,10 @@ export class ThreadShowComponent extends BasePageComponent {
 
   item: Observable<Thread>;
 
-  reload(params: {id: string}) {
-    this.item = this.api.query()
+  reload(params: { id: string }) {
+    this.item = this.api.query('')
       .find(matchById(params.id))
-      .do((item: Thread)=> {
+      .do((item: Thread) => {
         document.title = `${item.title} - Angular中文社区`;
       });
   }
