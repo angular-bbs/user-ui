@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {LibraryHomeComponent} from './home.component';
-import {routing} from './_library.routing';
+import {LibraryRoutingModule} from './_library-routing.module';
 import SharedModule from '../_shared/_shared.module';
 import {ARTICLE_COMPONENTS} from './article/index';
 import {AUTHOR_COMPONENTS} from './author/index';
@@ -14,7 +14,7 @@ import {RESOURCE_COMPONENTS} from './resource/index';
   imports: [
     CommonModule,
     SharedModule,
-    routing,
+    LibraryRoutingModule,
   ],
   declarations: [
     LibraryHomeComponent,

@@ -18,11 +18,9 @@ export class AuthorHomeComponent extends BasePageComponent {
 
   items: Observable<MenuItem[]>;
 
-  reload(params: {id: string}): void {
-    this.items = this.api.query()
-      .filter(matchById(params.id))
-      .map(authorToMenuItem)
-      .toArray();
+  reload(): void {
+    this.items = this.api.queryAll()
+      .map(authors => authors.map(authorToMenuItem));
   }
 }
 

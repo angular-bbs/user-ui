@@ -1,9 +1,9 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {Subscription} from 'rxjs/Subscription';
-import {StringMap} from '../../utils/index';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+import { StringMap } from '../../utils/index';
 
-@Component({template: ''})
+@Component({ template: '' })
 export abstract class BasePageComponent implements OnInit, OnDestroy {
   constructor(protected activatedRoute: ActivatedRoute) {
   }
@@ -11,7 +11,7 @@ export abstract class BasePageComponent implements OnInit, OnDestroy {
   activatedRouteSubscription: Subscription;
 
   ngOnInit() {
-    this.activatedRouteSubscription = this.activatedRoute.params.subscribe((params)=> {
+    this.activatedRouteSubscription = this.activatedRoute.params.subscribe((params) => {
       this.reload(params);
     });
   }

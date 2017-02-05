@@ -31,3 +31,5 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+.vscode/chrome
+yarn.lock

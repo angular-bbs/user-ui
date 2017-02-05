@@ -1,10 +1,10 @@
-import {NgModule, ModuleWithProviders} from "@angular/core";
-import {CommonModule} from "@angular/common";
-import {SHARED_APIS} from "./api/index";
-import {RouterModule} from "@angular/router";
-import {SHARED_COMPONENTS} from "./components/index";
-import {SHARED_PIPES} from "./pipes/index";
-import {SHARED_SERVICES} from "./services/index";
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { SHARED_APIS } from './api/index';
+import { RouterModule } from '@angular/router';
+import { SHARED_COMPONENTS } from './components/index';
+import { SHARED_PIPES } from './pipes/index';
+import { SHARED_SERVICES } from './services/index';
 
 @NgModule({
   imports: [
