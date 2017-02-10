@@ -165,7 +165,7 @@ platformBrowserDynamic().bootstrapModule(AppModule);
       "es6"
     ],
     "typeRoots": [
-      "node_modules/@types"
+      "../node_modules/@types"
     ],
     "types": [
       "node"
@@ -182,7 +182,7 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 |experimentalDecorators|true|使用实验性的装饰器，这个是必须的设置，因为Angular的源码中使用了它|
 |moduleResolution|node|由于我们使用了node的包管理工具npm来下载依赖，所以这里也是必须的设置，<br>否则在ts中导入node_modules目录下的模块时，ts编译器会找不到它|
 |lib|["dom","es6"]|同样是必须的设置，否则用到es6的地方编译会报错|
-|typeRoots|["node_modules/@types"]|参考<br><https://www.tslang.cn/docs/handbook/tsconfig-json.html#types-typeroots-and-types>|
+|typeRoots|["../node_modules/@types"]|参考<br><https://www.tslang.cn/docs/handbook/tsconfig-json.html#types-typeroots-and-types>|
 |types|["node"]|为`require`等方法提供类型支持，需要先安装`@types/node`<br>(在项目根目录下执行`npm install @types/node --save`)
 
 &nbsp;
