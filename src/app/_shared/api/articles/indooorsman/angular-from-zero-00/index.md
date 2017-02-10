@@ -291,4 +291,4 @@ module.exports = {
 
 序章到此就结束了，下一章将引入`pug`和`less`，以及通过`webpack`的`file-loader`来处理模板和样式中对图片等静态资源的引用。
 
-示例源码：<https://github.com/indooorsman/angular-twitter>
+示例源码：<https://github.com/indooorsman/angular-twitter/tree/helloWorld>
