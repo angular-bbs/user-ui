@@ -10,6 +10,8 @@
 - 路由懒加载
 - 通过`npm script`『一键』创建组件相关目录和文件
 - 模块热替换(hot module replacement)
+- 多国语言支持
+- 动态加载组件
 - AoT编译
 - 服务端渲染
 
@@ -77,11 +79,13 @@ anuglar-twitter/
 ├── webpack.config.js
 ├── package.json     
 ```
-其中：`src`目录存放我们的ts及模板等源文件，`./webpack.config.js`是webpack的配置文件
-`./package.json`是最开始执行`npm init`之后生成的
-`./src/tsconfig.json`是typescript的配置文件
-`./src/index.html`是主页面
-`./src/app`则是我们app的具体代码喽
+其中：
+- `src`目录存放我们的ts及模板等源文件
+- `./webpack.config.js`是webpack的配置文件 
+- `./package.json`是最开始执行`npm init`之后生成的 
+- `./src/tsconfig.json`是typescript的配置文件
+- `./src/index.html`是主页面
+- `./src/app`则是我们app的具体代码喽
 
 ### Hello world!
 
@@ -94,7 +98,7 @@ anuglar-twitter/
 |app.template.html|根组件模板|
 |app.styles.css|根组件样式|
 
-```typescript
+```js
 //app.module.ts
 
 import {NgModule} from "@angular/core";
@@ -114,7 +118,7 @@ export class AppModule {
 
 }
 ```
-```typescript
+```js
 //app.component.ts
 
 import {Component} from "@angular/core";
@@ -139,7 +143,7 @@ h1 {
 ```
 
 然后在`./src`创建app的启动文件`main.ts`
-```typescript
+```js
 import 'core-js'; // es6+es7 polyfills
 import 'zone.js/dist/zone.js'; // Angular所依赖的zone.js，必须在core-js之后加载
 
@@ -169,7 +173,6 @@ platformBrowserDynamic().bootstrapModule(AppModule);
   }
 }
 ```
-
 `tsconfig.json`中各个字段的说明：
 
 |字段名|值|说明|
@@ -180,7 +183,7 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 |moduleResolution|node|由于我们使用了node的包管理工具npm来下载依赖，所以这里也是必须的设置，<br>否则在ts中导入node_modules目录下的模块时，ts编译器会找不到它|
 |lib|["dom","es6"]|同样是必须的设置，否则用到es6的地方编译会报错|
 |typeRoots|["node_modules/@types"]|参考<br><https://www.tslang.cn/docs/handbook/tsconfig-json.html#types-typeroots-and-types>|
-|types|["node"]|为`require`等方法提供类型支持，需要先安装`@types/node`<br>(在项目根目录下执行`npm install @types/node`)
+|types|["node"]|为`require`等方法提供类型支持，需要先安装`@types/node`<br>(在项目根目录下执行`npm install @types/node --save`)
 
 &nbsp;
 
@@ -211,12 +214,15 @@ module.exports = {
               configFileName: './src/tsconfig.json' //配置tsconfig.json的路径
             }
           },
-          'angular2-template-loader' //这个loader会把Angular组件中的templateUrl和styleUrls替换成template和styles，并添加require，参考<https://github.com/TheLarkInn/angular2-template-loader>
+          'angular2-template-loader' 
+          // angular2-template-loader会把Angular组件中的templateUrl和styleUrls替换成template和styles，
+          // 并添加require，参考<https://github.com/TheLarkInn/angular2-template-loader>
+          // 当然需要先安装它：在项目根目录下执行`npm install angular2-template-loader --save-dev`
         ]
       },
       {
         test: /\.(css|html|htm)$/, 
-        use: 'raw-loader' //对于css、html、htm直接取得起文本内容，在之后的文章里会分别替换成less和pug
+        use: 'raw-loader' //对于css、html、htm直接取得其文本内容，在之后的文章里会分别替换成less和pug
       }
     ]
   }
@@ -241,7 +247,7 @@ module.exports = {
 </html>
 ```
 
-最后，我们通过npm scripts来写一段脚本执行打包和启动一个静态服务器
+最后，我们通过npm scripts来写一段脚本执行打包和启动一个静态服务器（更多关于npm scripts的信息请参考<https://docs.npmjs.com/files/package.json>以及<https://docs.npmjs.com/misc/scripts>）
 
 修改`./package.json`:
 ```json
@@ -271,7 +277,6 @@ module.exports = {
 好啦！现在我们可以在项目根目录下执行`npm start`来试试看了！
 
 执行`npm start`之后若看到如下的提示，就说明已经打包成功并且启动了静态服务：
-
 ```bash
 * Static server successfully started.
 * Serving files at: http://localhost:9080
