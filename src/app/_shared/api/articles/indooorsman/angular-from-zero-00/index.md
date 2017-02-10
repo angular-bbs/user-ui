@@ -222,7 +222,9 @@ module.exports = {
       },
       {
         test: /\.(css|html|htm)$/, 
-        use: 'raw-loader' //对于css、html、htm直接取得其文本内容，在之后的文章里会分别替换成less和pug
+        use: 'raw-loader' 
+        // 对于css、html、htm直接取得其文本内容，在之后的文章里会分别替换成less和pug
+        // 在项目根目录下执行`npm install raw-loader --save-dev`
       }
     ]
   }
